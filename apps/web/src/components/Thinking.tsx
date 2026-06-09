@@ -55,7 +55,7 @@ export function Thinking({
     : `Thought · ${narration.length} steps${srcItems.length ? ` · ${srcItems.length} source${srcItems.length > 1 ? "s" : ""}` : ""}`;
 
   return (
-    <div className="rounded-xl border border-line bg-paper/50">
+    <div className="rounded-xl border border-line bg-surface/60">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -138,7 +138,7 @@ export function Thinking({
               {rawOpen ? "Hide" : "Show"} raw trace ({trace.length})
             </button>
             {rawOpen ? (
-              <div className="mt-1 max-h-56 overflow-auto rounded-lg bg-ink p-2 font-mono text-[10px] leading-relaxed text-paper/80">
+              <div className="mt-1 max-h-56 overflow-auto rounded-lg border border-line bg-sunken p-2 font-mono text-[10px] leading-relaxed text-ink-soft">
                 {trace.map((ev, i) => (
                   <div key={i}>{traceLine(ev)}</div>
                 ))}

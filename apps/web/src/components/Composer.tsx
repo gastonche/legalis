@@ -41,7 +41,7 @@ export function Composer({
         e.preventDefault();
         submit();
       }}
-      className={`group flex items-end gap-2 rounded-2xl border border-line-strong bg-surface px-3 py-2.5 shadow-card transition-colors focus-within:border-primary ${hero ? "" : ""}`}
+      className="group flex items-end gap-2 rounded-2xl border border-line-strong bg-surface px-3 py-2.5 shadow-card transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20"
     >
       <label htmlFor="composer" className="sr-only">
         Ask a question about Cameroon law
@@ -65,10 +65,10 @@ export function Composer({
         type="submit"
         aria-label="Send"
         disabled={busy || !value.trim()}
-        className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-on-primary transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
       >
         {busy ? (
-          <span className="size-2.5 animate-pulse rounded-full bg-white motion-reduce:animate-none" />
+          <span className="size-2.5 animate-pulse rounded-full bg-on-primary motion-reduce:animate-none" />
         ) : (
           <ArrowUpIcon className="size-5" />
         )}

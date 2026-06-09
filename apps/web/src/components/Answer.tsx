@@ -42,7 +42,7 @@ export function Answer({
       </div>
 
       {answer.regime.rationale ? (
-        <p className="mt-3 rounded-lg bg-paper px-3 py-2 text-xs text-ink-faint">
+        <p className="mt-3 rounded-lg border border-line bg-surface px-3 py-2 text-xs text-ink-faint">
           <span className="font-semibold text-ink-soft">Why this regime: </span>
           {answer.regime.rationale}
         </p>

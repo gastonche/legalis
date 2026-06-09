@@ -1,57 +1,63 @@
 @import "tailwindcss";
 
 /*
- * Legalis design system — editorial / civic.
- * Warm "paper" canvas + deep "ink" text + a calm petrol-teal primary
- * (deliberately not AI-purple). Regime hues are reinforced with text + icons,
- * never colour alone. Semantic tokens only — no raw hex in components.
+ * Legalis — "Counsel" design system.
+ * A premium, refined-dark legal-research aesthetic: warm near-black charcoal,
+ * ivory text, a restrained brass signature with a verdigris "verified" accent,
+ * hairline borders, crafted depth. Fraunces (display) + Inter Tight (UI) +
+ * JetBrains Mono. Semantic tokens only — no raw hex in components.
  */
 @theme {
-  /* neutrals */
-  --color-paper: #f6f4ee;
-  --color-surface: #ffffff;
-  --color-ink: #1b1f2a;
-  --color-ink-soft: #474d5c;
-  --color-ink-faint: #6c7280;
-  --color-line: #e4e0d5;
-  --color-line-strong: #d3cec0;
+  /* surfaces — warm charcoal, layered */
+  --color-paper: #14130f; /* app canvas */
+  --color-surface: #1c1a14; /* cards */
+  --color-surface-2: #232019; /* elevated (user message, hover) */
+  --color-sunken: #0c0b08; /* code / trace inset */
 
-  /* brand / action — deep petrol teal */
-  --color-primary: #1d5b6e;
-  --color-primary-hover: #174b5b;
-  --color-primary-soft: #e2edf0;
-  --color-primary-ink: #0f3a47;
+  /* text — ivory ramp */
+  --color-ink: #ece6d8;
+  --color-ink-soft: #bcb4a0;
+  --color-ink-faint: #938b77;
 
-  /* primary-authority accent (brass) */
-  --color-brass: #8a6a1d;
-  --color-brass-soft: #f3ecd8;
+  /* hairlines */
+  --color-line: #2b2820;
+  --color-line-strong: #3c372c;
 
-  /* regime hues */
-  --color-common: #2b5fa6; /* common law (Anglophone) */
-  --color-civil: #a85d12; /* civil law (Francophone) */
-  --color-ohada: #197a56; /* OHADA business law */
-  --color-mixed: #545c6b;
+  /* brass — the signature accent */
+  --color-primary: #c9a96a;
+  --color-primary-hover: #dcc088;
+  --color-primary-soft: #2c2617; /* dark brass tint */
+  --color-primary-ink: #e6c98c; /* text on a dark brass tint */
+  --color-on-primary: #14130f; /* text/icon on solid brass */
 
-  /* status */
-  --color-success: #197a56;
-  --color-success-soft: #e2f0ea;
-  --color-warning: #a85d12;
-  --color-warning-soft: #f6ebdc;
-  --color-danger: #b3261e;
-  --color-danger-soft: #f7e3e1;
+  --color-brass: #dcc088;
+  --color-brass-soft: #2c2617;
 
-  /* typography */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  /* status — verdigris "verified", warm amber, warm rose */
+  --color-success: #6cc7ad;
+  --color-success-soft: #15302a;
+  --color-warning: #e2b25c;
+  --color-warning-soft: #322810;
+  --color-danger: #e8867b;
+  --color-danger-soft: #3a201d;
+
+  /* bijural regime hues (legible on dark) */
+  --color-common: #88abdc; /* Anglophone common law */
+  --color-civil: #e3aa6a; /* Francophone civil law */
+  --color-ohada: #76caac; /* OHADA business law */
+  --color-mixed: #a89e88;
+
+  /* type */
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* radii */
-  --radius-card: 0.875rem;
+  --radius-card: 0.9rem;
   --radius-chip: 0.625rem;
 
-  /* elevation */
-  --shadow-card: 0 1px 2px rgba(27, 31, 42, 0.04), 0 8px 24px -14px rgba(27, 31, 42, 0.18);
-  --shadow-pop: 0 12px 32px -12px rgba(27, 31, 42, 0.28);
+  /* crafted depth on dark = hairline highlight + deep soft shadow */
+  --shadow-card: 0 1px 0 rgba(236, 230, 216, 0.04) inset, 0 16px 36px -22px rgba(0, 0, 0, 0.7);
+  --shadow-pop: 0 1px 0 rgba(236, 230, 216, 0.05) inset, 0 28px 60px -24px rgba(0, 0, 0, 0.8);
 }
 
 html,
@@ -65,31 +71,43 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "cv05", "ss01";
+  font-feature-settings: "ss01", "cv01";
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* subtle paper grain via layered radial gradients, very low contrast */
+/* ambient glow + vignette — premium, very low contrast */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(60rem 60rem at 110% -10%, rgba(29, 91, 110, 0.05), transparent 60%),
-    radial-gradient(50rem 50rem at -10% 0%, rgba(138, 106, 29, 0.04), transparent 55%);
   z-index: 0;
+  background:
+    radial-gradient(72rem 52rem at 88% -12%, rgba(201, 169, 106, 0.08), transparent 60%),
+    radial-gradient(60rem 52rem at -12% 112%, rgba(95, 183, 161, 0.05), transparent 58%),
+    radial-gradient(120rem 90rem at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.35));
 }
 
-/* visible, on-brand focus ring for keyboard users */
+::selection {
+  background: rgba(201, 169, 106, 0.28);
+  color: var(--color-ink);
+}
+
+/* refined brass focus ring */
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* entrance motion — transform/opacity only */
+/* slim, on-theme scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -101,7 +119,7 @@ body::before {
   }
 }
 .animate-rise {
-  animation: rise 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes blink {
@@ -110,7 +128,7 @@ body::before {
     opacity: 1;
   }
   50% {
-    opacity: 0.25;
+    opacity: 0.2;
   }
 }
 .caret-pulse::after {
