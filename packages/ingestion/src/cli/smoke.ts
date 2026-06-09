@@ -17,7 +17,7 @@ const store: VectorStore =
     ? new VectorizeRestStore(acct, token, index)
     : new LocalVectorStore(path.join(dir, ".chunks", "local-index.json"));
 
-const [vector] = await provider.embed([query]);
+const [vector] = await provider.embed([query], "query");
 if (!vector) throw new Error("embedding failed");
 const results = await store.query(vector, { topK: 6 });
 

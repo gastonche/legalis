@@ -13,9 +13,11 @@ export interface EmbeddingInfo {
   model: string;
 }
 
-const LOCAL_MODEL = "Xenova/paraphrase-multilingual-MiniLM-L12-v2"; // 384-dim, FR+EN
+// multilingual-e5 is instruction-tuned: it needs "query:" / "passage:" prefixes,
+// which markedly improves cross-lingual (EN↔FR) retrieval over plain MiniLM.
+const LOCAL_MODEL = "Xenova/multilingual-e5-small"; // 384-dim, FR+EN
 const LOCAL_DIMS = 384;
-const CF_MODEL = "@cf/baai/bge-m3"; // 1024-dim, multilingual
+const CF_MODEL = "@cf/baai/bge-m3"; // 1024-dim, multilingual (prefix-free)
 const CF_DIMS = 1024;
 
 export class LocalEmbedding implements EmbeddingProvider {
@@ -35,10 +37,14 @@ export class LocalEmbedding implements EmbeddingProvider {
     return this.pipe;
   }
 
-  async embed(texts: string[]): Promise<number[][]> {
+  async embed(texts: string[], kind: "query" | "passage" = "passage"): Promise<number[][]> {
     if (texts.length === 0) return [];
+    const prefix = kind === "query" ? "query: " : "passage: ";
     const pipe = await this.getPipe();
-    const out = await pipe(texts, { pooling: "mean", normalize: true });
+    const out = await pipe(
+      texts.map((t) => prefix + t),
+      { pooling: "mean", normalize: true },
+    );
     return out.tolist();
   }
 }
@@ -50,6 +56,7 @@ export class CloudflareRestEmbedding implements EmbeddingProvider {
     private apiToken: string,
   ) {}
 
+  // bge-m3 is prefix-free; `kind` is accepted for interface parity and ignored.
   async embed(texts: string[]): Promise<number[][]> {
     if (texts.length === 0) return [];
     const res = await fetch(

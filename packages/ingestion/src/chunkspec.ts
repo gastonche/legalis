@@ -4,7 +4,7 @@
  * line-anchored and case-insensitive for robustness across FR/EN and mixed case.
  */
 
-export const CHUNK_CONFIG = { min: 350, max: 2400, overlap: 200 } as const;
+export const CHUNK_CONFIG = { min: 300, max: 1600, overlap: 150 } as const;
 
 const SRC = {
   part: ["^\\s*PART\\s+[IVXLC]+\\b", "^\\s*PARTIE\\s+(?:PREMI[EÈ]RE|[IVXLC]+|[0-9]+)\\b"],

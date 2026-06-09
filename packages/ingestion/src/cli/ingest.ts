@@ -45,7 +45,10 @@ const EMBED_BATCH = 16;
 const items: VectorUpsertItem[] = [];
 for (let i = 0; i < chunks.length; i += EMBED_BATCH) {
   const batch = chunks.slice(i, i + EMBED_BATCH);
-  const vectors = await provider.embed(batch.map((c) => c.text));
+  const vectors = await provider.embed(
+    batch.map((c) => c.text),
+    "passage",
+  );
   batch.forEach((c, j) => {
     const vector = vectors[j];
     if (vector) items.push({ id: c.id, vector, metadata: { ...c.metadata, text: c.text } });

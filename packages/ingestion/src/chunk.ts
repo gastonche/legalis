@@ -75,14 +75,27 @@ function captureNumber(line: string): string | null {
   return /premi/i.test(n) ? "1" : n;
 }
 
+const MARKER_WORD = /^\s*(ARTICLE|ART\.|SECTION|SOUS-SECTION|TITRE|CHAPITRE|LIVRE|PARTIE|PART|BOOK|TITLE|CHAPTER)\b/i;
+
+/** An all-caps standalone line acting as a sub-section heading (not a numbered marker). */
+function isSubheading(line: string): boolean {
+  const t = line.trim();
+  if (t.length < 5 || t.length > 70) return false;
+  if (/[a-zà-ÿ]/.test(t)) return false; // contains lowercase → ordinary prose
+  if (!/[A-ZÀ-ÖØ-Þ]/.test(t)) return false; // must have a capital letter
+  if (MARKER_WORD.test(t)) return false; // numbered markers handled elsewhere
+  return /[A-ZÀ-ÖØ-Þ]{2,}/.test(t); // at least one real word
+}
+
 // ---------- build article units with heading context ----------
 
 export function buildUnits(lines: string[], kind: UnitKind): Unit[] {
   const ctxLevels = contextLevels(kind);
   const boundary = boundaryRegexes(kind);
-  const stack: Partial<Record<StructLevel, string>> = {};
+  const ORDER: string[] = [...CONTEXT_LEVELS, "subheading"];
+  const stack: Record<string, string> = {};
   const pathNow = () =>
-    CONTEXT_LEVELS.map((l) => stack[l])
+    ORDER.map((l) => stack[l])
       .filter((v): v is string => Boolean(v))
       .join(" > ");
 
@@ -114,8 +127,8 @@ export function buildUnits(lines: string[], kind: UnitKind): Unit[] {
     if (ctx) {
       flush();
       stack[ctx] = line.replace(/\s+/g, " ").trim().slice(0, 90);
-      const idx = CONTEXT_LEVELS.indexOf(ctx);
-      for (const deeper of CONTEXT_LEVELS.slice(idx + 1)) delete stack[deeper];
+      const idx = ORDER.indexOf(ctx);
+      for (const deeper of ORDER.slice(idx + 1)) delete stack[deeper];
       // After the first article, keep an accumulator open so orphan prose under a
       // heading becomes its own chunk instead of leaking into the front matter.
       if (started) cur = { number: null, body: [], headingPath: pathNow() };
@@ -125,6 +138,14 @@ export function buildUnits(lines: string[], kind: UnitKind): Unit[] {
       started = true;
       flush();
       cur = { number: captureNumber(line), body: [line], headingPath: pathNow() };
+      continue;
+    }
+    // bare all-caps sub-headings (e.g. "BÉNÉFICE IMPOSABLE") set context for the
+    // next article but don't break an article in progress.
+    if (started && (!cur || cur.number === null) && isSubheading(line)) {
+      flush();
+      stack["subheading"] = line.trim().slice(0, 70);
+      cur = { number: null, body: [], headingPath: pathNow() };
       continue;
     }
     if (cur) cur.body.push(line);
@@ -167,8 +188,20 @@ function windowText(text: string, max: number, overlap: number): string[] {
   return out.length ? out : [text.slice(0, max)];
 }
 
-function chunkLang(doc: CorpusDoc): Language {
-  return doc.languages[0] === "en" ? "en" : "fr";
+const FR_STOP = / (le|la|les|des|du|de|et|à|est|une|qui|dans|pour|sur|aux|par|ne|se|au) /g;
+const EN_STOP = / (the|of|and|to|in|for|is|that|on|by|with|shall|as|an|or|be) /g;
+
+function detectLang(text: string): Language {
+  const t = ` ${text.toLowerCase()} `;
+  const fr = (t.match(FR_STOP) ?? []).length;
+  const en = (t.match(EN_STOP) ?? []).length;
+  return en > fr ? "en" : "fr";
+}
+
+/** Single-language docs trust the manifest; bilingual files detect per chunk. */
+function chunkLang(doc: CorpusDoc, text: string): Language {
+  if (doc.languages.length === 1) return doc.languages[0] === "en" ? "en" : "fr";
+  return detectLang(text);
 }
 
 function buildMeta(
@@ -176,11 +209,12 @@ function buildMeta(
   label: string,
   number: string | null,
   headingPath: string,
+  text: string,
 ): ChunkMetadata {
   return {
     sourceId: doc.id,
     title: doc.title,
-    language: chunkLang(doc),
+    language: chunkLang(doc, text),
     authority: doc.authority,
     sourceType: doc.sourceType,
     legalDistrict: doc.legalDistrict,
@@ -204,8 +238,13 @@ export function chunkDoc(doc: CorpusDoc, rawText: string): Chunk[] {
   let seq = 0;
   const emit = (text: string, label: string, number: string | null, headingPath: string) => {
     const t = text.trim();
-    if (t.length < 24) return; // drop junk fragments
-    chunks.push({ id: `${doc.id}::${seq++}`, text: t, metadata: buildMeta(doc, label, number, headingPath) });
+    if (t.length < 24) return; // junk fragment
+    if (!/[a-zà-ÿ]/.test(t) && t.length < 120) return; // heading-only fragment (no prose)
+    chunks.push({
+      id: `${doc.id}::${seq++}`,
+      text: t,
+      metadata: buildMeta(doc, label, number, headingPath, t),
+    });
   };
 
   let pend: { texts: string[]; numbers: (string | null)[]; labels: string[]; headingPath: string; size: number } | null =

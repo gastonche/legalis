@@ -22,10 +22,14 @@ export interface LLMProvider {
   stream(input: LLMCompletionInput): AsyncIterable<string>;
 }
 
-/** Edge embeddings (Workers AI, multilingual e.g. @cf/baai/bge-m3). */
+/**
+ * Edge embeddings (Workers AI, multilingual e.g. @cf/baai/bge-m3).
+ * `kind` lets instruction-tuned models (e5) prefix query vs passage; models that
+ * don't need it (bge-m3) ignore it.
+ */
 export interface EmbeddingProvider {
   readonly name: string;
-  embed(texts: string[]): Promise<number[][]>;
+  embed(texts: string[], kind?: "query" | "passage"): Promise<number[][]>;
 }
 
 export interface VectorQueryOptions {
