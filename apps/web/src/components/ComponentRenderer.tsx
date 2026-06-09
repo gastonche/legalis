@@ -117,7 +117,7 @@ function Chip({ label, hint, onClick }: { label: string; hint?: string; onClick?
 
 function renderInline(text: string): ReactNode[] {
   return text
-    .split(/(\*\*[^*]+\*\*|\[\d+\])/g)
+    .split(/(\*\*[^*]+\*\*|\[(?:n:)?\d+\])/g)
     .filter(Boolean)
     .map((part, i) => {
       if (/^\*\*[^*]+\*\*$/.test(part)) {
@@ -127,13 +127,14 @@ function renderInline(text: string): ReactNode[] {
           </strong>
         );
       }
-      if (/^\[\d+\]$/.test(part)) {
+      const cite = part.match(/^\[(?:n:)?(\d+)\]$/);
+      if (cite) {
         return (
           <sup
             key={i}
             className="ml-0.5 rounded bg-primary-soft px-1 text-[0.62em] font-bold text-primary-ink"
           >
-            {part.slice(1, -1)}
+            {cite[1]}
           </sup>
         );
       }
