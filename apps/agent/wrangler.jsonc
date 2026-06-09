@@ -1,24 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "legalis-agent",
+  "name": "legalis-proxy",
   "main": "src/index.ts",
   "compatibility_date": "2025-06-01",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
 
-  // The agent runs in a Durable Object (Cloudflare Agents SDK) to hold multi-step
-  // state and stream over a long-running request.
-  "durable_objects": {
-    "bindings": [{ "name": "AGENT", "class_name": "LegalisAgent" }]
-  },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["LegalisAgent"] }]
-
-  // --- DEPLOY bindings (uncomment after creating the resources) ---
-  // Local dev uses DEV_RETRIEVAL_URL (the Node retrieval bridge) instead, so these
-  // stay commented to keep `wrangler dev` runnable without Cloudflare resources.
-  //   wrangler vectorize create legalis-corpus --dimensions=1024 --metric=cosine
-  // "ai": { "binding": "AI" },
-  // "vectorize": [{ "binding": "VECTORIZE", "index_name": "legalis-corpus" }],
-  // "d1_databases": [{ "binding": "DB", "database_name": "legalis", "database_id": "<id>" }],
-  // "kv_namespaces": [{ "binding": "KV", "id": "<id>" }]
+  // The Worker is a thin edge proxy to the Mastra "brain" service, which holds the
+  // agent loop + sessions. BRAIN_URL points at the brain (dev: the local Node host;
+  // deploy: the brain's own Worker via the Mastra CloudflareDeployer).
+  "vars": { "BRAIN_URL": "http://127.0.0.1:4111" }
 }

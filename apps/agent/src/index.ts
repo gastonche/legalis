@@ -1,67 +1,44 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { getAgentByName } from "agents";
-import { LegalisAgent } from "./agent";
 import type { Env } from "./env";
 
-// The DO class must be exported from the Worker entry so the runtime registers it.
-export { LegalisAgent };
-
+/**
+ * Edge proxy: the Cloudflare Worker forwards conversation requests to the Mastra
+ * "brain" service (which runs the model-driven agent loop + holds sessions) and
+ * pipes its SSE / JSON straight back. Keeps the StreamEvent wire contract intact.
+ */
 const app = new Hono<{ Bindings: Env }>();
 
 app.use("/api/*", cors());
 
-app.get("/api/health", (c) =>
-  c.json({ ok: true, service: "legalis-agent", milestone: 1 }),
-);
+app.get("/api/health", (c) => c.json({ ok: true, service: "legalis-proxy" }));
 
-/**
- * SSE handshake, step 1: create a session and store the question on a fresh
- * Agent instance keyed by sessionId.
- */
-app.post("/api/sessions", async (c) => {
-  const body = (await c.req.json().catch(() => ({}))) as { question?: string };
-  const question = (body.question ?? "").toString();
-  const sessionId = crypto.randomUUID();
-  const agent = await getAgentByName(c.env.AGENT, sessionId);
-  await agent.fetch(
-    new Request("https://agent/store", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ question }),
-    }),
-  );
-  return c.json({ sessionId });
-});
-
-/**
- * M3: single-step grounded answer (non-streamed). Retrieves from Vectorize and
- * synthesizes a cited, regime-aware AnswerPayload via the frontier model.
- */
-app.post("/api/ask-sync", async (c) => {
-  const body = (await c.req.json().catch(() => ({}))) as { question?: string };
-  const agent = await getAgentByName(c.env.AGENT, crypto.randomUUID());
-  const res = await agent.fetch(
-    new Request("https://agent/answer", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ question: body.question ?? "" }),
-    }),
-  );
-  return new Response(res.body, {
-    status: res.status,
+// Model-driven agent stream (SSE passthrough).
+app.post("/api/chat/:chatId/stream", async (c) => {
+  const chatId = c.req.param("chatId");
+  const upstream = await fetch(`${c.env.BRAIN_URL}/api/chat/${encodeURIComponent(chatId)}/stream`, {
+    method: "POST",
     headers: { "content-type": "application/json" },
+    body: await c.req.text(),
+  });
+  return new Response(upstream.body, {
+    status: upstream.status,
+    headers: {
+      "content-type": "text/event-stream; charset=utf-8",
+      "cache-control": "no-cache, no-transform",
+      "x-accel-buffering": "no",
+    },
   });
 });
 
-/**
- * Step 2: the browser's EventSource opens this GET; we hand back the Agent's
- * long-lived text/event-stream for that session.
- */
-app.get("/api/stream/:id", async (c) => {
-  const id = c.req.param("id");
-  const agent = await getAgentByName(c.env.AGENT, id);
-  return agent.fetch(new Request("https://agent/stream", { method: "GET" }));
+// Persisted conversation history for rehydration (JSON passthrough).
+app.get("/api/chat/:chatId/history", async (c) => {
+  const chatId = c.req.param("chatId");
+  const upstream = await fetch(`${c.env.BRAIN_URL}/api/chat/${encodeURIComponent(chatId)}/history`);
+  return new Response(upstream.body, {
+    status: upstream.status,
+    headers: { "content-type": "application/json" },
+  });
 });
 
 export default app;
