@@ -7,12 +7,12 @@ import type { LegalisAgent } from "./agent";
  */
 export interface Env {
   AGENT: AgentNamespace<LegalisAgent>;
-  // AI: Ai;
-  // VECTORIZE: VectorizeIndex;
+  AI: Ai;
+  VECTORIZE: VectorizeIndex;
+  OPENAI_API_KEY: string;
+  OPENAI_MODEL?: string;
+  // milestone 6+:
   // DB: D1Database;
   // KV: KVNamespace;
-  // OPENAI_API_KEY: string;
-  // LLM_PROVIDER?: string;
-  // ANTHROPIC_API_KEY?: string;
   // TAVILY_API_KEY?: string;
 }

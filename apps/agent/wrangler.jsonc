@@ -11,11 +11,14 @@
   "durable_objects": {
     "bindings": [{ "name": "AGENT", "class_name": "LegalisAgent" }]
   },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["LegalisAgent"] }]
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["LegalisAgent"] }],
 
-  // --- Milestone 2+ bindings (uncomment after creating the resources) ---
-  // "ai": { "binding": "AI" },
-  // "vectorize": [{ "binding": "VECTORIZE", "index_name": "legalis-corpus" }],
+  // Workers AI (embeddings) + Vectorize (corpus index). Create the index with:
+  //   wrangler vectorize create legalis-corpus --dimensions=1024 --metric=cosine
+  "ai": { "binding": "AI" },
+  "vectorize": [{ "binding": "VECTORIZE", "index_name": "legalis-corpus" }]
+
+  // --- Milestone 6+ bindings (uncomment after creating the resources) ---
   // "d1_databases": [
   //   { "binding": "DB", "database_name": "legalis", "database_id": "<id>" }
   // ],

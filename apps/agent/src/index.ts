@@ -35,6 +35,26 @@ app.post("/api/sessions", async (c) => {
 });
 
 /**
+ * M3: single-step grounded answer (non-streamed). Retrieves from Vectorize and
+ * synthesizes a cited, regime-aware AnswerPayload via the frontier model.
+ */
+app.post("/api/ask-sync", async (c) => {
+  const body = (await c.req.json().catch(() => ({}))) as { question?: string };
+  const agent = await getAgentByName(c.env.AGENT, crypto.randomUUID());
+  const res = await agent.fetch(
+    new Request("https://agent/answer", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ question: body.question ?? "" }),
+    }),
+  );
+  return new Response(res.body, {
+    status: res.status,
+    headers: { "content-type": "application/json" },
+  });
+});
+
+/**
  * Step 2: the browser's EventSource opens this GET; we hand back the Agent's
  * long-lived text/event-stream for that session.
  */
