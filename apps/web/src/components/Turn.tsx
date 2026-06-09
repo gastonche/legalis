@@ -15,7 +15,15 @@ export function UserTurn({ text }: { text: string }) {
 }
 
 /** Interactive clarifying-question / region-selector chips that re-ask as a follow-up. */
-function Chips({ directive, onAsk }: { directive: ComponentDirective; onAsk: (q: string) => void }) {
+function Chips({
+  directive,
+  onAsk,
+  question,
+}: {
+  directive: ComponentDirective;
+  onAsk: (q: string) => void;
+  question: string;
+}) {
   if (directive.component === "clarifying-question") {
     return (
       <ChipCard icon="help" title="A quick question" prompt={directive.props.question}>
@@ -26,10 +34,12 @@ function Chips({ directive, onAsk }: { directive: ComponentDirective; onAsk: (q:
     );
   }
   if (directive.component === "region-selector") {
+    // Re-ask the original question scoped to the chosen region, so retrieval stays on-topic.
+    const askRegion = (label: string) => onAsk(`${question} — for the ${label} region of Cameroon`);
     return (
       <ChipCard icon="pin" title="Which region applies?" prompt={directive.props.reason}>
         {directive.props.regions.map((r) => (
-          <Chip key={r.id} label={r.label} onAsk={onAsk} />
+          <Chip key={r.id} label={r.label} onAsk={askRegion} />
         ))}
       </ChipCard>
     );
@@ -106,7 +116,7 @@ export function AssistantTurn({ turn, onAsk }: { turn: Turn; onAsk: (q: string) 
         )}
 
         {clarifiers.map((c, i) => (
-          <Chips key={i} directive={c} onAsk={onAsk} />
+          <Chips key={i} directive={c} onAsk={onAsk} question={turn.question} />
         ))}
 
         {answer ? (
