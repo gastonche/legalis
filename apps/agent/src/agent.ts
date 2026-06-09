@@ -4,6 +4,7 @@ import {
   answerWithSelfEval,
   runAgent,
   type AgentDeps,
+  type ChatMessage,
   type GatedResult,
 } from "@legalis/core";
 import type { StreamEvent } from "@legalis/contracts";
@@ -17,6 +18,7 @@ import type { Env } from "./env";
 
 interface AgentState {
   question: string;
+  history: ChatMessage[];
   createdAt: string;
 }
 
@@ -69,11 +71,15 @@ export class LegalisAgent extends Agent<Env, AgentState> {
       return Response.json(result);
     }
 
-    // Handshake step 1: store the question for the streaming GET.
+    // Handshake step 1: store the question (+ conversation history) for the streaming GET.
     if (request.method === "POST") {
-      const body = (await request.json().catch(() => ({}))) as { question?: string };
+      const body = (await request.json().catch(() => ({}))) as {
+        question?: string;
+        history?: ChatMessage[];
+      };
       this.setState({
         question: (body.question ?? "").toString(),
+        history: Array.isArray(body.history) ? body.history : [],
         createdAt: new Date().toISOString(),
       });
       return Response.json({ ok: true });
@@ -81,7 +87,7 @@ export class LegalisAgent extends Agent<Env, AgentState> {
 
     // Handshake step 2: EventSource GET → stream the live agent run.
     const current = this.state as AgentState | undefined;
-    return this.streamAnswer(current?.question ?? "");
+    return this.streamAnswer(current?.question ?? "", current?.history ?? []);
   }
 
   /** Non-streamed answer with the full gate (incl. bounded revise/re-retrieve). */
@@ -90,13 +96,13 @@ export class LegalisAgent extends Agent<Env, AgentState> {
   }
 
   /** Stream the live agent run as SSE. */
-  private streamAnswer(question: string): Response {
+  private streamAnswer(question: string, history: ChatMessage[]): Response {
     const deps = this.deps();
     const encoder = new TextEncoder();
     const stream = new ReadableStream<Uint8Array>({
       async start(controller) {
         try {
-          for await (const event of runAgent(question, deps)) {
+          for await (const event of runAgent(question, deps, history)) {
             controller.enqueue(encoder.encode(encodeEvent(event)));
           }
         } catch (e) {

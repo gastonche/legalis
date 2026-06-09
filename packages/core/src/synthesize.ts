@@ -43,8 +43,10 @@ export function buildSynthesisPrompt(
   question: string,
   chunks: RetrievedChunk[],
   revisionNote?: string,
+  context?: string,
 ): string {
-  const base = `QUESTION (from a layperson):\n${question}\n\nSOURCES (retrieved from the Cameroon legal corpus — cite by [n] and use the exact sourceId):\n\n${formatSources(chunks)}`;
+  const convo = context ? `CONVERSATION SO FAR (resolve follow-up references against this):\n${context}\n\n` : "";
+  const base = `${convo}QUESTION (from a layperson):\n${question}\n\nSOURCES (retrieved from the Cameroon legal corpus — cite by [n] and use the exact sourceId):\n\n${formatSources(chunks)}`;
   return revisionNote
     ? `${base}\n\nREVISION REQUIRED — a reviewer flagged the previous draft. Fix these issues and re-ground strictly in the sources above:\n${revisionNote}`
     : base;
@@ -128,6 +130,7 @@ Write a concise, plain-language answer to the QUESTION, grounded ONLY in the num
 - Cite inline with the source's bracketed number exactly as written — e.g. [1], [2], [3] — matching the SOURCE numbers. Every legal point needs at least one such marker. Do not write "[n]" or "[n:1]".
 - Prefer primary authority; note OHADA supersession and any Anglophone-vs-Francophone divergence when relevant.
 - If the sources don't support an answer, say so honestly.
+- If a CONVERSATION SO FAR is given, interpret the new question in that context and resolve references (e.g. "it", "that", "what about…").
 Write ONLY the answer prose (markdown, with [n] markers). Do NOT output JSON or headings like "Answer:". End with one sentence reminding the reader to consult a qualified Cameroonian lawyer.`;
 
 /** Stream the answer prose token-by-token. */
@@ -135,10 +138,11 @@ export function streamProse(
   question: string,
   chunks: RetrievedChunk[],
   llm: LLMProvider,
+  context?: string,
 ): AsyncIterable<string> {
   return llm.stream({
     system: SYNTH_PROSE_SYSTEM,
-    prompt: buildSynthesisPrompt(question, chunks),
+    prompt: buildSynthesisPrompt(question, chunks, undefined, context),
     temperature: 0.2,
     maxTokens: 1200,
   });

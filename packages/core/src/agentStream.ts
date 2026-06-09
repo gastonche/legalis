@@ -17,6 +17,11 @@ export interface AgentDeps {
   topK?: number;
 }
 
+export interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 const TALK_TO_LAWYER: ComponentDirective = {
   component: "talk-to-a-lawyer",
   props: {
@@ -61,8 +66,16 @@ function* replayTokens(text: string): Generator<StreamEvent> {
  * (Single-pass gate here; the bounded revise/re-retrieve loop is on the sync
  * endpoint and extends to streamed re-search in M6.)
  */
-export async function* runAgent(question: string, deps: AgentDeps): AsyncIterable<StreamEvent> {
+export async function* runAgent(
+  question: string,
+  deps: AgentDeps,
+  history: ChatMessage[] = [],
+): AsyncIterable<StreamEvent> {
   const q = question.trim();
+  const recent = history.slice(-4);
+  const context = recent
+    .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
+    .join("\n");
   yield { type: "control", phase: "open" };
 
   // 1. understand
@@ -83,7 +96,8 @@ export async function* runAgent(question: string, deps: AgentDeps): AsyncIterabl
   };
   let chunks: RetrievedChunk[] = [];
   try {
-    const [qv] = await deps.embedder.embed([q], "query");
+    const retrievalQuery = context ? `${context}\nUser: ${q}` : q;
+    const [qv] = await deps.embedder.embed([retrievalQuery], "query");
     if (qv) chunks = await deps.store.query(qv, { topK: deps.topK ?? 8 });
   } catch {
     chunks = [];
@@ -121,7 +135,7 @@ export async function* runAgent(question: string, deps: AgentDeps): AsyncIterabl
   };
   let prose = "";
   try {
-    for await (const tok of streamProse(q, chunks, deps.llm)) {
+    for await (const tok of streamProse(q, chunks, deps.llm, context)) {
       prose += tok;
       yield { type: "answer-token", token: tok };
     }
