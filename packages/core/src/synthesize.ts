@@ -39,8 +39,15 @@ export function formatSources(chunks: RetrievedChunk[]): string {
     .join("\n\n---\n\n");
 }
 
-export function buildSynthesisPrompt(question: string, chunks: RetrievedChunk[]): string {
-  return `QUESTION (from a layperson):\n${question}\n\nSOURCES (retrieved from the Cameroon legal corpus — cite by [n] and use the exact sourceId):\n\n${formatSources(chunks)}`;
+export function buildSynthesisPrompt(
+  question: string,
+  chunks: RetrievedChunk[],
+  revisionNote?: string,
+): string {
+  const base = `QUESTION (from a layperson):\n${question}\n\nSOURCES (retrieved from the Cameroon legal corpus — cite by [n] and use the exact sourceId):\n\n${formatSources(chunks)}`;
+  return revisionNote
+    ? `${base}\n\nREVISION REQUIRED — a reviewer flagged the previous draft. Fix these issues and re-ground strictly in the sources above:\n${revisionNote}`
+    : base;
 }
 
 export interface InvalidCitation {
@@ -80,7 +87,8 @@ export function validateCitations(
   return { valid, invalid };
 }
 
-function stripFences(s: string): string {
+/** Strip ```json fences if a model wrapped its JSON output. */
+export function stripFences(s: string): string {
   const t = s.trim();
   const m = t.match(/```(?:json)?\s*([\s\S]*?)```/);
   return m ? m[1].trim() : t;
@@ -95,10 +103,11 @@ export async function synthesizeAnswer(
   question: string,
   chunks: RetrievedChunk[],
   llm: LLMProvider,
+  revisionNote?: string,
 ): Promise<SynthesisResult> {
   const raw = await llm.complete({
     system: SYNTHESIS_SYSTEM,
-    prompt: buildSynthesisPrompt(question, chunks),
+    prompt: buildSynthesisPrompt(question, chunks, revisionNote),
     json: true,
     temperature: 0.2,
     maxTokens: 1600,
