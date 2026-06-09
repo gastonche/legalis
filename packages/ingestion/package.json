@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "extract": "tsx src/cli/extract.ts",
+    "ocr": "tsx src/cli/ocr.ts",
     "chunk": "tsx src/cli/chunk.ts",
     "ingest": "tsx src/cli/ingest.ts",
     "smoke": "tsx src/cli/smoke.ts"
