@@ -1,0 +1,96 @@
+[
+  {
+    "title": "Library of Congress — Guide to Law Online: Cameroon",
+    "languages": [
+      "en"
+    ],
+    "authority": "igo-official",
+    "source": "U.S. Law Library of Congress",
+    "url": "https://guides.loc.gov/law-cameroon",
+    "status": "secondary-reference",
+    "notes": "Research guide / map to primary sources. US-Gov public-domain text, but pages bot-block (HTTP 403) — link only.",
+    "license": "US Government public domain",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "GlobaLex — Researching Cameroonian Law (C. M. Fombad, 2023)",
+    "languages": [
+      "en"
+    ],
+    "authority": "secondary",
+    "source": "GlobaLex (NYU Hauser Global Law School Program)",
+    "url": "https://www.nyulawglobal.org/globalex/cameroon1.html",
+    "status": "copyrighted-link-only",
+    "notes": "Author-copyrighted research guide — link only, not downloaded.",
+    "license": "© author (copyrighted)",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "Juricaf — Cameroun: Cour suprême (case law collection)",
+    "languages": [
+      "fr"
+    ],
+    "authority": "aggregator",
+    "source": "Juricaf (AHJUCAF / OIF)",
+    "url": "https://juricaf.org/recherche/+/facet_pays:Cameroun",
+    "status": "secondary-reference",
+    "notes": "Supreme Court decisions portal (HTML). Case-law discovery entry point.",
+    "license": "—",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "Présidence de la République du Cameroun — Acts portal (Laws/Ordinances/Decrees)",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "authority": "official",
+    "source": "prc.cm",
+    "url": "https://www.prc.cm/en/news/the-acts",
+    "status": "secondary-reference",
+    "notes": "Official acts portal; individual acts on JS-rendered landing pages (manual download).",
+    "license": "—",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "MINJUSTICE — LEGALIS Cameroon (Lois index)",
+    "languages": [
+      "fr"
+    ],
+    "authority": "official",
+    "source": "minjustice.gov.cm (HTTP)",
+    "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois",
+    "status": "secondary-reference",
+    "notes": "Official instruments-and-laws index (plain HTTP). Source of several downloaded statutes.",
+    "license": "—",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "ILO NATLEX — Cameroon",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "authority": "igo-official",
+    "source": "ILO",
+    "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/country_profiles/CMR",
+    "status": "secondary-reference",
+    "notes": "Labour/social-security legislation database (source of the Labour Code).",
+    "license": "—",
+    "retrieved": "2026-06-08"
+  },
+  {
+    "title": "WIPO Lex — Cameroon legislation profile",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "authority": "igo-official",
+    "source": "WIPO",
+    "url": "https://www.wipo.int/wipolex/en/legislation/profile/CM",
+    "status": "secondary-reference",
+    "notes": "IGO legislation repository (source of Constitution components, Penal Code, Copyright, Environment laws).",
+    "license": "—",
+    "retrieved": "2026-06-08"
+  }
+]

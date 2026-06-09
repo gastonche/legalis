@@ -1,0 +1,1063 @@
+{
+  "corpus": "Cameroon primary legal source corpus",
+  "purpose": "Legal-research RAG ingestion set (primary law) + separated secondary references",
+  "generated": "2026-06-08",
+  "counts": {
+    "primary_downloaded": 38,
+    "by_type": {
+      "constitution": 6,
+      "uniform-act": 11,
+      "code": 11,
+      "ordinance": 2,
+      "statute": 8
+    },
+    "manual_needed": 5,
+    "secondary": 7,
+    "with_text_layer": 35,
+    "image_only_pdfs": 3,
+    "total_bytes": 131010647,
+    "languages": {
+      "fr_files": 31,
+      "en_files": 9
+    }
+  },
+  "primary": {
+    "constitution": [
+      {
+        "id": "const-fr-consolidated",
+        "title": "Constitution of Cameroon — consolidated text (Law No. 96/06 of 18 Jan 1996 as amended by Law No. 2008/001 of 14 Apr 2008)",
+        "type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Assemblée Nationale du Cameroun (assnat.cm)",
+        "url": "https://www.assnat.cm/images/La_Constitution.pdf",
+        "status": "downloaded",
+        "notes": "Authoritative consolidated French text.",
+        "alt": [
+          "https://cdn.accf-francophonie.org/2019/03/cameroun-constitution-2008.pdf"
+        ],
+        "sha256": "19d8a75da671e185cc6f8a43a6aa232ec63da91146aa29336267e15508dcd26d",
+        "size_bytes": 226065,
+        "pages": "30",
+        "text_layer": true,
+        "text_chars": 54173,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/fr_constitution-consolidee_2008.pdf"
+      },
+      {
+        "id": "const-en-constitute",
+        "title": "Constitution of the Republic of Cameroon — consolidated (1972, rev. 2008)",
+        "type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority": "igo-official",
+        "source": "Constitute Project (Comparative Constitutions Project)",
+        "url": "https://www.constituteproject.org/constitution/Cameroon_2008.pdf?lang=en",
+        "status": "downloaded",
+        "notes": "English consolidated text. License: CC BY-NC (translation by Constitute).",
+        "alt": [],
+        "sha256": "86a988a930774d716ab0d6e57a98849ecfb99e8297858fb860588a35b78c3f5d",
+        "size_bytes": 221704,
+        "pages": "28",
+        "text_layer": true,
+        "text_chars": 92110,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/en_constitution-consolidated_2008.pdf"
+      },
+      {
+        "id": "const-en-assnat",
+        "title": "Constitution of the Republic of Cameroon (English)",
+        "type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority": "official",
+        "source": "Assemblée Nationale du Cameroun (assnat.cm)",
+        "url": "https://www.assnat.cm/images/The_constitution.pdf",
+        "status": "downloaded",
+        "notes": "English text hosted by the National Assembly.",
+        "alt": [],
+        "sha256": "34bb4c3506b15406ad2f31ac91a1f1c783497ed89a8d2ae1a86d4eb527fdef17",
+        "size_bytes": 152888,
+        "pages": "30",
+        "text_layer": true,
+        "text_chars": 53364,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/en_constitution-official_2008.pdf"
+      },
+      {
+        "id": "const-amend-2008-en",
+        "title": "Law No. 2008/001 of 14 April 2008 amending and supplementing Law No. 96/06 (Constitution) — English",
+        "type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM013)",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/13739",
+        "status": "downloaded",
+        "notes": "Amendment act (component of the consolidated text). PDF via CloudFront-signed link on the WIPO Lex detail page.",
+        "alt": [],
+        "sha256": "6bb61abf982620f558ea8fceec99b1877d019d22270dc941d97265501c147b78",
+        "size_bytes": 2378408,
+        "pages": "3",
+        "text_layer": true,
+        "text_chars": 9122,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/en_loi-2008-001-amend-constitution_2008.pdf"
+      },
+      {
+        "id": "const-amend-2008-fr",
+        "title": "Loi n° 2008/001 du 14 avril 2008 modifiant et complétant la loi n° 96/06 (Constitution) — Français",
+        "type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM013)",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/13739",
+        "status": "downloaded",
+        "notes": "Amendment act (component of the consolidated text).",
+        "alt": [
+          "https://www.prc.cm/files/b1/bb/2f/713a4f4be2f2d035457bc8e80de3788b.pdf"
+        ],
+        "sha256": "026ed4b1d2ac23cc0c00404d2bc9b2da743d2c413dc2102613f90d8d30572575",
+        "size_bytes": 2378394,
+        "pages": "3",
+        "text_layer": true,
+        "text_chars": 9126,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/fr_loi-2008-001-amend-constitution_2008.pdf"
+      },
+      {
+        "id": "const-base-1996-fr",
+        "title": "Constitution du Cameroun — texte de base, Loi n° 96/06 du 18 janvier 1996 — Français",
+        "type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM005)",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/7391",
+        "status": "downloaded",
+        "notes": "1996 base text (pre-2008 amendment); historical/provenance.",
+        "alt": [],
+        "sha256": "4d24396016875c0a5712581fcb42c4dcd691576d852a529a73df7652b143e46a",
+        "size_bytes": 95259,
+        "pages": "19",
+        "text_layer": true,
+        "text_chars": 52522,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/constitution/fr_loi-96-06-base-constitution_1996.pdf"
+      }
+    ],
+    "uniform-act": [
+      {
+        "id": "audcg-fr",
+        "title": "OHADA — Acte uniforme portant sur le droit commercial général (révisé, 15 déc. 2010)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice du Sénégal (justice.sec.gouv.sn) — OHADA Journal Officiel",
+        "url": "https://justice.sec.gouv.sn/wp-content/uploads/textes-reglements/OHADA/Acte-uniforme-portant-sur-le-droit-commercial-general-lome-15102010.pdf",
+        "status": "downloaded",
+        "notes": "AUDCG, revised 2010. Text-layer PDF.",
+        "alt": [
+          "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=481 (1997 original)"
+        ],
+        "sha256": "9c5648a34994140a8487dfd3257733d1799bd44384fccbb315a8d332aed0f092",
+        "size_bytes": 210778,
+        "pages": "78",
+        "text_layer": true,
+        "text_chars": 186560,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-droit-commercial-general_2010.pdf"
+      },
+      {
+        "id": "auscgie-fr",
+        "title": "OHADA — Acte uniforme relatif au droit des sociétés commerciales et du GIE (révisé, 30 jan. 2014)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice du Sénégal (justice.sec.gouv.sn) — OHADA Journal Officiel fév. 2014",
+        "url": "https://justice.sec.gouv.sn/wp-content/uploads/textes-reglements/OHADA/Acte-uniforme-relatif-droit-societes-commerciales-gie-auscgie-jo-fevrier-2014.pdf",
+        "status": "downloaded",
+        "notes": "AUSCGIE, revised 2014 (240 pp, text-layer). Replaced an earlier mislabeled biblio file.",
+        "alt": [
+          "https://justice.gouv.km/wp-content/uploads/2025/03/ohada-acte-uniforme-2014-droit-societes-commerciales-gie.pdf"
+        ],
+        "sha256": "e306e4f872075ae0af33d2beee5ef00b638077d8108dcff9e80ecd416f3c1829",
+        "size_bytes": 6227054,
+        "pages": "240",
+        "text_layer": true,
+        "text_chars": 602209,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-societes-commerciales-gie_2014.pdf"
+      },
+      {
+        "id": "aus-fr",
+        "title": "OHADA — Acte uniforme portant organisation des sûretés (révisé, 15 déc. 2010)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice du Sénégal (justice.sec.gouv.sn)",
+        "url": "https://justice.sec.gouv.sn/wp-content/uploads/textes-reglements/OHADA/Acte-uniforme-portant-organisations-surete-revises-1512-2010.pdf",
+        "status": "downloaded",
+        "notes": "AUS, revised 2010. Text-layer PDF.",
+        "alt": [
+          "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=483"
+        ],
+        "sha256": "6a2a580eb5f95e473d85b3f70685e13b5c5d6ab513f9d74262c660bd062769d8",
+        "size_bytes": 701526,
+        "pages": "58",
+        "text_layer": true,
+        "text_chars": 131526,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-suretes_2010.pdf"
+      },
+      {
+        "id": "auve-fr",
+        "title": "OHADA — Acte uniforme portant organisation des procédures simplifiées de recouvrement et des voies d'exécution (révisé 2023)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "OHADA digital library (biblio.ohada.org)",
+        "url": "https://biblio.ohada.org/doc_num.php?explnum_id=5800",
+        "status": "downloaded",
+        "notes": "AUPSRVE, current 2023 revision (confirmed by 368 in-text occurrences of '2023').",
+        "alt": [],
+        "sha256": "851366a003327a59640a11b668d2a7817ff9308f240d12cf82cc96c2a56489ba",
+        "size_bytes": 9179996,
+        "pages": "122",
+        "text_layer": true,
+        "text_chars": 19893,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-voies-execution_2023.pdf"
+      },
+      {
+        "id": "aupc-fr",
+        "title": "OHADA — Acte uniforme portant organisation des procédures collectives d'apurement du passif (révisé, 10 sep. 2015)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice des Comores (justice.gouv.km) — OHADA Journal Officiel sep. 2015",
+        "url": "https://justice.gouv.km/wp-content/uploads/2025/03/ohada-acte-uniforme-2015-procedures-collectives.pdf",
+        "status": "downloaded",
+        "notes": "AUPC, revised 2015 (110 pp, text-layer; confirmed by 35 occurrences of 'conciliation', the 2015-only procedure). Replaced an earlier 1998 biblio file.",
+        "alt": [
+          "https://www.sgg.cg/txts-droit-reg/OHADA-Acte-uniforme-2015-procedures-collectives.pdf"
+        ],
+        "sha256": "b513227ce72cd15f7aac0b2f0aae34f75146daa0c9eb34a6f6b745604b05c46c",
+        "size_bytes": 642027,
+        "pages": "110",
+        "text_layer": true,
+        "text_chars": 304063,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-procedures-collectives_2015.pdf"
+      },
+      {
+        "id": "aua-fr",
+        "title": "OHADA — Acte uniforme relatif au droit de l'arbitrage (révisé, 23 nov. 2017)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "OHADA digital library (biblio.ohada.org, explnum_id=2731)",
+        "url": "https://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=2731",
+        "status": "downloaded",
+        "notes": "AUA, 2017 revision (verified by content + in-text '2017').",
+        "alt": [
+          "https://justice.sec.gouv.sn/wp-content/uploads/textes-reglements/OHADA/Acte-uniforme-relatif-droit-arbitrage-jo-special-15-dec-2017.pdf"
+        ],
+        "sha256": "0bc26235dcd95691c3d9f41320087d8b2e7936eb2747d41e986df3a1a361ff0c",
+        "size_bytes": 847196,
+        "pages": "11",
+        "text_layer": true,
+        "text_chars": 24183,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-arbitrage_2017.pdf"
+      },
+      {
+        "id": "audcif-fr",
+        "title": "OHADA — Acte uniforme relatif au droit comptable et à l'information financière (SYSCOHADA révisé, 26 jan. 2017)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "OHADA digital library (biblio.ohada.org, explnum_id=2061)",
+        "url": "https://biblio.ohada.org/doc_num.php?explnum_id=2061",
+        "status": "downloaded",
+        "notes": "AUDCIF / SYSCOHADA, 2017 revision (verified: '26 janvier 2017' + 24 'SYSCOHADA').",
+        "alt": [],
+        "sha256": "6444eb3865dc866a3a986e241c41a41e96045b9263b9a77a8992c7398dac17a6",
+        "size_bytes": 5683426,
+        "pages": "54",
+        "text_layer": true,
+        "text_chars": 104327,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-comptable-syscohada_2017.pdf"
+      },
+      {
+        "id": "auctmr-fr",
+        "title": "OHADA — Acte uniforme relatif aux contrats de transport de marchandises par route (22 mars 2003)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice des Comores (justice.gouv.km)",
+        "url": "https://justice.gouv.km/wp-content/uploads/2025/03/ohada-acte-uniforme-2003-transport.pdf",
+        "status": "downloaded",
+        "notes": "AUCTMR 2003 (only version). Text-layer PDF.",
+        "alt": [
+          "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=479"
+        ],
+        "sha256": "88cb01a2b3faa9d4a78080adc66e2986ee5a55d1e309ac2dad07d574b4c47b28",
+        "size_bytes": 64346,
+        "pages": "10",
+        "text_layer": true,
+        "text_chars": 40108,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-transport-marchandises_2003.pdf"
+      },
+      {
+        "id": "auscoop-fr",
+        "title": "OHADA — Acte uniforme relatif au droit des sociétés coopératives (15 déc. 2010)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "Ministère de la Justice du Sénégal (justice.sec.gouv.sn)",
+        "url": "https://justice.sec.gouv.sn/wp-content/uploads/textes-reglements/OHADA/Acte-uniforme-relatif-au-droit-des-societes-cooperatives-lome-15122010.pdf",
+        "status": "downloaded",
+        "notes": "AUSCOOP 2010 (only version). Text-layer PDF.",
+        "alt": [
+          "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=487"
+        ],
+        "sha256": "5bce7f337d496cf5709884c5ce5a7460cdf36126cfdbf7df7329fd09fef097c2",
+        "size_bytes": 227438,
+        "pages": "94",
+        "text_layer": true,
+        "text_chars": 193521,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-societes-cooperatives_2010.pdf"
+      },
+      {
+        "id": "aum-fr",
+        "title": "OHADA — Acte uniforme relatif à la médiation (23 nov. 2017)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "regional-official",
+        "source": "OHADA digital library (biblio.ohada.org, explnum_id=2730)",
+        "url": "https://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=2730",
+        "status": "downloaded",
+        "notes": "AUM 2017 (verified by content + '2017').",
+        "alt": [],
+        "sha256": "25505cfc7c6651f16acb92a095be776169988aed847e1f0e4e2a78b92e645403",
+        "size_bytes": 738033,
+        "pages": "8",
+        "text_layer": true,
+        "text_chars": 18731,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_acte-uniforme-mediation_2017.pdf"
+      },
+      {
+        "id": "ohada-treaty-fr",
+        "title": "OHADA — Traité relatif à l'harmonisation en Afrique du droit des affaires (1993, révisé Québec 2008)",
+        "type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org (mirror)",
+        "url": "https://www.africa-laws.org/OHADA/TRAIT%C3%89%20RELATIF%20A%20L%27HARMONISATION%20EN%20AFRIQUE%20D%27UN%20DROIT%20DES%20AFFAIRES.pdf",
+        "status": "downloaded",
+        "notes": "Founding OHADA Treaty. Aggregator copy (official OHADA portal is JS-gated).",
+        "alt": [],
+        "sha256": "56d5e11baecb8339462e11907f2d11db5bac46186b16197a3e0da4eb15f51cc0",
+        "size_bytes": 39241,
+        "pages": "12",
+        "text_layer": true,
+        "text_chars": 29560,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/uniform-act/fr_traite-ohada_2008.pdf"
+      }
+    ],
+    "code": [
+      {
+        "id": "penal-en",
+        "title": "Penal Code — Law No. 2016/007 of 12 July 2016 (English)",
+        "type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM014)",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/16366",
+        "status": "downloaded",
+        "notes": "Officially bilingual code; English version.",
+        "alt": [],
+        "sha256": "d20d3d4298a9d7aec7dc857c376147513a80035c3200f58b631445281cf9939f",
+        "size_bytes": 8819684,
+        "pages": "139",
+        "text_layer": true,
+        "text_chars": 252474,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/en_code-penal_2016.pdf"
+      },
+      {
+        "id": "penal-fr",
+        "title": "Code pénal — Loi n° 2016/007 du 12 juillet 2016 (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM014)",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/16366",
+        "status": "downloaded",
+        "notes": "French version.",
+        "alt": [
+          "https://www.droit-afrique.com/uploads/Cameroun-Code-2016-penal1.pdf (host 403)"
+        ],
+        "sha256": "05b2124daa7d8670d76bf8172b96a3114423a3931bf69f00a4cbf2e55ce5e51b",
+        "size_bytes": 10445756,
+        "pages": "140",
+        "text_layer": true,
+        "text_chars": 260251,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-penal_2016.pdf"
+      },
+      {
+        "id": "cpc-en",
+        "title": "Criminal Procedure Code — Law No. 2005/007 of 27 July 2005 (English)",
+        "type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority": "aggregator",
+        "source": "Geneva Academy / DCAF — Policing-Law database",
+        "url": "https://www.policinglaw.info/assets/downloads/2005_Criminal_Procedure_Code.pdf",
+        "status": "downloaded",
+        "notes": "English text.",
+        "alt": [],
+        "sha256": "5b117b0b4f877289ebce1beb25f39af79cd8cf2aeda6dcf7425956da2a7acad3",
+        "size_bytes": 470533,
+        "pages": "168",
+        "text_layer": true,
+        "text_chars": 358122,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/en_code-procedure-penale_2005.pdf"
+      },
+      {
+        "id": "cpc-fr",
+        "title": "Code de procédure pénale — Loi n° 2005/007 du 27 juillet 2005 (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "VERTIC National Legislation database",
+        "url": "https://www.vertic.org/media/National%20Legislation/Cameroon/CM_Code_Procedure_Penale_Cameroun.pdf",
+        "status": "downloaded",
+        "notes": "French text-layer copy (135 pp). The official MINJUSTICE LEGALIS copy was a 252 MB scan; this cleaner copy preferred.",
+        "alt": [
+          "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/90/289/18?method=view (MINJUSTICE, HTTP, large scan)"
+        ],
+        "sha256": "3a01ed11f9d01a38204907874f39e692461c04eebf19a61dcc987af92d43ad96",
+        "size_bytes": 363644,
+        "pages": "135",
+        "text_layer": true,
+        "text_chars": 309035,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-procedure-penale_2005.pdf"
+      },
+      {
+        "id": "labour-en",
+        "title": "Labour Code — Law No. 92/007 of 14 August 1992 (English)",
+        "type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority": "igo-official",
+        "source": "ILO NATLEX (ISN 31629)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=31629",
+        "status": "downloaded",
+        "notes": "NATLEX English translation (file endpoint openly downloadable; detail page bot-gated).",
+        "alt": [],
+        "sha256": "eeabad842581716294078d92be365b641985af83c2b37165c398a8b5ad3d0455",
+        "size_bytes": 347884,
+        "pages": "68",
+        "text_layer": true,
+        "text_chars": 122089,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/en_code-travail_1992.pdf"
+      },
+      {
+        "id": "labour-fr",
+        "title": "Code du travail — Loi n° 92/007 du 14 août 1992 (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "ILO NATLEX (ISN 31629)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=31629",
+        "status": "downloaded",
+        "notes": "NATLEX French original text.",
+        "alt": [],
+        "sha256": "7dfae52817be2bae8cf90211d7b3844de21a68100ec33ab1dac25accc73d01fa",
+        "size_bytes": 377099,
+        "pages": "31",
+        "text_layer": true,
+        "text_chars": 123962,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-travail_1992.pdf"
+      },
+      {
+        "id": "cgi-fr",
+        "title": "Code Général des Impôts — édition 2024 (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Direction Générale des Impôts (impots.cm)",
+        "url": "https://www.impots.cm/sites/default/files/documents/CGI%202024%20version%20francaise.pdf",
+        "status": "downloaded",
+        "notes": "Consolidated 2024 General Tax Code (1018 pp). No official EN edition.",
+        "alt": [
+          "https://www.impots.cm/sites/default/files/documents/CGI%202020%20-%20dv.pdf"
+        ],
+        "sha256": "b90d94c360893c6c2f2237e6382f667f67cfd298de5d291977d93c896ff4a36b",
+        "size_bytes": 9095444,
+        "pages": "1018",
+        "text_layer": true,
+        "text_chars": 1962186,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-general-impots_2024.pdf"
+      },
+      {
+        "id": "civil-code-fr",
+        "title": "Code civil camerounais (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/civil%20law/CODE%20CIVIL%20CAMEROUNAIS.pdf",
+        "status": "downloaded",
+        "notes": "Civil Code in force (French-law-derived). Aggregator source; no official online edition found.",
+        "alt": [],
+        "sha256": "73cc8f7a67e9b6929b79792f605b1b739d793ae0c6e26e4af5dc2324a5f1f208",
+        "size_bytes": 2057388,
+        "pages": "225",
+        "text_layer": true,
+        "text_chars": 1051647,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-civil.pdf"
+      },
+      {
+        "id": "civproc-code-fr",
+        "title": "Code de procédure civile (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/civil%20law/CODE%20DE%20PROCEDURE%20CIVILE.pdf",
+        "status": "downloaded",
+        "notes": "Code of Civil Procedure. Aggregator source.",
+        "alt": [],
+        "sha256": "43c5d8d565bfa67963b635dfe7653febcafcf54ae0602f2d946f2bedf12dfaf2",
+        "size_bytes": 906540,
+        "pages": "169",
+        "text_layer": true,
+        "text_chars": 376931,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-procedure-civile.pdf"
+      },
+      {
+        "id": "military-justice-fr",
+        "title": "Code de justice militaire — Loi n° 2017/012 du 12 juillet 2017 (bilingue EN/FR)",
+        "type": "code",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority": "official",
+        "source": "Ministère de la Justice (MINJUSTICE LEGALIS, HTTP)",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/168/398/18?method=view",
+        "status": "downloaded",
+        "notes": "Bilingual EN/FR. IMAGE/scanned PDF (no text layer) — needs OCR before ingestion. Served over plain HTTP.",
+        "alt": [],
+        "sha256": "51894a38395e637556c8c986f51a6d05acda4e2ef32a99ce3c801d98790cacd1",
+        "size_bytes": 17610960,
+        "pages": "32",
+        "text_layer": false,
+        "text_chars": 32,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-justice-militaire_2017.pdf"
+      },
+      {
+        "id": "collectivites-fr",
+        "title": "Code Général des Collectivités Territoriales Décentralisées — Loi n° 2019/024 du 24 déc. 2019 (Français)",
+        "type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Ministère de la Justice (MINJUSTICE LEGALIS, HTTP)",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/94/291/18?method=view",
+        "status": "downloaded",
+        "notes": "Served over plain HTTP.",
+        "alt": [],
+        "sha256": "af8377f20f0429ff0fb540845151f874b6c5938c9847872bb153d1e0cd0acf14",
+        "size_bytes": 23870735,
+        "pages": "123",
+        "text_layer": true,
+        "text_chars": 330241,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/code/fr_code-collectivites-territoriales_2019.pdf"
+      }
+    ],
+    "ordinance": [
+      {
+        "id": "etat-civil-fr",
+        "title": "Ordonnance n° 81/02 du 29 juin 1981 portant organisation de l'état civil (Français)",
+        "type": "ordinance",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Family%20law/ORDONNANCE%20No.pdf",
+        "status": "downloaded",
+        "notes": "Civil Status Registration Ordinance 81/02 (verified: text contains 'état civil'). Aggregator had an ambiguous filename — content verified.",
+        "alt": [],
+        "sha256": "e0dadccf07f2a996ef7d72f02a8f11069573b2f7869c9133d9c3fad765fac07d",
+        "size_bytes": 137446,
+        "pages": "15",
+        "text_layer": true,
+        "text_chars": 38550,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/ordinance/fr_ordonnance-81-02-etat-civil_1981.pdf"
+      },
+      {
+        "id": "regime-foncier-fr",
+        "title": "Ordonnances de 1974 portant régime foncier et domanial (n° 74-1, 74-2, 74-3)",
+        "type": "ordinance",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority": "aggregator",
+        "source": "droitcamerounais.info",
+        "url": "https://droitcamerounais.info/en/files/215.07.74-Ordonnance-du-16-juillet-1974_Regime-foncier.pdf",
+        "status": "downloaded",
+        "notes": "Land tenure / state lands ordinances of 6 July 1974 (verified: 'foncier').",
+        "alt": [],
+        "sha256": "b757a8af0f53307f051ceb328009401a8e956738fe850cb6817f81d9289f9b4e",
+        "size_bytes": 195330,
+        "pages": "6",
+        "text_layer": true,
+        "text_chars": 13506,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/ordinance/fr_ordonnances-regime-foncier_1974.pdf"
+      }
+    ],
+    "statute": [
+      {
+        "id": "copyright-en",
+        "title": "Law No. 2000/011 of 19 Dec. 2000 on Copyright and Neighbouring Rights (English)",
+        "type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM001)",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/836",
+        "status": "downloaded",
+        "notes": "",
+        "alt": [],
+        "sha256": "79fdecb1303412f6042d03ea5a4c9526c4e76aa2249e424515a3ddf35e5351be",
+        "size_bytes": 275156,
+        "pages": "25",
+        "text_layer": true,
+        "text_chars": 63494,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/en_loi-droit-auteur_2000.pdf"
+      },
+      {
+        "id": "copyright-fr",
+        "title": "Loi n° 2000/011 du 19 déc. 2000 relative au droit d'auteur et aux droits voisins (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM001)",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/836",
+        "status": "downloaded",
+        "notes": "",
+        "alt": [],
+        "sha256": "b9eb9620543f6cf9b2d71784802adcc0f13c8f0b37b5edcf3bbbd7c5a89c50bc",
+        "size_bytes": 296804,
+        "pages": "26",
+        "text_layer": true,
+        "text_chars": 68768,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-droit-auteur_2000.pdf"
+      },
+      {
+        "id": "judicial-org-fr",
+        "title": "Loi n° 2006/015 du 29 déc. 2006 portant organisation judiciaire (modifiée par la loi n° 2011/027) (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Ministère de la Justice (MINJUSTICE LEGALIS, HTTP)",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/57/238/18?method=view",
+        "status": "downloaded",
+        "notes": "Consolidated with 2011 amendment (official MINJUSTICE). IMAGE/scanned PDF (no text layer) — needs OCR before ingestion.",
+        "alt": [],
+        "sha256": "431b2df92e5509ea676af048b6de1e6755a6e14b614ec0a7f00e390c7e903a1b",
+        "size_bytes": 21567386,
+        "pages": "16",
+        "text_layer": false,
+        "text_chars": 16,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-organisation-judiciaire_2006.pdf"
+      },
+      {
+        "id": "penal-amend-2019-fr",
+        "title": "Loi n° 2019/020 du 24 déc. 2019 modifiant la loi n° 2016/007 portant Code pénal (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Ministère de la Justice (MINJUSTICE LEGALIS, HTTP)",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/95/292/18?method=view",
+        "status": "downloaded",
+        "notes": "Penal Code amendment.",
+        "alt": [],
+        "sha256": "32406cbfc18770a1022a75796346ab0af78dd804812ebb9c52a9b576f6a6ac50",
+        "size_bytes": 405792,
+        "pages": "3",
+        "text_layer": true,
+        "text_chars": 2940,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-2019-020-amend-code-penal_2019.pdf"
+      },
+      {
+        "id": "environnement-fr",
+        "title": "Loi n° 96/12 du 5 août 1996 portant loi-cadre relative à la gestion de l'environnement (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "igo-official",
+        "source": "WIPO Lex (CM004)",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/5800",
+        "status": "downloaded",
+        "notes": "",
+        "alt": [],
+        "sha256": "ee7ee6a9fb2266733e7236ffe515986b264c260fb905ee7210d9b71ba6a61d7a",
+        "size_bytes": 672999,
+        "pages": "17",
+        "text_layer": true,
+        "text_chars": 59150,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-cadre-environnement_1996.pdf"
+      },
+      {
+        "id": "concurrence-fr",
+        "title": "Loi n° 98/013 du 14 juillet 1998 relative à la concurrence (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Competition%20law/Loi%20No.%2098-013%20de%20la%20concurrence.pdf",
+        "status": "downloaded",
+        "notes": "Competition Law. Aggregator source.",
+        "alt": [],
+        "sha256": "5b45fe8d7dd7f2d7854a94b9d5b60955728ace9fa82d77cb43ac2875c3e9e292",
+        "size_bytes": 32371,
+        "pages": "14",
+        "text_layer": true,
+        "text_chars": 20991,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-concurrence_1998.pdf"
+      },
+      {
+        "id": "consommateur-fr",
+        "title": "Loi-cadre n° 2011/012 du 6 mai 2011 relative à la protection du consommateur (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "aggregator",
+        "source": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Consumer%20Law/Loi%20cadre%20N%C2%B0%202011012%20relative%20%C3%A0%20la%20protection%20du%20consommateur.pdf",
+        "status": "downloaded",
+        "notes": "Consumer Protection Framework Law. Aggregator source.",
+        "alt": [],
+        "sha256": "78a7e441fdff2b7eaf3ae9faa9df4de2b67d5f1b0aaa16ccac30d8213653c6f0",
+        "size_bytes": 28367,
+        "pages": "8",
+        "text_layer": true,
+        "text_chars": 20289,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-protection-consommateur_2011.pdf"
+      },
+      {
+        "id": "anti-terror-fr",
+        "title": "Loi n° 2014/028 du 23 déc. 2014 portant répression des actes de terrorisme (Français)",
+        "type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority": "official",
+        "source": "Ministère de la Justice (MINJUSTICE LEGALIS, HTTP)",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/169/382/18?method=view",
+        "status": "downloaded",
+        "notes": "IMAGE/scanned bilingual gazette page (no text layer) — needs OCR before ingestion. Served over plain HTTP.",
+        "alt": [],
+        "sha256": "86e798784077273c6849407fc1f9c02317fe0a6fb7d3e4105b944907ddffa8c4",
+        "size_bytes": 3019550,
+        "pages": "6",
+        "text_layer": false,
+        "text_chars": 6,
+        "retrieved": "2026-06-08",
+        "local_path": "primary/statute/fr_loi-repression-terrorisme_2014.pdf"
+      }
+    ]
+  },
+  "manual_needed": [
+    {
+      "id": "const-base-1996-en",
+      "title": "Constitution of Cameroon — base text 1996 (English)",
+      "type": "constitution",
+      "languages": [
+        "en"
+      ],
+      "authority": "igo-official",
+      "source": "WIPO Lex (CM005)",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/7391",
+      "status": "manual-needed",
+      "notes": "Signed-PDF URL for EN could not be auto-extracted; redundant with the consolidated EN texts already downloaded.",
+      "alt": [],
+      "sha256": null,
+      "size_bytes": null,
+      "pages": null,
+      "text_layer": null,
+      "text_chars": null,
+      "retrieved": null,
+      "local_path": null
+    },
+    {
+      "id": "audcg-en",
+      "title": "OHADA — Uniform Act on General Commercial Law (AUDCG) — English unofficial translation",
+      "type": "uniform-act",
+      "languages": [
+        "en"
+      ],
+      "authority": "regional-official",
+      "source": "OHADA (ohada.org) — official English page",
+      "url": "https://www.ohada.org/attachments/article/482/AUDCG_EN_Reviewed_Unofficial_Translation.pdf",
+      "status": "manual-needed",
+      "notes": "Official EN translation link returns HTTP 404 (site restructured); no clean mirror verified. French text is authoritative and is in the corpus.",
+      "alt": [],
+      "sha256": null,
+      "size_bytes": null,
+      "pages": null,
+      "text_layer": null,
+      "text_chars": null,
+      "retrieved": null,
+      "local_path": null
+    },
+    {
+      "id": "auscgie-en",
+      "title": "OHADA — Uniform Act on Commercial Companies and the EIG (AUSCGIE) — English unofficial translation",
+      "type": "uniform-act",
+      "languages": [
+        "en"
+      ],
+      "authority": "regional-official",
+      "source": "OHADA (ohada.org) — official English page",
+      "url": "https://www.ohada.org/attachments/article/537/AUSCGIE-EN_Unofficial_Translation.pdf",
+      "status": "manual-needed",
+      "notes": "Official EN translation link returns HTTP 404 (site restructured); no clean mirror verified. French text is authoritative and is in the corpus.",
+      "alt": [],
+      "sha256": null,
+      "size_bytes": null,
+      "pages": null,
+      "text_layer": null,
+      "text_chars": null,
+      "retrieved": null,
+      "local_path": null
+    },
+    {
+      "id": "aupc-en",
+      "title": "OHADA — Uniform Act on Collective Proceedings (AUPC) — English unofficial translation",
+      "type": "uniform-act",
+      "languages": [
+        "en"
+      ],
+      "authority": "regional-official",
+      "source": "OHADA (ohada.org) — official English page",
+      "url": "https://www.ohada.org/attachments/article/473/AUPCAP-EN_Unofficial_Translation.pdf",
+      "status": "manual-needed",
+      "notes": "Official EN translation link returns HTTP 404 (site restructured); no clean mirror verified. French text is authoritative and is in the corpus.",
+      "alt": [],
+      "sha256": null,
+      "size_bytes": null,
+      "pages": null,
+      "text_layer": null,
+      "text_chars": null,
+      "retrieved": null,
+      "local_path": null
+    },
+    {
+      "id": "civil-status-en",
+      "title": "Civil Status Registration Ordinance 81/02 — English reproduction",
+      "type": "ordinance",
+      "languages": [
+        "en"
+      ],
+      "authority": "aggregator",
+      "source": "Dignity Law Chambers (Official Gazette reproduction)",
+      "url": "https://dignitylawchambers.com/wp-content/uploads/2021/04/Republic-of-Cameroon-Civil-Status-Registration.pdf",
+      "status": "manual-needed",
+      "notes": "Host unreachable at fetch time (HTTP 000). The French ordinance is in the corpus.",
+      "alt": [],
+      "sha256": null,
+      "size_bytes": null,
+      "pages": null,
+      "text_layer": null,
+      "text_chars": null,
+      "retrieved": null,
+      "local_path": null
+    }
+  ],
+  "secondary": [
+    {
+      "title": "Library of Congress — Guide to Law Online: Cameroon",
+      "languages": [
+        "en"
+      ],
+      "authority": "igo-official",
+      "source": "U.S. Law Library of Congress",
+      "url": "https://guides.loc.gov/law-cameroon",
+      "status": "secondary-reference",
+      "notes": "Research guide / map to primary sources. US-Gov public-domain text, but pages bot-block (HTTP 403) — link only.",
+      "license": "US Government public domain",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "GlobaLex — Researching Cameroonian Law (C. M. Fombad, 2023)",
+      "languages": [
+        "en"
+      ],
+      "authority": "secondary",
+      "source": "GlobaLex (NYU Hauser Global Law School Program)",
+      "url": "https://www.nyulawglobal.org/globalex/cameroon1.html",
+      "status": "copyrighted-link-only",
+      "notes": "Author-copyrighted research guide — link only, not downloaded.",
+      "license": "© author (copyrighted)",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "Juricaf — Cameroun: Cour suprême (case law collection)",
+      "languages": [
+        "fr"
+      ],
+      "authority": "aggregator",
+      "source": "Juricaf (AHJUCAF / OIF)",
+      "url": "https://juricaf.org/recherche/+/facet_pays:Cameroun",
+      "status": "secondary-reference",
+      "notes": "Supreme Court decisions portal (HTML). Case-law discovery entry point.",
+      "license": "—",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "Présidence de la République du Cameroun — Acts portal (Laws/Ordinances/Decrees)",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "authority": "official",
+      "source": "prc.cm",
+      "url": "https://www.prc.cm/en/news/the-acts",
+      "status": "secondary-reference",
+      "notes": "Official acts portal; individual acts on JS-rendered landing pages (manual download).",
+      "license": "—",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "MINJUSTICE — LEGALIS Cameroon (Lois index)",
+      "languages": [
+        "fr"
+      ],
+      "authority": "official",
+      "source": "minjustice.gov.cm (HTTP)",
+      "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois",
+      "status": "secondary-reference",
+      "notes": "Official instruments-and-laws index (plain HTTP). Source of several downloaded statutes.",
+      "license": "—",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "ILO NATLEX — Cameroon",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "authority": "igo-official",
+      "source": "ILO",
+      "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/country_profiles/CMR",
+      "status": "secondary-reference",
+      "notes": "Labour/social-security legislation database (source of the Labour Code).",
+      "license": "—",
+      "retrieved": "2026-06-08"
+    },
+    {
+      "title": "WIPO Lex — Cameroon legislation profile",
+      "languages": [
+        "en",
+        "fr"
+      ],
+      "authority": "igo-official",
+      "source": "WIPO",
+      "url": "https://www.wipo.int/wipolex/en/legislation/profile/CM",
+      "status": "secondary-reference",
+      "notes": "IGO legislation repository (source of Constitution components, Penal Code, Copyright, Environment laws).",
+      "license": "—",
+      "retrieved": "2026-06-08"
+    }
+  ]
+}

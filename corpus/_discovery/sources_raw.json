@@ -1,0 +1,2308 @@
+[
+  {
+    "source_explored": "africa-laws.org Cameroon section (aggregator). Main page: https://www.africa-laws.org/Cameroon.php and its LiteSpeed autoindex directories under /Cameroon/<category>/ plus a shared /OHADA/ directory. Verified directory indexes for criminal law, tax law, civil law, employment law, and family law to capture exact URL-encoded direct PDF links. All Cameroon PDFs share last-modified 2022-10-03.",
+    "robots_summary": "robots.txt present at https://www.africa-laws.org/robots.txt: 'User-Agent: *' with an empty 'Disallow:' (nothing blocked) and Sitemap https://www.africa-laws.org/sitemap.xml. All document paths (/Cameroon/..., /OHADA/...) are Allowed for crawling.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Code Pénal (Cameroon Penal Code - Law No. 2016/007 of 12 July 2016)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/criminal%20law/Code%20P%C3%A9nal.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2016",
+        "priority": "high",
+        "notes": "Direct PDF (16 MB), verified in directory index. French. Official source: Cameroon Presidency (prc.cm) hosts EN version Law No.2016/007 at https://www.prc.cm/en/news/the-acts/laws/1829-law-no-2016-007-of-12-july-2016-relating-to-the-penal-code and WIPO Lex (wipolex). Prefer official prc.cm / WIPO for canonical text."
+      },
+      {
+        "title": "Loi N° 2019/020 du 24 décembre 2019 modifiant et complétant certaines dispositions de la loi No 2016/007 du 12 juillet 2016 portant code pénal",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/criminal%20law/Loi%20N%C2%B0%202019020%20du%2024%20d%C3%A9cembre%202019%20modifiant%20et%20compl%C3%A9tant%20certaines%20dispositions%20de%20la%20loi%20No%202016007%20du%2012%20juillet%202016%20portant%20code%20p%C3%A9nal.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2019",
+        "priority": "high",
+        "notes": "Direct PDF (397k), verified. Amends the 2016 Penal Code. French. Also available via prc.cm."
+      },
+      {
+        "title": "Décret N° 2016/319 du 12 juillet 2016 portant partie réglementaire du Code Pénal définissant les contraventions",
+        "doc_type": "decree",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/criminal%20law/D%C3%A9cret%20N%C2%B0%202016319%20du%2012%20juillet%202016%20portant%20partie%20r%C3%A9glementaire%20du%20Code%20P%C3%A9nal%20d%C3%A9finissant%20les%20contraventions.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2016",
+        "priority": "high",
+        "notes": "Direct PDF (160k), verified. Regulatory part of Penal Code defining contraventions (sections 362-370). French."
+      },
+      {
+        "title": "Code Civil Camerounais (Cameroon Civil Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/civil%20law/CODE%20CIVIL%20CAMEROUNAIS.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Direct PDF (2 MB), verified in /Cameroon/civil law/ index. French."
+      },
+      {
+        "title": "Code de Procédure Civile (Cameroon Code of Civil Procedure)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/civil%20law/CODE%20DE%20PROCEDURE%20CIVILE.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Direct PDF (886k), verified. French."
+      },
+      {
+        "title": "Loi du 14 août 1992 portant Code du Travail (Cameroon Labour Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Employment%20law/Loi%20du%2014%20ao%C3%BBt%201992%2C%20portant%20Code%20du%20Travail.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1992",
+        "priority": "high",
+        "notes": "Direct PDF (318k), verified in /Cameroon/Employment law/ index. Law No.92/007 of 14 Aug 1992. French. Also available at ILO NATLEX."
+      },
+      {
+        "title": "Code Général des Impôts du Cameroun (Cameroon General Tax Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Tax%20Law/Code%20g%C3%A9n%C3%A9ral%20des%20imp%C3%B4ts%20Cameroun.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Direct PDF (8.6 MB), verified in /Cameroon/Tax Law/ index. French. Official source: DGI (impots.cm) publishes the current annual CGI."
+      },
+      {
+        "title": "Loi N° 2019/023 du 24 décembre 2019 portant loi de finances de la République du Cameroun pour l'exercice 2020",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Tax%20Law/Loi%202019023%20du%2024%20d%C3%A9cembre%202019%20portant%20loi%20de%20finances%20de%20la%20R%C3%A9publique%20du%20Cameroun%20pour%20l%27exercice%202020.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2019",
+        "priority": "medium",
+        "notes": "Direct PDF (20 MB), verified. 2020 Finance Law. French."
+      },
+      {
+        "title": "Ordonnance N° 2020/001 du 03 juin 2020 modifiant et complétant certaines dispositions de la loi n°2019/023 portant loi de finances pour l'exercice 2020",
+        "doc_type": "ordinance",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Tax%20Law/Ordonnance%20N%C2%B02020001%20du%2003%20juin%202020%20modifiant%20et%20compl%C3%A9tant%20certaines%20dispositions%20de%20la%20loi%20n%C2%B02019023%20du%2024%20d%C3%A9cembre%202019%20portant%20loi%20de%20finances%20de%20la%20R%C3%A9publique%20du%20Cameroun%20pour%20l%E2%80%99exercice%202020.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2020",
+        "priority": "low",
+        "notes": "Listed in directory index but reported size 0 KB - file may be empty/corrupt. Verify before relying on it."
+      },
+      {
+        "title": "Ordonnance N° 81/002 du 29 juin 1981 portant organisation de l'état civil et diverses dispositions relatives à l'état des personnes physiques (Civil Status Registration)",
+        "doc_type": "ordinance",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Family%20law/ORDONNANCE%20No.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1981",
+        "priority": "high",
+        "notes": "Direct PDF (135k), verified in /Cameroon/Family law/ index. Filename truncated to 'ORDONNANCE No.pdf' on server but content is the 1981 Civil Status ordinance per Cameroon.php label. French. Core civil status/état civil text."
+      },
+      {
+        "title": "Loi N° 2011/011 du 6 mai 2011 modifiant et complétant certaines dispositions de l'ordonnance n° 81/02 du 29 juin 1981 (Civil Status amendment)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/FAMILY~1/LOIN20~2.PDF",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2011",
+        "priority": "medium",
+        "notes": "Cameroon.php links via 8.3 short path FAMILY~1/LOIN20~2.PDF; not seen as a normal entry in the Family law directory index (only 2 files listed there). Amends the 1981 état civil ordinance. Confirm the long-name path before fetching. French."
+      },
+      {
+        "title": "Loi N° 2005/015 du 29 décembre 2005 relative à la lutte contre le trafic et la traite des enfants",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Family%20law/Loi%20N%C2%B0%202005-015%20DU%2029%20DECEMBRE%202005%20RELATIVE%20A%20LA%20LUTTE%20CONTRE%20LE%20TRAFIC%20ET%20LA%20TRAITE%20DES%20ENFANTS.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2005",
+        "priority": "low",
+        "notes": "Direct PDF (358k), verified. Anti child trafficking law. French."
+      },
+      {
+        "title": "OHADA - Acte uniforme relatif au droit commercial général (révisé) / General Commercial Law Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20R%C3%89VIS%C3%89%20PORTANT%20SUR%20LE%20DROIT%20COMMERCIAL%20G%C3%89N%C3%89RAL.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "Linked from Cameroon.php under Commercial Law; file lives in shared /OHADA/ directory. URL reconstructed from the listed path 'OHADA\\ACTE UNIFORME RÉVISÉ PORTANT SUR LE DROIT COMMERCIAL GÉNÉRAL.pdf' (not independently verified via directory index). Official source: ohada.org / Journal Officiel OHADA. Prefer ohada.org for canonical Uniform Acts."
+      },
+      {
+        "title": "OHADA - Acte uniforme révisé relatif au droit des sociétés commerciales et du GIE / Commercial Companies Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20R%C3%89VIS%C3%89%20RELATIF%20AU%20DROIT%20DES%20SOCI%C3%89T%C3%89S%20COMMERCIALES%20ET%20DU%20REGROUPEMENT%20D%27INT%C3%89R%C3%8AT%20%C3%89CONOMIQUE.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2014",
+        "priority": "high",
+        "notes": "Linked from Cameroon.php; file in shared /OHADA/ dir. URL reconstructed from listed relative path, not directory-verified. Prefer ohada.org canonical text."
+      },
+      {
+        "title": "OHADA - Acte uniforme révisé portant organisation des sûretés / Securities Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20R%C3%89VIS%C3%89%20PORTANT%20ORGANISATION%20DES%20S%C3%9BRET%C3%89S.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "Linked from Cameroon.php; shared /OHADA/ dir. URL reconstructed from listed relative path, not directory-verified. Prefer ohada.org."
+      },
+      {
+        "title": "OHADA - Acte uniforme portant organisation des procédures simplifiées de recouvrement et des voies d'exécution / Simplified Recovery & Enforcement Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20PORTANT%20ORGANISATION%20DES%20PROC%C3%89DURES%20SIMPLIFI%C3%89ES%20DE%20RECOUVREMENT%20ET%20DES%20VOIES%20D%27EX%C3%89CUTION.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1998",
+        "priority": "high",
+        "notes": "Linked from Cameroon.php; shared /OHADA/ dir. URL reconstructed from listed relative path, not directory-verified. Prefer ohada.org."
+      },
+      {
+        "title": "OHADA - Acte uniforme portant organisation des procédures collectives d'apurement du passif / Collective Proceedings (Insolvency) Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20PORTANT%20ORGANISATION%20DES%20PROC%C3%89DURES%20COLLECTIVES%20D%27APARUREMENT%20DU%20PASSIF.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1998",
+        "priority": "high",
+        "notes": "Linked from Cameroon.php; shared /OHADA/ dir. Filename has a typo 'APARUREMENT' on the source - URL reconstructed from listed path, not directory-verified. Prefer ohada.org."
+      },
+      {
+        "title": "OHADA - Acte uniforme relatif au droit de l'arbitrage / Arbitration Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20RELATIF%20AU%20DROIT%20DE%20L%27ARBITRAGE.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1999",
+        "priority": "medium",
+        "notes": "Linked from Cameroon.php; shared /OHADA/ dir. URL reconstructed from listed relative path, not directory-verified. Prefer ohada.org."
+      },
+      {
+        "title": "OHADA - Acte uniforme relatif au droit des sociétés coopératives / Cooperative Societies Uniform Act",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/ACTE%20UNIFORME%20RELATIF%20AU%20DROIT%20DES%20SOCI%C3%89T%C3%89S%20COOP%C3%89RATIVES.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "medium",
+        "notes": "Linked from Cameroon.php; shared /OHADA/ dir. URL reconstructed from listed relative path, not directory-verified. Prefer ohada.org."
+      },
+      {
+        "title": "OHADA - Traité relatif à l'harmonisation en Afrique d'un droit des affaires (OHADA Treaty)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/OHADA/TRAIT%C3%89%20RELATIF%20A%20L%27HARMONISATION%20EN%20AFRIQUE%20D%27UN%20DROIT%20DES%20AFFAIRES.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1993",
+        "priority": "high",
+        "notes": "Founding OHADA Treaty (Port-Louis 1993, revised Quebec 2008). Linked from Cameroon.php; shared /OHADA/ dir. URL reconstructed from listed relative path. Prefer ohada.org canonical text."
+      },
+      {
+        "title": "Loi-cadre N° 2011/012 du 6 mai 2011 relative à la protection du consommateur (Consumer Protection Framework Law)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Consumer%20Law/Loi%20cadre%20N%C2%B0%202011012%20relative%20%C3%A0%20la%20protection%20du%20consommateur.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2011",
+        "priority": "medium",
+        "notes": "Listed on Cameroon.php under Consumer Law; URL reconstructed from relative path, not directory-verified. French."
+      },
+      {
+        "title": "Loi N° 98/013 du 14 juillet 1998 relative à la concurrence (Competition Law)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Competition%20law/Loi%20No.%2098-013%20de%20la%20concurrence.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1998",
+        "priority": "medium",
+        "notes": "Listed on Cameroon.php under Competition Law; URL reconstructed from relative path, not directory-verified. French."
+      },
+      {
+        "title": "Law No. 2000/011 of December 19, 2000, on Copyright and Neighbouring Rights (Cameroon)",
+        "doc_type": "statute",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Intellectual%20property%20law/Law%20No.%202000011%20of%20December%2019%2C%202000%2C%20on%20Copyright%20and%20Neighbouring%20Rights.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2000",
+        "priority": "medium",
+        "notes": "Listed on Cameroon.php under IP Law; both EN and FR versions present (separate PDFs). URL reconstructed from relative path, not directory-verified. Official source: WIPO Lex hosts EN/FR versions."
+      },
+      {
+        "title": "Loi N° 90/031 du 10 août 1990 régissant l'activité commerciale au Cameroun (Commercial Activity Law)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "africa-laws.org",
+        "url": "https://www.africa-laws.org/Cameroon/Comercial%20law/Loi%20n%C2%B0%2090-031%20du%2010%20Ao%C3%BBt%201990%20r%C3%A9gissant%20l%27activit%C3%A9%20commerciale%20au%20Cameroun.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1990",
+        "priority": "low",
+        "notes": "Listed on Cameroon.php under Commercial Law (note folder spelled 'Comercial law' on server). URL reconstructed from relative path, not directory-verified. French."
+      }
+    ]
+  },
+  {
+    "source_explored": "WIPO Lex (IGO) — Cameroon member profile at https://www.wipo.int/wipolex/en/legislation/members/profile/CM (note: wipolex.wipo.int and the originally-assigned www.wipolex.wipo.int both 301-redirect to www.wipo.int/wipolex/...). Explored the member profile and individual legislation detail pages; resolved direct PDF URLs hosted under wipolex-res.wipo.int/edocs/lexdocs/ which themselves 301-redirect to www.wipo.int/wipolex/edocs/lexdocs/.",
+    "robots_summary": "www.wipo.int/robots.txt disallows /edocs/traindocs/, /edocs/lexdocs/, and /edocs/infogdocs/tdc_sony/. HOWEVER, the actual WIPO Lex document PDFs resolve to the path prefix /wipolex/edocs/lexdocs/ (e.g. www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm005en.pdf), which is NOT matched by the bare 'Disallow: /edocs/lexdocs/' rule. The /wipolex/ legislation detail pages and profile pages are not disallowed. wipolex-res.wipo.int/robots.txt returned HTTP 403; wipolex.wipo.int/robots.txt 301-redirects to the www.wipo.int copy. In practice all tested detail pages and PDF URLs returned content (treated as Allowed/fetchable in their canonical /wipolex/edocs/ form).",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Constitution of Cameroon (as revised by Law No. 96-06 of January 18, 1996) — English",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm005en.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "Consolidated Constitution of Cameroon (orig. June 2, 1972; revised Jan 18, 1996). WIPO Lex ref CM005. Detail page: https://www.wipo.int/wipolex/en/legislation/details/7391 . Direct PDF also reachable via wipolex-res.wipo.int/edocs/lexdocs/laws/en/cm/cm005en.pdf which 301s to this canonical /wipolex/edocs/ URL. Core scope."
+      },
+      {
+        "title": "Constitution du Cameroun (révisée par la loi n° 96-06 du 18 janvier 1996) — Français",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm005fr.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "French version of the consolidated Constitution. WIPO Lex ref CM005. Confirmed loads as readable legal PDF (preamble + all articles). Core scope."
+      },
+      {
+        "title": "Law No. 2008-1 of April 14, 2008, amending and supplementing some Provisions of Law No. 96-6 of January 18, 1996 amending the Constitution of June 2, 1972 — English",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm013en.pdf",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "2008 constitutional amendment law (presidential term, succession, Constitutional Council). WIPO Lex ref CM013. Detail page: https://www.wipo.int/wipolex/en/legislation/details/13739 . URL pattern inferred/confirmed from detail page; wipolex-res mirror 301s to this canonical path. Core constitutional scope."
+      },
+      {
+        "title": "Loi n° 2008-1 du 14 avril 2008 modifiant et complétant certaines dispositions de la loi n° 96-6 du 18 janvier 1996 portant révision de la Constitution — Français",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm013fr.pdf",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "French version of the 2008 constitutional amendment law. WIPO Lex ref CM013. Core constitutional scope."
+      },
+      {
+        "title": "Law No. 2016/007 of July 12, 2016 relating to the Penal Code — English",
+        "doc_type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm014en.pdf",
+        "year": "2016",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "Cameroon Penal Code (Code Pénal). WIPO Lex ref CM014. Detail page: https://www.wipo.int/wipolex/en/legislation/details/16366 . Direct EN PDF confirmed on detail page. Core scope (Penal Code)."
+      },
+      {
+        "title": "Loi n° 2016/007 du 12 juillet 2016 portant Code Pénal — Français",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm014fr.pdf",
+        "year": "2016",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "French version of the Cameroon Penal Code. WIPO Lex ref CM014. FR PDF URL inferred from the consistent cm0NNfr.pdf naming pattern (EN confirmed); not directly fetched, so fetchability=unknown pending verification. Core scope."
+      },
+      {
+        "title": "Law No. 2000/011 of December 19, 2000 on Copyright and Neighbouring Rights — English",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm001en_1.pdf",
+        "year": "2000",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Copyright and Neighbouring Rights Law. WIPO Lex ref CM001. Detail page: https://www.wipo.int/wipolex/en/legislation/details/836 . Direct EN PDF confirmed (note the _1 suffix). Primary IP law."
+      },
+      {
+        "title": "Loi n° 2000/011 du 19 décembre 2000 relative au droit d'auteur et aux droits voisins — Français",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm001fr_1.pdf",
+        "year": "2000",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "French version of the Copyright and Neighbouring Rights Law. WIPO Lex ref CM001. Direct FR PDF confirmed (_1 suffix). Primary IP law."
+      },
+      {
+        "title": "Decree No. 2001/956/PM of November 1, 2001 on the Implementation of Law No. 2000/11 on Copyright and Neighbouring Rights — English",
+        "doc_type": "decree",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm008en.pdf",
+        "year": "2001",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Implementing decree for the 2000 copyright law. WIPO Lex ref CM008. Detail page: https://www.wipo.int/wipolex/en/legislation/details/7757 . EN PDF confirmed on detail page."
+      },
+      {
+        "title": "Décret n° 2001/956/PM du 1er novembre 2001 fixant les modalités d'application de la loi n° 2000/011 relative au droit d'auteur et aux droits voisins — Français",
+        "doc_type": "decree",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm008fr.pdf",
+        "year": "2001",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "French version of the copyright implementing decree. WIPO Lex ref CM008."
+      },
+      {
+        "title": "Law No. 2021/014 of July 9, 2021 on Access to Genetic Resources, their Derivatives, Associated Traditional Knowledge and the Fair and Equitable Sharing of Benefits — English",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/en/cm/cm015en_1.pdf",
+        "year": "2021",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Access and Benefit Sharing (ABS) law on genetic resources / traditional knowledge. WIPO Lex ref CM015. Detail page: https://www.wipo.int/wipolex/en/legislation/details/21096 . EN PDF confirmed (note _1 suffix)."
+      },
+      {
+        "title": "Loi n° 2021/014 du 9 juillet 2021 sur l'accès aux ressources génétiques, à leurs dérivés et aux connaissances traditionnelles associées et le partage juste et équitable des avantages — Français",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm015fr.pdf",
+        "year": "2021",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "French version of the 2021 genetic resources / ABS law. WIPO Lex ref CM015."
+      },
+      {
+        "title": "Loi n° 96/12 du 5 août 1996 portant loi-cadre relative à la gestion de l'environnement (Framework Law on Environmental Management) — Français",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm004fr.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "Environmental management framework law; relevant for genetic resources / traditional cultural expressions (Title III, Art. 65). WIPO Lex ref CM004. Detail page: https://www.wipo.int/wipolex/en/legislation/details/5800 . Only FR direct PDF surfaced; EN listed as available via HTML interface. Peripheral to core legal scope."
+      },
+      {
+        "title": "Law No. 2002/004 of April 19, 2002 on the Investment Charter (and Ordinance No. 2009/001 amendment)",
+        "doc_type": "statute",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/7760",
+        "year": "2002",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "Investment Charter law (CM ref) plus amending Ordinance No. 2009/001 (detail page https://www.wipo.int/wipolex/en/legislation/details/11617 ). Landing/detail pages only captured here; direct PDF edocs URLs not resolved in this pass, so is_direct_file=false and fetchability=unknown. Peripheral economic law."
+      }
+    ]
+  },
+  {
+    "source_explored": "Library of Congress \"Guide to Law Online: Cameroon\" — https://guides.loc.gov/law-cameroon (new LibGuides URL; legacy https://www.loc.gov/law/help/guide/nations/cameroon.php now redirects to /item/guide-to-law-online/cameroon/). Explored the guide's tabbed sub-pages (Introduction, Constitution, Legislative, Judicial, General Sources) and extracted the outbound PRIMARY-source links it points to (PRC/Presidency, WIPO Lex, OHADA, National Assembly, Juricaf, Droit-Afrique aggregator, ILO NatLex, Constitute Project). The guides.loc.gov and www.loc.gov hosts returned HTTP 403 to the WebFetch tool (AI/bot user-agent blocking) even though robots.txt does not disallow the guide paths; page contents and outbound links were reconstructed via WebSearch result snippets and by directly verifying the destination sites.",
+    "robots_summary": "Two hosts. guides.loc.gov/robots.txt: blocks many AI/bot user-agents site-wide (GPTBot, ChatGPT, Gemini, Amazonbot, etc. = Disallow: /); for User-agent: * it only disallows utility scripts (/az.php?, /go.php, /srch.php, /er.php, etc.) — the /law-cameroon guide paths are NOT disallowed and are crawlable by permitted agents. www.loc.gov/robots.txt: User-agent: * disallows /cgi-bin/, /search, /fedsearch, /myloc, etc.; the /law/ and /item/ guide paths are NOT disallowed (Crawl-Delay: 5). Net: the Cameroon guide document paths are Allowed by robots.txt, but the WebFetch tool itself received 403 (bot-blocked), so fetchability via this tool is effectively blocked/JS-gated.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Guide to Law Online: Cameroon (Law Library of Congress research guide)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Library of Congress, Law Library of Congress",
+        "url": "https://guides.loc.gov/law-cameroon",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "medium",
+        "notes": "The assigned source itself: a US-Government public-domain research guide (no copyright). Tabbed sub-pages: /constitution, /legislative, /judicial, /general-sources, plus /law-cameroon (Introduction). Value is its curated outbound links to primary sources, captured as separate candidates below. WebFetch got HTTP 403 (LoC blocks AI bots) though robots.txt allows the path; treat as JS/bot-gated. Authority recorded as igo/official-equivalent (national library of the US government) per its public-domain status."
+      },
+      {
+        "title": "Constitution - Guide to Law Online: Cameroon (sub-page listing constitution sources)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Library of Congress, Law Library of Congress",
+        "url": "https://guides.loc.gov/law-cameroon/constitution",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "low",
+        "notes": "Sub-page of the guide; points to constitution texts (WIPO Lex, Constitute). US-Gov public domain. WebFetch 403 (bot-blocked)."
+      },
+      {
+        "title": "Legislative - Guide to Law Online: Cameroon (sub-page listing legislative sources)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Library of Congress, Law Library of Congress",
+        "url": "https://guides.loc.gov/law-cameroon/legislative",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "low",
+        "notes": "Sub-page; points to National Assembly (assnat.cm) and WIPO Lex legislation. US-Gov public domain. WebFetch 403."
+      },
+      {
+        "title": "Judicial - Guide to Law Online: Cameroon (sub-page listing judicial sources)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Library of Congress, Law Library of Congress",
+        "url": "https://guides.loc.gov/law-cameroon/judicial",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "low",
+        "notes": "Sub-page; principal outbound link is Juricaf: Cameroun (case law in French). US-Gov public domain. WebFetch 403."
+      },
+      {
+        "title": "General Sources - Guide to Law Online: Cameroon (sub-page)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Library of Congress, Law Library of Congress",
+        "url": "https://guides.loc.gov/law-cameroon/general-sources",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "low",
+        "notes": "Sub-page; points to WIPO Lex Cameroon and general research aggregators (Globalex etc.). US-Gov public domain. WebFetch 403."
+      },
+      {
+        "title": "Constitution of the Republic of Cameroon, 1972 with amendments through 2008 (English consolidated text)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Constitute Project (Comparative Constitutions Project)",
+        "url": "https://www.constituteproject.org/constitution/Cameroon_2008.pdf?lang=en",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2008",
+        "priority": "high",
+        "notes": "VERIFIED direct download via WebFetch (216.5 KB PDF retrieved). English consolidated constitution (Law 96/06 of 1996, amendments to 2008). Openly licensed (CC). Linked from the LoC guide's Constitution page."
+      },
+      {
+        "title": "Constitution du Cameroun (révisée par la loi n° 96-06 du 18 janvier 1996) — official French text",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://wipolex-res.wipo.int/edocs/lexdocs/laws/fr/cm/cm005fr.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "VERIFIED direct PDF URL via WIPO Lex detail page (details/7391). French. Landing page also offers other language toggles. Linked from LoC guide General Sources / Constitution. WIPO is an IGO; texts are official primary law."
+      },
+      {
+        "title": "WIPO Lex — Constitution of Cameroon (as revised by Law No. 96-06 of Jan 18, 1996) landing page",
+        "doc_type": "constitution",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/7391",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "Landing page with download links to the constitution in multiple languages (direct FR PDF cm005fr.pdf confirmed). Referenced by the LoC guide. Use this to reach EN/other-language files."
+      },
+      {
+        "title": "Constitution of the Republic of Cameroon (English) — ILO NATLEX record CMR43107",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX",
+        "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/43107/CMR43107%20Eng.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "Direct-PDF path on ILO NATLEX (English constitution). WebFetch returned 403 (likely UA/Referer gating); path is a known direct file so marked is_direct_file=true, fetchability=unknown. IGO source. Reachable from constitutional-law aggregators the LoC guide points to."
+      },
+      {
+        "title": "Law No. 96/06 of 18 January 1996 to amend the Constitution of 2 June 1972 (Presidency of the Republic record)",
+        "doc_type": "constitution",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "https://www.prc.cm/en/multimedia/documents/6285-loi-n-96-06-du-18-01-1996-revision-constitution-1972-en",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "Official Cameroon government (Presidency) document record for the constitution. WebFetch shows a viewer/landing page, no exposed direct file URL — is_direct_file=false, fetchability=unknown (download likely behind the document viewer). Highest-authority source for the constitution; the LoC guide directs here for the official text."
+      },
+      {
+        "title": "National Assembly of Cameroon — adopted/promulgated laws portal (lois)",
+        "doc_type": "statute",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Assemblée Nationale du Cameroun (assnat.cm)",
+        "url": "https://www.assnat.cm/index.php/en/",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Official legislature site; states all adopted/promulgated laws are downloadable via search (no single direct file URL — must use the on-site Laws search). Reachable (active, news dated 2026-06-08). Primary legislation source the LoC guide's Legislative page links to."
+      },
+      {
+        "title": "Juricaf — Cameroun, Cour suprême (Supreme Court case law collection, French)",
+        "doc_type": "case",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Juricaf (AHJUCAF / Organisation Internationale de la Francophonie)",
+        "url": "https://juricaf.org/recherche/+/facet_pays:Cameroun,facet_juridiction:Cour_supr%C3%AAme",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "medium",
+        "notes": "The judicial sub-page's primary outbound link. Free, openly accessible collection of Cameroon Supreme Court decisions (individual arrêts at juricaf.org/arret/CAMEROUN-COURSUPREME-...). IGO-backed (OIF) aggregator of official case law. Individual judgment pages are directly fetchable HTML."
+      },
+      {
+        "title": "OHADA Official Gazette / Uniform Acts (Journal Officiel de l'OHADA — business law applicable in Cameroon)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "OHADA (Organisation pour l'Harmonisation en Afrique du Droit des Affaires)",
+        "url": "https://www.ohada.org/en/official-gazette/",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Index of OHADA Official Gazette issues and the Nov-2016 special edition compiling the official English Treaty + Uniform Acts. No direct PDF on the index page (must click through each issue). OHADA business law (Commercial, Companies, Securities, Insolvency, Arbitration, Accounting) applies directly in Cameroon. IGO primary source referenced from the LoC guide."
+      },
+      {
+        "title": "Loi n° 2016/007 du 12 juillet 2016 portant Code pénal (Cameroon Penal Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Droit-Afrique",
+        "url": "https://www.droit-afrique.com/uploads/Cameroun-Code-2016-penal1.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2016",
+        "priority": "high",
+        "notes": "Direct PDF of the Cameroon Penal Code (Law 2016/007) on Droit-Afrique, a free aggregator of Francophone-African legislation that the LoC guide's general-research links route to. Core-scope primary code."
+      },
+      {
+        "title": "Code Général des Impôts du Cameroun (General Tax Code), 2020 edition",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Direction Générale des Impôts du Cameroun (impots.cm)",
+        "url": "https://www.impots.cm/sites/default/files/documents/CGI%202020%20-%20dv.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2020",
+        "priority": "high",
+        "notes": "Direct PDF of the General Tax Code on the official Cameroon tax administration site. Core-scope primary code; reachable via general/legislative research links from the LoC guide."
+      }
+    ]
+  },
+  {
+    "source_explored": "Presidency of the Republic of Cameroon (Présidence de la République du Cameroun) — https://www.prc.cm. Explored EN and FR sections: /news/the-acts (Laws, Ordinances, Decrees, Orders, Decisions, Circulars) = FR /actualites/actes; the Constitution page /en/cameroon/constitution = FR /fr/le-cameroun/constitution; and the Joomla media component /multimedia/documents/{id} which serves official PDFs. Confirmed the site stores actual files under https://www.prc.cm/files/xx/xx/xx/{hash}.pdf (one such file was successfully fetched as a real 1.2MB scanned PDF), and that each act detail page exposes a \"Download the Law (PDF)\" link to a /multimedia/documents/{id} landing page whose task=mediaform.download URL resolves to that /files/ PDF.",
+    "robots_summary": "robots.txt present (standard Joomla). User-agent: * disallows only backend/system dirs (/administrator/, /cache/, /cli/, /components/, /includes/, /language/, /libraries/, /logs/, /media/, /modules/, /plugins/, /templates/, /tmp/). The legal-document paths used here — /en/news/the-acts/*, /fr/actualites/actes/*, /multimedia/documents/* and /files/* — are NOT disallowed. Note: /media/ is disallowed but the served PDFs live under /files/ (allowed), not /media/.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Law No. 96/06 of 18 January 1996 to amend the Constitution of 2 June 1972 (English)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/multimedia/documents/6285-loi-n-96-06-du-18-01-1996-revision-constitution-1972-en",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "Core constitutional revision text. Landing page under Joomla media component; actual PDF is served via a task=mediaform.download link that resolves to a /files/{hash}.pdf. Direct file URL not exposed in plain HTML (component-driven), so marked landing-page/unknown. The 1996 revision created the 'Republic of Cameroon' decentralised unitary state."
+      },
+      {
+        "title": "Loi N°96/06 du 18 janvier 1996 portant révision de la Constitution du 02 juin 1972 (Français)",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (PRC)",
+        "url": "https://www.prc.cm/fr/multimedia/documents/6283-loi-n-96-06-du-18-01-1996-revision-constitution-1972-fr",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "1996",
+        "priority": "high",
+        "notes": "French original of the 1996 constitutional revision law. PDF served via media-component download link; direct file path opaque, so landing page recorded."
+      },
+      {
+        "title": "Law No. 2008/001 of 14 April 2008 amending and supplementing some provisions of Law No. 96/06 (Constitution) — English",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/files/b1/bb/2f/713a4f4be2f2d035457bc8e80de3788b.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2008",
+        "priority": "high",
+        "notes": "VERIFIED direct openly-accessible PDF (~1.2MB, scanned, Adobe Paper Capture OCR). Header reads 'REPUBLIC OF CAMEROON ... 1 4 AVR 2008' confirming the 2008/001 constitutional amendment (removed presidential term limits). Landing page equivalent: https://www.prc.cm/en/multimedia/documents/6282-loi-n-2008-001-du-14-04-2008-modifian-constitution-1972-en"
+      },
+      {
+        "title": "Loi N°2008/001 du 14 avril 2008 modifiant et complétant certaines dispositions de la Loi N°96/06 (Constitution) — Français",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (PRC)",
+        "url": "https://www.prc.cm/fr/multimedia/documents/6284-loi-n-2008-001-du-14-04-2008-modifian-constitution-1972-fr",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2008",
+        "priority": "high",
+        "notes": "French original of the 2008 constitutional amendment. Landing page under media component; PDF served via download task, direct /files/ path not exposed in HTML."
+      },
+      {
+        "title": "Constitution of the Republic of Cameroon (consolidated full text — Law 96/06 as amended through 2008)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/files/c9/b7/ea/c0609c9d4b1c56a57d25fe5897d534a9.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2008",
+        "priority": "high",
+        "notes": "Direct PRC-hosted PDF surfaced via WebSearch on the official /files/ path (search snippet 'republic of cameroon'). File exceeds 10MB so full content not previewable here, but it exists and is openly served on the official domain — likely the consolidated Constitution text. Verify exact title/language on download; PRC primary."
+      },
+      {
+        "title": "The Acts — Laws (Lois) index page",
+        "doc_type": "statute",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/laws",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "high",
+        "notes": "Paginated index (~23 pages EN) of all promulgated Laws, each with a 'Download the Law (PDF)' link to a /multimedia/documents/{id} page that resolves to a /files/{hash}.pdf. FR equivalent: https://www.prc.cm/fr/actualites/actes/lois. Primary harvesting entry point for ratification laws, finance laws, sectoral laws."
+      },
+      {
+        "title": "The Acts — Ordinances (Ordonnances) index page",
+        "doc_type": "ordinance",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/ordinances",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "medium",
+        "notes": "Index of presidential Ordinances (mostly finance-law amendments and the 2025/002 investment-incentives ordinance). Each entry has a PDF download link to /multimedia/documents/{id}. FR: https://www.prc.cm/fr/actualites/actes/ordonnances."
+      },
+      {
+        "title": "The Acts — Decrees (Décrets) index page",
+        "doc_type": "decree",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/decrees",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "medium",
+        "notes": "Index of presidential Decrees. Each entry links to a /multimedia/documents/{id} PDF download. FR: https://www.prc.cm/fr/actualites/actes/decrets. Largely application/implementing texts (medium priority)."
+      },
+      {
+        "title": "Ordinance No. 2025/002 of 18 July 2025 to lay down investment incentives in the Republic of Cameroon",
+        "doc_type": "ordinance",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/ordinances/7950-ordinance-no-2025-002-of-18-july-2025-to-lay-down-investment-incentives-in-the-republic-of-cameroon",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2025",
+        "priority": "medium",
+        "notes": "Substantive primary economic-law ordinance (investment incentives). Detail page carries a 'Download (PDF)' link to a /multimedia/documents/{id} page resolving to the file. FR equivalent under /fr/actualites/actes/ordonnances."
+      },
+      {
+        "title": "Law No. 2025/013 of 17 December 2025 to lay down the rules and regulations governing organic farming in Cameroon",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/multimedia/documents/10563-law-n-2025-013-of-17-12-2025",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2025",
+        "priority": "medium",
+        "notes": "Example confirming the harvest pattern: detail page https://www.prc.cm/en/news/the-acts/laws/8098-... links 'Download the Law (PDF)' to this /multimedia/documents/10563 page, which triggers task=mediaform.download to the actual /files/ PDF. Substantive sectoral statute."
+      },
+      {
+        "title": "Law No. 2026/002 of 14 April 2026 to amend and supplement the Constitution of 2 June 1972 (as amended by Law 96/06 and Law 2008/001)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/multimedia/documents/10676-law-2026-002-of-14-04-2026",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2026",
+        "priority": "high",
+        "notes": "Most recent constitutional amendment law. Download landing page; component download URL: https://www.prc.cm/en/multimedia/documents?task=mediaform.download&id=10676&tmpl=component (resolves to a /files/{hash}.pdf). Detail page: https://www.prc.cm/en/news/the-acts/laws/8241-... FR detail: https://prc.cm/fr/actualites/actes/lois/8244-..."
+      },
+      {
+        "title": "Law No. 2026/003 of 14 April 2026 to amend and supplement Law No. 2012/001 relating to the Electoral Code",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/laws/8242-law-no-2026-003-of-14-april-2026-to-amend-and-supplement-some-provisions-of-law-no-2012-001-of-19-april-2012-relating-to-the-electoral-code",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2026",
+        "priority": "medium",
+        "notes": "Recent amendment to the Electoral Code (Law 2012/001). Detail page exposes a 'Download the Law (PDF)' link to a /multimedia/documents/{id} page; direct PDF resolves via media component."
+      },
+      {
+        "title": "Law No. 2026/003 of 14 April 2026 amending Law No. 2004/004 on organization and functioning of the Constitutional Council",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/en/news/the-acts/laws/8243-law-no-2026-003-of-14-april-2026-to-amend-and-supplement-some-provisions-of-law-no-2004-004-of-21-april-2004-to-lay-down-the-organization-and-functioning-of-the-constitutional-council-as-amended-and-supplemented-by-law-no-2012-015-of-21-december-2012",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2026",
+        "priority": "medium",
+        "notes": "Amends the law on the Constitutional Council (judicial/constitutional organization). Detail page has PDF download link to /multimedia/documents/{id}."
+      },
+      {
+        "title": "Reference Texts for Investment (Textes de référence) — incl. Mining Code & Gas Code",
+        "doc_type": "code",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Presidency of the Republic of Cameroon (PRC)",
+        "url": "https://www.prc.cm/fr/investir/textes-de-reference",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "medium",
+        "notes": "Investment section aggregating reference legal texts including Code Minier (https://www.prc.cm/fr/investir/codeminier) and Code Gazier (https://www.prc.cm/fr/investir/codegazier). Useful secondary entry point to sectoral codes hosted by PRC; verify which are full-text PDFs vs summaries."
+      }
+    ]
+  },
+  {
+    "source_explored": "Constitution of Cameroon (Law No. 96-06 of 18 Jan 1996 as amended by Law No. 2008/001 of 14 April 2008) — consolidated EN/FR. Sources checked: constituteproject.org (Constitute), WIPO Lex (wipo.int), Presidency of the Republic (prc.cm), National Assembly (assnat.cm), Refworld, plus ACCF/Francophonie and natlex/ILO. robots.txt checked for constituteproject.org and prc.cm.",
+    "robots_summary": "constituteproject.org: robots.txt present; disallows /login, /ontology, *.xml, *.json, *.rdf and key/status query params. /constitution/* paths and PDF exports (e.g. Cameroon_2008.pdf) are NOT disallowed — allowed/crawlable. prc.cm: robots.txt present (Joomla default); disallows only system dirs (/administrator/, /cache/, /components/, /modules/, /templates/, /media/ etc.). /files/ and /en/multimedia/documents/ are NOT disallowed — allowed. wipo.int and assnat.cm document paths not blocked for the relevant PDF paths.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Cameroon's Constitution of 1972 with Amendments through 2008 (English consolidated)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Constitute Project (Comparative Constitutions Project)",
+        "url": "https://www.constituteproject.org/constitution/Cameroon_2008.pdf?lang=en",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "VERIFIED valid PDF (216KB). Cover page reads 'Cameroon's Constitution of 1972 with Amendments through 2008' / 'Cameroon 1972 (rev. 2008)'. This is the BEST openly-accessible English CONSOLIDATED text incorporating Law 2008/001. Constitute translations are CC BY 4.0 licensed (attribution to constituteproject.org / Comparative Constitutions Project). Direct PDF export confirmed via pattern /constitution/Cameroon_2008.pdf?lang=en."
+      },
+      {
+        "title": "Cameroon 1972 (rev. 2008) Constitution — HTML full text (English)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Constitute Project",
+        "url": "https://www.constituteproject.org/constitution/Cameroon_2008?lang=en",
+        "year": "2008",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "HTML landing/reading view of the consolidated English text (same source as the PDF above). CC BY licensed. Use the .pdf?lang=en variant for a clean download. Note: Constitute offers EN, AR, ES for Cameroon — NO French version on Constitute."
+      },
+      {
+        "title": "LA CONSTITUTION de la République du Cameroun — Loi n°96/06 du 18 janvier 1996 portant révision de la Constitution du 02 juin 1972, modifiée et complétée par la loi n°2008/001 du 14 avril 2008 (texte consolidé, français)",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Assemblée Nationale du Cameroun (assnat.cm)",
+        "url": "https://www.assnat.cm/images/La_Constitution.pdf",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "VERIFIED valid PDF (221KB), text extracted. Title page explicitly states the 1996 revision law 'modifiée et complétée par la loi n°2008/001 du 14 avril 2008', followed by full preamble and articles. This is the BEST openly-accessible French CONSOLIDATED text. Official National Assembly source (public domain government text). Counterpart EN file at assnat.cm is the 1996-only text (see notes on natlex/assnat EN)."
+      },
+      {
+        "title": "Constitution du Cameroun (révisée par la loi n° 96-06 du 18 janvier 1996) — texte intégral français",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex (CM005)",
+        "url": "https://www.wipo.int/wipolex/edocs/lexdocs/laws/fr/cm/cm005fr.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "VERIFIED valid French PDF. Note: original URL https://wipolex-res.wipo.int/edocs/lexdocs/laws/fr/cm/cm005fr.pdf 301-redirects to this www.wipo.int URL (use this one). This is the 1996 text (NOT consolidated with 2008). WIPO Lex record/landing: https://www.wipo.int/wipolex/en/legislation/details/7391 (also shows full FR HTML). Good official French primary source; for the consolidated FR use the assnat.cm La_Constitution.pdf. No separate English PDF exists on WIPO (cm005en.pdf returns the FR file / English is HTML-only)."
+      },
+      {
+        "title": "WIPO Lex record — Constitution of Cameroon (as revised by Law No. 96-06 of 18 Jan 1996), with full HTML text",
+        "doc_type": "constitution",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex (CM005)",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/7391",
+        "year": "1996",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "WIPO Lex landing page with full-text HTML (FR shown; EN selectable via /wipolex/en/...). Authoritative IGO source but reflects the 1996 revision, not consolidated with the 2008 amendment. Useful as English-text cross-check though Constitute is the cleaner consolidated EN."
+      },
+      {
+        "title": "Loi N°2008/001 du 14 avril 2008 modifiant et complétant certaines dispositions de la loi n°96/06 du 18 janvier 1996 portant révision de la Constitution du 02 juin 1972 (amendment, French)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "https://www.prc.cm/files/b1/bb/2f/713a4f4be2f2d035457bc8e80de3788b.pdf",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "VERIFIED valid scanned PDF (1.2MB, 3 pages) of the official Journal-Officiel 2008/001 amendment law. Official Presidency source (public). This is the AMENDMENT text only (the modifying articles 6(2)/(4), 14(3)a, 15(4), 51(1), 53, 67(6)), not the consolidated constitution. FR landing page: https://www.prc.cm/fr/multimedia/documents/6284-loi-n-2008-001-du-14-04-2008-modifian-constitution-1972-fr (landing pages are JS-driven)."
+      },
+      {
+        "title": "Law No. 2008/001 of 14 April 2008 to amend and supplement some provisions of Law No.96/06 of 18 January 1996 (amendment, English) — PRC landing page",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "https://www.prc.cm/en/multimedia/documents/6282-loi-n-2008-001-du-14-04-2008-modifian-constitution-1972-en",
+        "year": "2008",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Official Presidency landing page for the English 2008 amendment law. Page is JS/gallery-driven so the direct /files/*.pdf URL could not be resolved via fetch (set is_direct_file=false, fetchability=unknown). Amendment text only, not consolidated. Public government source."
+      },
+      {
+        "title": "Law No. 96/06 of 18 January 1996 to amend the Constitution of 2 June 1972 (English) — PRC landing page",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "https://www.prc.cm/en/multimedia/documents/6285-loi-n-96-06-du-18-01-1996-revision-constitution-1972-en",
+        "year": "1996",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Official Presidency landing page for the English 1996 revision law. JS-driven gallery page; direct PDF URL not resolvable via fetch. 1996 text (pre-2008). Public government source. Hub page listing both laws: https://www.prc.cm/en/cameroon/constitution"
+      },
+      {
+        "title": "Law No. 96-6 of 18 January 1996 to amend the Constitution of 2 June 1972 — Constitution of the Republic of Cameroon (English, 1996 text)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Assemblée Nationale du Cameroun (assnat.cm)",
+        "url": "https://www.assnat.cm/images/The_constitution.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "VERIFIED valid PDF (149KB). Title page: 'Law No. 96-6 of 18 January 1996 to amend the Constitution of 2 June, 1972' — NO 2008 mention; this is the 1996 (pre-amendment) English text, NOT consolidated. Official National Assembly source. For consolidated EN use the Constitute PDF instead."
+      },
+      {
+        "title": "Constitution of the Republic of Cameroon (English) — ILO NATLEX",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (natlex.ilo.org)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/43107/CMR43107%20Eng.pdf",
+        "year": "1996",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "Direct ILO NATLEX English PDF. Returned HTTP 403 to WebFetch (likely UA/hotlink protection) — marked blocked; may be downloadable with a normal browser/UA. NATLEX record CMR43107. English 1996 text. Lower priority given the blocked status and that it is not consolidated with 2008."
+      },
+      {
+        "title": "Loi N° 2008/001 du 14 avril 2008 (amendment, French) — ACCF / OIF mirror",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Association des Cours Constitutionnelles Francophones (accf-francophonie.org)",
+        "url": "https://cdn.accf-francophonie.org/2019/03/cameroun-constitution-2008.pdf",
+        "year": "2008",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "VERIFIED valid PDF (12KB, text-based). Despite the filename, content is ONLY the 2008 amendment law text (Loi 2008/001 modifying arts 6,14,15,51,53,67) — NOT the consolidated constitution. Clean machine-readable FR mirror of the amendment via OIF/ACCF; useful as a text-layer complement to the scanned PRC version. Prefer assnat.cm La_Constitution.pdf for consolidated FR."
+      },
+      {
+        "title": "Cameroon: Law No.2008/001 of 14 April 2008 to amend and supplement Law No.96/06 (English) — Refworld record",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Refworld (UNHCR)",
+        "url": "https://www.refworld.org/legal/legislation/natlegbod/2008/en/149733",
+        "year": "2008",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "Refworld record for the English 2008 amendment law. WebFetch returned HTTP 403 (Refworld blocks bots) — marked blocked. HTML record page, not a direct file. Companion record for the 1996 law: https://www.refworld.org/legal/legislation/natlegbod/1996/37038. Useful citation/cross-reference only."
+      }
+    ]
+  },
+  {
+    "source_explored": "OHADA official — https://www.ohada.org (and https://www.ohada.com). Explored the Actes uniformes listing at https://www.ohada.org/actes-uniformes/ and each of the 10 act detail pages (FR), the English index https://www.ohada.org/en/uniform-acts/ and EN detail pages, plus the biblio.ohada.org digital library (doc_num.php direct PDF downloads).",
+    "robots_summary": "ohada.org: robots.txt present (WordPress). Disallows only /wp-admin/ (allows /wp-admin/admin-ajax.php); declares sitemap at https://www.ohada.org/wp-sitemap.xml. Legal-document paths (/actes-uniformes/, /attachments/article/, /en/) are NOT disallowed = Allowed. ohada.com: robots.txt present, disallows only /stats/ and URLs with ?referer= param; document paths Allowed. biblio.ohada.org (digital library hosting the PDFs): no restrictive robots seen on the doc_num.php download paths = Allowed.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Acte uniforme portant sur le droit commercial général (AUDCG, 2010)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=481",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "General Commercial Law. Adopted 15 Dec 2010 (Lomé), in force 15 May 2011; replaces 1997 text. Detail page: https://www.ohada.org/droit-commercial-general/. FR authoritative version."
+      },
+      {
+        "title": "Uniform Act on General Commercial Law (AUDCG) — English unofficial translation",
+        "doc_type": "uniform-act",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (ohada.org)",
+        "url": "https://www.ohada.org/attachments/article/482/AUDCG_EN_Reviewed_Unofficial_Translation.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "Official OHADA-published English unofficial translation (~1004 kB) of the 2010 AUDCG. Direct PDF on ohada.org."
+      },
+      {
+        "title": "Acte uniforme relatif au droit des sociétés commerciales et du groupement d'intérêt économique (AUSCGIE, 2014)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=485",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2014",
+        "priority": "high",
+        "notes": "Commercial Companies & Economic Interest Groups. Adopted 30 Jan 2014 (Ouagadougou), in force 5 May 2014; replaces 1997 text. Detail page: https://www.ohada.org/droit-des-societes-commerciales-et-du-gie/. NOTE: the detail page and EN page reference explnum_id=485 and explnum_id=486 for this act; explnum_id=485 was also cited on the AUVE page — verify exact id at download time (alternate notice page id=2765)."
+      },
+      {
+        "title": "Uniform Act on Commercial Companies and Economic Interest Groups (AUSCGIE) — English unofficial translation",
+        "doc_type": "uniform-act",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (ohada.org)",
+        "url": "https://www.ohada.org/attachments/article/537/AUSCGIE-EN_Unofficial_Translation.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2014",
+        "priority": "high",
+        "notes": "Official OHADA-published English unofficial translation (~2334 kB) of the 2014 AUSCGIE. Direct PDF on ohada.org."
+      },
+      {
+        "title": "Acte uniforme portant organisation des sûretés (AUS, 2010)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=483",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "Securities / Sûretés. Adopted 15 Dec 2010 (Lomé), in force 15 May 2011. Detail page: https://www.ohada.org/organisation-des-suretes/. EN page also points to this same explnum_id=483 (no separate EN PDF published). FR authoritative version."
+      },
+      {
+        "title": "Acte uniforme portant organisation des procédures simplifiées de recouvrement et des voies d'exécution (AUVE, 2023 révisé)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "https://biblio.ohada.org/doc_num.php?explnum_id=5800",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2023",
+        "priority": "high",
+        "notes": "Simplified Recovery Procedures & Enforcement Measures — REVISED text adopted 17 Oct 2023 (Kinshasa), in force 16 Feb 2024. This supersedes the 1998 version. Current authoritative FR version. Detail page: https://www.ohada.org/organisation-des-procedures-simplifiees-de-recouvrement-et-des-voies-dexecution/."
+      },
+      {
+        "title": "Acte uniforme portant organisation des procédures simplifiées de recouvrement et des voies d'exécution (AUVE, 1998 — superseded)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "https://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=485",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1998",
+        "priority": "medium",
+        "notes": "Original 1998 AUVE (adopted 10 Apr 1998 Libreville, in force 31 Aug 1998). SUPERSEDED by 2023 revision — kept for historical reference. The detail page lists explnum_id=485 for the 1998 text (same id also appears for AUSCGIE on its page) — verify exact id at download."
+      },
+      {
+        "title": "Acte uniforme portant organisation des procédures collectives d'apurement du passif (AUPC, 2015)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=484",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2015",
+        "priority": "high",
+        "notes": "Collective Proceedings / Insolvency. Adopted 10 Sep 2015, in force 24 Dec 2015; replaces 1998 text. Detail page: https://www.ohada.org/procedures-collectives-dapurement-du-passif/. Alt notice page id=1860. FR authoritative version."
+      },
+      {
+        "title": "Uniform Act on Collective Proceedings for Wiping Off Debts / Insolvency (AUPC) — English unofficial translation",
+        "doc_type": "uniform-act",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (ohada.org)",
+        "url": "https://www.ohada.org/attachments/article/473/AUPCAP-EN_Unofficial_Translation.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2015",
+        "priority": "high",
+        "notes": "Official OHADA-published English unofficial translation (~1804 kB) of the 2015 AUPC insolvency act. Direct PDF on ohada.org."
+      },
+      {
+        "title": "Acte uniforme relatif au droit de l'arbitrage (AUA, 2017)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (ohada.org)",
+        "url": "https://www.ohada.org/attachments/article/2290/Acte-Uniforme-relatif-au-droit-d-arbitrage-2017.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "high",
+        "notes": "Arbitration. Adopted 23 Nov 2017 (Conakry), in force 15 Mar 2018; revises 1999 text. Direct PDF on ohada.org. Digital-library alt: http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=480. Detail page: https://www.ohada.org/droit-de-larbitrage/."
+      },
+      {
+        "title": "Acte uniforme relatif au droit comptable et à l'information financière (AUDCIF / SYSCOHADA révisé, 2017)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "https://biblio.ohada.org/doc_num.php?explnum_id=2061",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "high",
+        "notes": "Accounting Law & Financial Reporting (SYSCOHADA révisé). Adopted 26 Jan 2017, in force 1 Jan 2018 (individual accounts). Standard AUDCIF PDF = explnum_id=2061; complete signed version = https://biblio.ohada.org/doc_num.php?explnum_id=2063. Notice page id=4847. EN version marked 'available soon' on ohada.org. Detail page: https://www.ohada.org/acte-uniforme-relatif-au-droit-comptable-et-a-linformation-financiere-audcif/."
+      },
+      {
+        "title": "Acte uniforme relatif au contrat de transport de marchandises par route (AUCTMR, 2003)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=479",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2003",
+        "priority": "high",
+        "notes": "Carriage of Goods by Road. Adopted 22 Mar 2003 (Yaoundé), in force 1 Jan 2004. Detail page: https://www.ohada.org/contrats-de-transport-de-marchandises-par-route/. EN page points to same explnum_id=479. FR authoritative version."
+      },
+      {
+        "title": "Acte uniforme relatif au droit des sociétés coopératives (AUSCOOP, 2010)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (biblio.ohada.org digital library via ohada.org)",
+        "url": "http://biblio.ohada.org/pmb/opac_css/doc_num.php?explnum_id=487",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "high",
+        "notes": "Cooperative Companies. Adopted 15 Dec 2010 (Lomé), in force 15 May 2011. Detail page: https://www.ohada.org/droit-des-societes-cooperatives/. FR authoritative version."
+      },
+      {
+        "title": "Acte uniforme relatif à la médiation (AUM, 2017)",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "regional-official",
+        "source_name": "OHADA (ohada.org)",
+        "url": "https://www.ohada.org/attachments/article/2292/Acte-Uniforme-sur-la-Mediation.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "high",
+        "notes": "Mediation. Adopted 23 Nov 2017 (Conakry), in force 15 Mar 2018 (~720 kB). Direct PDF on ohada.org. Detail page: https://www.ohada.org/acte-uniforme-relatif-a-la-mediation/. EN PDF not separately exposed (EN page links to download banner only)."
+      }
+    ]
+  },
+  {
+    "source_explored": "GlobaLex (NYU) Cameroon research guide — https://www.nyulawglobal.org/globalex/cameroon1.html (\"Researching Cameroonian Law\" by Charles Manga Fombad, updated Jan/Feb 2023). Fetched robots.txt, the guide page (extracted all outbound links), and verified key primary sources (OHADA Uniform Acts page, PRC constitution deep-link, OHADA portal).",
+    "robots_summary": "robots.txt at nyulawglobal.org only Disallows /wp-admin/ (with an Allow exception for /wp-admin/admin-ajax.php) and lists a sitemap. No rules cover /globalex/, so the guide path is Allowed/crawlable by default.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Researching Cameroonian Law (GlobaLex guide, by Charles Manga Fombad, Jan/Feb 2023)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "secondary",
+        "source_name": "GlobaLex (NYU Hauser Global Law School Program)",
+        "url": "https://www.nyulawglobal.org/globalex/cameroon1.html",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": true,
+        "year": "2023",
+        "priority": "low",
+        "notes": "The assigned guide itself. Copyrighted by the author — record as a reference link only; do NOT download the body. Useful as a map of primary sources. robots.txt permits /globalex/ paths."
+      },
+      {
+        "title": "OHADA Uniform Acts (Actes uniformes) — full set of 17 acts as PDFs",
+        "doc_type": "uniform-act",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "OHADA / UNIDA official portal (ohada.com)",
+        "url": "https://www.ohada.com/textes-ohada/actes-uniformes.html",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2023",
+        "notes": "Linked from the guide via http://www.ohada.com/. Verified: openly accessible listing page with per-act PDF download links (AUPSRVE-2023, SYCEBNL-2022, AUA-2017, AUM-2017, AUDCIF-2017, AUPCAP-2015, AUSCGIE-2014, AUS-2010, AUSCOOP-2010, AUDCG-2010, AUCTMR-2003, plus superseded acts). Core scope for Cameroon (OHADA member). Follow each PDF link to capture direct files.",
+        "priority": "high"
+      },
+      {
+        "title": "Constitution of the Republic of Cameroon (Constitution du Cameroun, French) — PRC deep-link",
+        "doc_type": "constitution",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "http://www.prc.cm/instit/consti.htm",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "year": "",
+        "notes": "Linked from the guide as 'La Constitution de Cameroun'. Verified DEAD: 302-redirects to prc.cm homepage — original deep page no longer serves the constitution text. Constitution should be sourced from an alternative (e.g. official gazette, assnat.cm, or droit-afrique) elsewhere in the corpus.",
+        "priority": "high"
+      },
+      {
+        "title": "Présidence de la République du Cameroun — official site (laws/institutions portal)",
+        "doc_type": "secondary",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Présidence de la République du Cameroun (prc.cm)",
+        "url": "http://www.prc.cm/indexen.php",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide as 'President of the Republic of Cameroon'. Landing/portal page, not a direct document. Constitution deep-link off this domain currently redirects to homepage. Treat as an official gateway to explore for primary texts.",
+        "priority": "medium"
+      },
+      {
+        "title": "Services du Premier Ministre — 'Laws of the Republic of Cameroon' / Prime Minister's Office portal",
+        "doc_type": "secondary",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Services du Premier Ministre du Cameroun (spm.gov.cm)",
+        "url": "http://www.spm.gov.cm/",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide both as 'Laws of the Republic of Cameroon' and 'Prime Minister'. Official government gateway that may host laws/decrees and the official gazette; landing page only — explore for direct files.",
+        "priority": "medium"
+      },
+      {
+        "title": "NATLEX — Cameroon (ILO national labour, social security and human rights legislation database)",
+        "doc_type": "secondary",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX",
+        "url": "https://www.ilo.org/dyn/natlex/natlex_browse.country?p_lang=en&p_country=CMR",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. ILO-official index of Cameroon legislation (Labour Code, social security, etc.) with records pointing to source texts. Useful primary-law finding aid for Labour Code and related statutes; browse interface, individual records lead to texts.",
+        "priority": "medium"
+      },
+      {
+        "title": "WorldLII — Cameroon legal materials catalog",
+        "doc_type": "secondary",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "World Legal Information Institute (WorldLII)",
+        "url": "http://www.worldlii.org/catalog/2685.html",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. Aggregator catalog of links to Cameroon legal resources; not a direct document. Lower priority than official/IGO sources.",
+        "priority": "low"
+      },
+      {
+        "title": "Afrikadu — Constitution of Cameroon (English)",
+        "doc_type": "constitution",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Afrikadu (afrikadu.cois.it)",
+        "url": "http://afrikadu.cois.it/?p=1369&lang=en",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide as 'Afrikadu: Constitution of Cameroon'. Aggregator-hosted English constitution text; unverified availability. Prefer an official-source constitution; keep as backup English version.",
+        "priority": "medium"
+      },
+      {
+        "title": "Law Library of Congress — Cameroon legal research guide",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "U.S. Law Library of Congress (loc.gov)",
+        "url": "http://www.loc.gov/law/help/guide/nations/cameroon.php",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. U.S. government legal research guide to Cameroon (secondary/finding aid), not Cameroon primary law. Legacy loc.gov path may have moved.",
+        "priority": "low"
+      },
+      {
+        "title": "Cornell LII — World Legal Materials from Africa (Cameroon anchor)",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Cornell Legal Information Institute (law.cornell.edu)",
+        "url": "http://www.law.cornell.edu/world/africa.html#cameroon",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. Aggregator page of African legal materials with a Cameroon section; link directory, not primary documents.",
+        "priority": "low"
+      },
+      {
+        "title": "Library of Congress — Portals to the World: Cameroon",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "U.S. Library of Congress (loc.gov)",
+        "url": "http://www.loc.gov/rr/international/amed/cameroon/cameroon.html",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. LoC portal of curated links about Cameroon (secondary directory). Legacy path; may be archived.",
+        "priority": "low"
+      },
+      {
+        "title": "UNPAN — UN Public Administration resources for Africa",
+        "doc_type": "secondary",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "UNPAN (United Nations / DESA)",
+        "url": "https://unpan.un.org/resources-by-region/unpan-africa",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "year": "",
+        "notes": "Linked from the guide. UN regional resource hub; not Cameroon-specific primary law. Peripheral.",
+        "priority": "low"
+      }
+    ]
+  },
+  {
+    "source_explored": "Targeted web search for official/clean full-text versions of Cameroon's major national codes (Penal Code, Criminal Procedure Code, Labour Code, Civil Status Ordinance, Land Tenure Ordinances, General Tax Code, Judicial Organization). Sources explored: WIPO Lex (wipolex.wipo.int / edocs), ILO NATLEX (natlex.ilo.org), DGI Cameroon (impots.cm), droitcamerounais.info, policinglaw.info, UNODC SHERLOC, ICRC IHL database, minjustice.gov.cm, limko.cm, dignitylawchambers.com, equalitynow.org.",
+    "robots_summary": "WIPO robots.txt (User-agent: *): /wipolex/ is NOT disallowed; /edocs/lexdocs/ IS disallowed for crawlers (note: actual PDF files served via signed wipolex-res.wipo.int CloudFront URLs remain openly downloadable, only crawling of the lexdocs path is restricted). ILO robots.txt (User-agent: *): /dyn/natlex/ and natlex2 document/download paths are NOT disallowed (only admin/user/search paths blocked) — Allowed. impots.cm, droitcamerounais.info, policinglaw.info, UNODC SHERLOC, ICRC: document paths not restricted / standard. minjustice.gov.cm was unreachable (ECONNREFUSED) during this session.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Law No. 2016/007 of July 12, 2016, relating to the Penal Code (Cameroon) — full Penal Code, English version",
+        "doc_type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/en/legislation/details/16366",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2016",
+        "priority": "high",
+        "notes": "Official WIPO Lex record of the current Cameroon Penal Code (Law No. 2016/007 of 12 July 2016). Confirmed to be the FULL Penal Code, not just IP provisions. The details page links to the English main-text PDF (path /edocs/lexdocs/laws/en/cm/cm014en.pdf). Actual file is served from a time-signed CloudFront URL (wipolex-res.wipo.int/.../cm014en.pdf?Expires=...&Signature=...), so the stable, citable entry point is this details page. is_direct_file=false because the durable link is the landing page; the cm014en.pdf path itself is reachable but signed. Cameroon Penal Code is officially bilingual EN/FR."
+      },
+      {
+        "title": "Loi n° 2016/007 du 12 juillet 2016 portant Code pénal (Cameroun) — full Penal Code, French version",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "WIPO Lex",
+        "url": "https://www.wipo.int/wipolex/fr/legislation/details/16366",
+        "is_direct_file": false,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2016",
+        "priority": "high",
+        "notes": "French-language version of the same WIPO Lex record (details/16366, fr locale). French main-text PDF path follows pattern /edocs/lexdocs/laws/fr/cm/cm014fr.pdf, served via signed CloudFront URL. Stable entry point is this details page. Pairs with the English version to provide the officially bilingual Penal Code."
+      },
+      {
+        "title": "Law No. 2005/007 of 27 July 2005 on the Criminal Procedure Code (Cameroon), English",
+        "doc_type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "Geneva Academy / DCAF Policing Law database",
+        "url": "https://www.policinglaw.info/assets/downloads/2005_Criminal_Procedure_Code.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2005",
+        "priority": "high",
+        "notes": "Direct PDF (459.5KB) of the full English Criminal Procedure Code, Law No. 2005/007 of 27 July 2005 (in force 1 Jan 2007). Downloaded successfully and confirmed reachable. Alternative authoritative mirror: UNODC SHERLOC (https://sherloc.unodc.org/cld/uploads/res/document/criminal-procedre-code_html/Cameroon_Criminal_Procedure_Code_2005.pdf) and ICRC IHL national-practice page. French Journal Officiel version available via VERTIC (https://www.vertic.org/media/National%20Legislation/Cameroon/CM_Code_Procedure_Penale_Cameroun.pdf)."
+      },
+      {
+        "title": "Loi n° 2005/007 du 27 juillet 2005 portant Code de procédure pénale (Cameroun), French (Journal Officiel)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "VERTIC National Legislation Database",
+        "url": "https://www.vertic.org/media/National%20Legislation/Cameroon/CM_Code_Procedure_Penale_Cameroun.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2005",
+        "priority": "high",
+        "notes": "Direct PDF of the French version (Journal Officiel) of the Criminal Procedure Code, Loi n° 2005/007. Hosted by VERTIC (IGO-affiliated NGO national legislation collection). Pairs with the English policinglaw.info / SHERLOC versions for the officially bilingual code."
+      },
+      {
+        "title": "Labour Code, Law No. 92/007 of 14 August 1992 (Cameroon), English",
+        "doc_type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX",
+        "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/31629/CMR-31629%20(EN).pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1992",
+        "priority": "high",
+        "notes": "Official ILO NATLEX direct PDF (ISN 31629) of the full English Labour Code, Law No. 92/007 of 14 August 1992. robots.txt allows the natlex2 download path. NATLEX record page: https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=31629 . HTML English version also at https://www.ilo.org/dyn/natlex/docs/WEBTEXT/31629/64867/E92CMR01.htm"
+      },
+      {
+        "title": "Loi n° 92/007 du 14 août 1992 portant Code du Travail (Cameroun), French",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=31629",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1992",
+        "priority": "high",
+        "notes": "ILO NATLEX record (ISN 31629) for the French Code du Travail. The same NATLEX record hosts the French-language file; details page is the stable entry point and links to the FR download. Provides the French counterpart to the English Labour Code PDF."
+      },
+      {
+        "title": "Civil Status Registration — Ordinance No. 81-02 of 29 June 1981 (Cameroon), English",
+        "doc_type": "ordinance",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "Dignity Law Chambers (reproduction of Official Gazette extract)",
+        "url": "https://dignitylawchambers.com/wp-content/uploads/2021/04/Republic-of-Cameroon-Civil-Status-Registration.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1981",
+        "priority": "high",
+        "notes": "Direct PDF reproduction of the English text of Ordinance No. 81-02 of 29 June 1981 organizing civil status and provisions on the status of natural persons (extract of O.G. of the U.R.C. No. 14 of 1 Aug 1981). Hosted by a law firm but is the verbatim primary ordinance text (not commentary), so treated as fetchable primary, copyrighted=false. Cross-reference / alternative record: Equality Now (https://equalitynow.org/resource/uncategorised/cameroon_the_civil_status_registration_ordinance_no_81_02_of_29_june_1981/). French original (Ordonnance n° 81/002): citizenshiprightsafrica.org record."
+      },
+      {
+        "title": "Land Tenure and State Lands — Ordinances No. 74-1, 74-2 (and 74-3) of 6 July 1974 (Cameroon), bilingual EN/FR",
+        "doc_type": "ordinance",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "authority_level": "aggregator",
+        "source_name": "droitcamerounais.info",
+        "url": "https://droitcamerounais.info/en/files/215.07.74-Ordonnance-du-16-juillet-1974_Regime-foncier.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "1974",
+        "priority": "high",
+        "notes": "Direct PDF (190.8KB) of the official Imprimerie Nationale Yaounde bilingual compilation 'REGIME FONCIER ET DOMANIAL / LAND TENURE AND STATE LANDS', Republic of Cameroon. Cover page and Article 1 verified: contains Ordonnance n° 74-1 du 6 juillet 1974 (régime foncier / land tenure) and continues with 74-2 (régime domanial / state lands) and 74-3, extract of J.O.R.U.C. No. 1 supplementary of 5 Aug 1974. Genuine bilingual primary text — highest-value single source for the land ordinances. A standalone 74-2 PDF (FR/EN) also exists at https://www.limko.cm/wp-content/uploads/2025/05/Ordonnance-Ordinance-74-2-du-of-6-Juillet-July-1974-regime-domanial-rules-State-Lands.pdf"
+      },
+      {
+        "title": "Code Général des Impôts du Cameroun — édition 2024 (consolidated General Tax Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Direction Générale des Impôts (DGI), impots.cm",
+        "url": "https://www.impots.cm/sites/default/files/documents/CGI%202024%20version%20francaise.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2024",
+        "priority": "high",
+        "notes": "Official DGI direct PDF (8.7MB) of the consolidated General Tax Code, 2024 French edition, on the government tax authority site impots.cm. Loaded successfully (valid PDF binary). This is the authoritative current consolidated edition. The CGI is published in French; the DGI also issues the annual Finance Law circular at https://www.impots.cm/sites/default/files/documents/Circulaire%20LF%202024.pdf"
+      },
+      {
+        "title": "Law No. 2006/015 of 29 December 2006 on Judicial Organization (Cameroon), as amended by Law No. 2011/027 of 14 Dec 2011 — English",
+        "doc_type": "statute",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Ministry of Justice of Cameroon (minjustice.gov.cm)",
+        "url": "http://minjustice.gov.cm/index.php/en/instruments-and-laws/laws/239-law-n-2006-015-of-29-december-2006-on-judicial-organization-amended-and-supplemented-by-the-law-n-2011-027-of-14-december-2011",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2006",
+        "priority": "high",
+        "notes": "Official Cameroon Ministry of Justice page for Law No. 2006/015 on Judicial Organization (English), amended by Law 2011/027. minjustice.gov.cm returned ECONNREFUSED during this session (site is HTTP-only and frequently down), so fetchability=unknown. An unamended-version page also exists (.../237-law-n-2006-015...). This is the most authoritative source; recommend retry / archived copy. No openly-hosted clean PDF located in this session."
+      }
+    ]
+  },
+  {
+    "source_explored": "ILO NATLEX (IGO) — https://natlex.ilo.org and legacy https://www.ilo.org/dyn/natlex . Focus: Cameroon (Cameroun) Labour Code (Loi n° 92/007 du 14 août 1992), plus social security / employment instruments. The primary NATLEX record is ISN 31629; it has two attached openly-downloadable full-text PDFs (English NATLEX translation + French original text). Detail/landing pages (both legacy natlex4.detail and new natlex2 .../fe/details) are JS-rendered and return HTTP 403 to non-browser clients, but the file-download endpoints return 200 application/pdf and are openly fetchable. Verified PDF validity and language via curl + pdftotext: EN PDF = 68pp 'CAMEROUN Labour Code Law No. 92/007 of 14 August 1992'; FR PDF = 31pp 'Cameroun Code du Travail Loi n°92-007 du 14 août 1992'. Social-security/employment NATLEX records (ISN 40886 ordonnance 73-17; ISN 50681 CNPS deliberation) are bibliographic only — no attached full-text PDF found.",
+    "robots_summary": "robots.txt present on ilo.org. User-agent: * disallows many internal/dynamic paths (e.g. /dyn/apex/, /dyn/hrd/, /intranet/, /private/, /search/, embargo.ilo.org/*) and bans a few named bots (BUbiNG, Qwantbot, barkrowler). It does NOT disallow the NATLEX file-download paths used here (natlex.ilo.org/dyn/natlex2/natlex2/files/download/...). The full-text PDFs are therefore allowed; the interactive HTML detail pages are not robots-blocked but are 403 to bots due to JS/bot protection (not robots.txt).",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Cameroun — Loi n° 92/007 du 14 août 1992 portant Code du Travail (Labour Code) — English translation (NATLEX full text)",
+        "doc_type": "code",
+        "languages": [
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (ISN 31629)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/31629/CMR-31629%20(EN).pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "year": "1992",
+        "copyrighted": false,
+        "priority": "high",
+        "notes": "Verified: HTTP 200, content-type application/pdf, content-disposition filename 'CMR-31629 (EN).pdf'. 68 pages. pdftotext page 1: 'CAMEROUN Labour Code Law No. 92/007 of 14 August 1992 PART I GENERAL PROVISIONS Section 1...'. Official ILO NATLEX English translation of the Labour Code. Openly accessible, no login. Core scope (labour code)."
+      },
+      {
+        "title": "Cameroun — Loi n° 92/007 du 14 août 1992 portant Code du Travail (Code du travail) — French full text (NATLEX attachment)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (ISN 31629)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/31629/CMR-31629.pdf",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "year": "1992",
+        "copyrighted": false,
+        "notes": "Verified: HTTP 200, content-type application/pdf, content-disposition filename 'CMR-31629.pdf'. 31 pages. pdftotext page 1: 'Cameroun Code du Travail Loi n°92-007 du 14 août 1992 Sommaire Titre 1 - Dispositions générales...'. This is the French-language full text attached to NATLEX record 31629 (note: text body is sourced from Droit-Afrique but served as the official NATLEX attachment). NOTE: the '(FR).pdf'-suffixed URL variant does NOT exist — use this unsuffixed CMR-31629.pdf. Openly accessible. Core scope.",
+        "priority": "high"
+      },
+      {
+        "title": "NATLEX record — Cameroon: Loi n° 92/007 du 14 août 1992 portant Code du Travail (bibliographic detail / landing page)",
+        "doc_type": "code",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (ISN 31629)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=31629",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "year": "1992",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Official NATLEX bibliographic record (metadata, abstract, classification, amendment chain) for the Labour Code. JS-rendered SPA: returns HTTP 403 to WebFetch/curl. Legacy URLs (https://www.ilo.org/dyn/natlex/natlex4.detail?p_isn=31629 and oit.org equivalent) 301-redirect into this same 403 page. Use as a reference/landing page; the actual full texts are the two PDFs above."
+      },
+      {
+        "title": "Cameroon — Ordonnance n° 73-17 du 22 mai 1973 portant organisation de la prévoyance sociale (social security organization)",
+        "doc_type": "ordinance",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (ISN 40886)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=40886",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "year": "1973",
+        "copyrighted": false,
+        "priority": "medium",
+        "notes": "Foundational Cameroon social security ordinance (organizes prévoyance sociale / CNPS; later modified by Loi n° 84-006 of 4 July 1984). NATLEX record is bibliographic only — no attached full-text PDF found (download URL variants returned text/html, not application/pdf). Detail page is JS-only and 403s to bots. Legacy URL https://www.ilo.org/dyn/natlex/natlex4.detail?p_isn=40886 redirects here. Full text would need to be sourced elsewhere (e.g. droitcamerounais.info Recueil)."
+      },
+      {
+        "title": "Cameroon — Délibération n° 12-79-CNPS-PCA du 15 septembre 1979 fixant l'organisation des services de la Caisse Nationale de Prévoyance Sociale (CNPS)",
+        "doc_type": "decree",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "igo-official",
+        "source_name": "ILO NATLEX (ISN 50681)",
+        "url": "https://natlex.ilo.org/dyn/natlex2/r/natlex/fe/details?p3_isn=50681",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "blocked",
+        "year": "1979",
+        "copyrighted": false,
+        "priority": "low",
+        "notes": "CNPS internal-organization instrument. NATLEX bibliographic record only — no attached full-text PDF (download endpoint returns text/html, not a file). Detail page JS-only, 403 to bots. Peripheral; included per assignment note to flag social-security items."
+      }
+    ]
+  },
+  {
+    "source_explored": "Cameroon Ministry of Justice — LEGALIS Cameroon portal (minjustice.gov.cm). HTTPS refuses connections and the legalis.minjustice.gov.cm subdomain does not resolve; the live site is served over plain HTTP at http://www.minjustice.gov.cm and redirects to /index.php/fr/ (Joomla + FLEXIcontent CMS). LEGALIS lives under /index.php/fr/legalis/accueil-legalis with texts organized by type under /index.php/fr/textes-lois/{lois,ordonnances,decrets-pr,decrets-pm,arretes,conventions,amendements,circulaires,decisions,...}. Each document page exposes a direct PDF via a FLEXIcontent download URL of form /index.php/fr/textes-lois/lois/download/{fileId}/{itemId}/18?method=view, which returns Content-Type: application/pdf with bilingual filenames (e.g. PPL00727072005FREN.pdf = FR+EN). The collection actually hosted is small (~30 Lois plus assorted decrees/conventions); no Constitution, General Tax Code, Penal Code base law 2016/007, or Civil Status ordinance was found hosted here. Ordonnances category appears empty.",
+    "robots_summary": "robots.txt present at http://www.minjustice.gov.cm/robots.txt (standard Joomla default). User-agent: * disallows only CMS system folders: /administrator/, /bin/, /cache/, /cli/, /components/, /includes/, /installation/, /language/, /layouts/, /libraries/, /logs/, /modules/, /plugins/, /tmp/. No Sitemap entry. The legal-document paths (/index.php/fr/textes-lois/... and the /download/... PDF endpoints) are NOT disallowed — Allowed for crawling.",
+    "site_reachable": true,
+    "candidates": [
+      {
+        "title": "Loi n°2005/007 du 27 juillet 2005 portant Code de Procédure Pénale (Criminal Procedure Code)",
+        "doc_type": "code",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/90/289/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2005",
+        "priority": "high",
+        "notes": "Direct PDF verified: HTTP 200, Content-Type application/pdf, filename PPL00727072005FREN.pdf (FREN suffix = bilingual FR/EN). HTTP-only host (HTTPS refused). Landing page: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/289-loi-n-2005-007-du-27-juillet-2005-portant-code-de-procedure-penale . Reported Content-Length was implausibly large (~386MB header) so actual size may differ; download via plain HTTP, do not upgrade to HTTPS."
+      },
+      {
+        "title": "Loi n°2019/020 du 24 décembre 2019 modifiant et complétant certaines dispositions de la loi n°2016/007 du 12 juillet 2016 portant Code Pénal (Penal Code amendment)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/95/292/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2019",
+        "priority": "high",
+        "notes": "Direct PDF verified: HTTP 200, application/pdf, filename CPL02024122019FR.pdf (FR only). This is the 2019 AMENDMENT to the Penal Code, not the consolidated 2016/007 base Penal Code — the base Law 2016/007 was NOT found hosted on LEGALIS (it is on WIPO Lex and droit-afrique). Landing page: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/292-... . HTTP-only."
+      },
+      {
+        "title": "Loi n°2006/015 du 29 décembre 2006 portant Organisation Judiciaire, modifiée et complétée par la loi n°2011/027 du 14 décembre 2011 (Judicial Organization)",
+        "doc_type": "statute",
+        "languages": [
+          "fr",
+          "en"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/57/238/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2006",
+        "priority": "high",
+        "notes": "Core judicial-organization law. Direct FLEXIcontent download (file 57/item 238). Landing: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/238-loi-n-2006-015-du-29-decembre-2006-portant-organisation-judiciaire-modifiee-et-completee-par-la-loi-n-2011-027-du-14-decembre-2011 . HTTP-only. Bilingual availability likely (LEGALIS publishes in both official languages) but not header-confirmed."
+      },
+      {
+        "title": "Loi n°2011/027 du 14 décembre 2011 modifiant et complétant certaines dispositions de la loi n°2006/015 du 29 décembre 2006 portant Organisation Judiciaire",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/240-loi-n-2011-027-14-decembre-2011-modifiant-et-completant-certaines-dispositions-de-la-loi-n-2006-015-du-29-decembre-2006-portant-organisation-judiciaire",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2011",
+        "priority": "medium",
+        "notes": "Landing page only captured; direct download (download/{file}/240/18) not extracted in this pass but follows the same FLEXIcontent pattern as siblings. Amendment to the 2006 Organisation Judiciaire law. HTTP-only."
+      },
+      {
+        "title": "Loi n°2017/012 du 12 juillet 2017 portant Code de Justice Militaire (Code of Military Justice)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/168/398/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "medium",
+        "notes": "Direct FLEXIcontent download (file 168/item 398). Landing: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/398-loi-n-2017-12-du-12-juillet-2017-portant-code-de-justice-militaire . HTTP-only."
+      },
+      {
+        "title": "Loi n°2019/024 du 24 décembre 2019 portant Code Général des Collectivités Territoriales Décentralisées (General Code of Decentralized Local Authorities)",
+        "doc_type": "code",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/94/291/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2019",
+        "priority": "medium",
+        "notes": "Direct FLEXIcontent download (file 94/item 291). Major decentralization code. Landing: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/291-... . HTTP-only."
+      },
+      {
+        "title": "Loi n°2014/028 du 23 décembre 2014 portant répression des actes de terrorisme (Anti-Terrorism Law)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/download/169/382/18?method=view",
+        "is_direct_file": true,
+        "file_type": "pdf",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "2014",
+        "priority": "medium",
+        "notes": "Direct FLEXIcontent download (file 169/item 382). Landing: http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/382-loi-n-2014-28-du-23-decembre-2014-portant-repression-des-actes-de-terrorisme . HTTP-only."
+      },
+      {
+        "title": "Loi n°2010/012 du 21 décembre 2010 relative à la cybersécurité et à la cybercriminalité au Cameroun (Cybersecurity & Cybercrime Law)",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/295-loi-n-2010-12-du-12-decembre-2010-relative-a-la-cybersecurite-et-a-la-cybercriminalite-au-cameroun",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2010",
+        "priority": "low",
+        "notes": "Landing page captured; direct download link (download/{file}/295/18) not extracted this pass but follows the standard FLEXIcontent pattern. HTTP-only."
+      },
+      {
+        "title": "Loi n°2017/010 du 12 juillet 2017 portant Statut Général des Établissements Publics",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/394-loi-n-17-10-du-12-juillet-2017-portant-statut-general-des-etablissements-publics",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "low",
+        "notes": "Landing page only; direct PDF follows FLEXIcontent download pattern. HTTP-only."
+      },
+      {
+        "title": "Loi n°2017/011 du 12 juillet 2017 portant Statut Général des Entreprises Publiques",
+        "doc_type": "statute",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois/396-loi-n-17-11-du-12-juillet-2017-portant-statut-general-des-entreprises-publiques",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "unknown",
+        "copyrighted": false,
+        "year": "2017",
+        "priority": "low",
+        "notes": "Landing page only; direct PDF follows FLEXIcontent download pattern. HTTP-only."
+      },
+      {
+        "title": "LEGALIS — Lois category index (all Lois hosted on the portal)",
+        "doc_type": "secondary",
+        "languages": [
+          "fr"
+        ],
+        "authority_level": "official",
+        "source_name": "Cameroon Ministry of Justice — LEGALIS portal",
+        "url": "http://www.minjustice.gov.cm/index.php/fr/textes-lois/lois",
+        "is_direct_file": false,
+        "file_type": "html",
+        "fetchability": "fetchable",
+        "copyrighted": false,
+        "year": "",
+        "priority": "medium",
+        "notes": "Navigation/index page listing all Lois (~30 items, including those above plus laws on factoring, economic zones, parliamentary procedure, private security). Use as crawl seed. Other useful category indexes under /index.php/fr/textes-lois/: ordonnances (empty in this pass), decrets-pr, decrets-pm, arretes, convention, amendements, circulaires, decisions, instructions-pr, notes-de-service, textes-internationaux. HTTP-only; robots allows these paths."
+      }
+    ]
+  }
+]
