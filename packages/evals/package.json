@@ -1,0 +1,20 @@
+{
+  "name": "@legalis/evals",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run",
+    "eval": "node --experimental-strip-types src/run.ts"
+  },
+  "dependencies": {
+    "@legalis/contracts": "workspace:*",
+    "@legalis/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  }
+}
