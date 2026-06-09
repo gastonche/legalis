@@ -1,0 +1,12 @@
+# Copy to apps/agent/.dev.vars for local `wrangler dev`. NEVER commit real keys.
+# These are Worker secrets — injected server-side only, never exposed to the client.
+
+# Frontier LLM (default provider = OpenAI; behind the swappable LLMProvider interface)
+OPENAI_API_KEY="sk-..."
+
+# Optional: swap synthesis/judge to Anthropic by setting LLM_PROVIDER=anthropic
+# LLM_PROVIDER="openai"
+# ANTHROPIC_API_KEY="sk-ant-..."
+
+# Web retrieval (milestone 6)
+# TAVILY_API_KEY="tvly-..."

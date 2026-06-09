@@ -1,0 +1,27 @@
+# deps & build
+node_modules/
+dist/
+.turbo/
+.wrangler/
+*.tsbuildinfo
+
+# secrets — never commit
+.dev.vars
+apps/*/.dev.vars
+.env
+.env.*
+!.env.example
+
+# eval / coverage outputs
+coverage/
+packages/evals/reports/*.local.json
+
+# large corpus binaries — keep manifest/docs/sample, ignore the full PDF set
+corpus/primary/**
+corpus/_quarantine/**
+!corpus/primary/sample/**
+
+# misc
+.DS_Store
+*.log
+.vite/
