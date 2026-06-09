@@ -1,5 +1,5 @@
 import { Agent } from "agents";
-import { OpenAIProvider, demoStream, groundedAnswer, type GroundedResult } from "@legalis/core";
+import { OpenAIProvider, answerWithSelfEval, demoStream, type GatedResult } from "@legalis/core";
 import type { StreamEvent } from "@legalis/contracts";
 import { VectorizeStore, WorkersAiEmbedding } from "./adapters";
 import type { Env } from "./env";
@@ -51,13 +51,14 @@ export class LegalisAgent extends Agent<Env, AgentState> {
     return this.streamDemo(current?.question ?? "");
   }
 
-  /** Grounded slice using the shared core pipeline with Cloudflare adapters. */
-  private answer(question: string): Promise<GroundedResult> {
-    return groundedAnswer(question, {
+  /** Grounded slice + self-eval gate using the shared core pipeline with CF adapters. */
+  private answer(question: string): Promise<GatedResult> {
+    return answerWithSelfEval(question, {
       embedder: new WorkersAiEmbedding(this.env.AI),
       store: new VectorizeStore(this.env.VECTORIZE),
       llm: new OpenAIProvider(this.env.OPENAI_API_KEY, this.env.OPENAI_MODEL),
       topK: 8,
+      maxIterations: 2,
     });
   }
 
