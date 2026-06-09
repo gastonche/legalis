@@ -105,3 +105,17 @@ export const SparkIcon = (p: IconProps) => (
     <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18" />
   </Svg>
 );
+
+export const ArrowUpIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M12 19V5" />
+    <path d="M6 11l6-6 6 6" />
+  </Svg>
+);
+
+export const PlusIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M12 5v14M5 12h14" />
+  </Svg>
+);
+
