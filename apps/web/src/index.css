@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/*
+ * Legalis design system — editorial / civic.
+ * Warm "paper" canvas + deep "ink" text + a calm petrol-teal primary
+ * (deliberately not AI-purple). Regime hues are reinforced with text + icons,
+ * never colour alone. Semantic tokens only — no raw hex in components.
+ */
+@theme {
+  /* neutrals */
+  --color-paper: #f6f4ee;
+  --color-surface: #ffffff;
+  --color-ink: #1b1f2a;
+  --color-ink-soft: #474d5c;
+  --color-ink-faint: #6c7280;
+  --color-line: #e4e0d5;
+  --color-line-strong: #d3cec0;
+
+  /* brand / action — deep petrol teal */
+  --color-primary: #1d5b6e;
+  --color-primary-hover: #174b5b;
+  --color-primary-soft: #e2edf0;
+  --color-primary-ink: #0f3a47;
+
+  /* primary-authority accent (brass) */
+  --color-brass: #8a6a1d;
+  --color-brass-soft: #f3ecd8;
+
+  /* regime hues */
+  --color-common: #2b5fa6; /* common law (Anglophone) */
+  --color-civil: #a85d12; /* civil law (Francophone) */
+  --color-ohada: #197a56; /* OHADA business law */
+  --color-mixed: #545c6b;
+
+  /* status */
+  --color-success: #197a56;
+  --color-success-soft: #e2f0ea;
+  --color-warning: #a85d12;
+  --color-warning-soft: #f6ebdc;
+  --color-danger: #b3261e;
+  --color-danger-soft: #f7e3e1;
+
+  /* typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* radii */
+  --radius-card: 0.875rem;
+  --radius-chip: 0.625rem;
+
+  /* elevation */
+  --shadow-card: 0 1px 2px rgba(27, 31, 42, 0.04), 0 8px 24px -14px rgba(27, 31, 42, 0.18);
+  --shadow-pop: 0 12px 32px -12px rgba(27, 31, 42, 0.28);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv05", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* subtle paper grain via layered radial gradients, very low contrast */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 60rem at 110% -10%, rgba(29, 91, 110, 0.05), transparent 60%),
+    radial-gradient(50rem 50rem at -10% 0%, rgba(138, 106, 29, 0.04), transparent 55%);
+  z-index: 0;
+}
+
+/* visible, on-brand focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* entrance motion — transform/opacity only */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.caret-pulse::after {
+  content: "▍";
+  margin-left: 1px;
+  color: var(--color-primary);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .caret-pulse::after {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
