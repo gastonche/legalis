@@ -2,17 +2,16 @@ import type { AgentNamespace } from "agents";
 import type { LegalisAgent } from "./agent";
 
 /**
- * Worker bindings. Secrets (OPENAI_API_KEY, etc.) are injected server-side only.
- * Milestone-2+ bindings (AI, VECTORIZE, DB, KV) are added as the resources land.
+ * Worker bindings. Secrets (OPENAI_API_KEY) are server-side only. Retrieval uses
+ * the local dev bridge (DEV_RETRIEVAL_URL) when set, otherwise the AI + VECTORIZE
+ * bindings (uncomment them in wrangler.jsonc and create the index for deploy).
  */
 export interface Env {
   AGENT: AgentNamespace<LegalisAgent>;
-  AI: Ai;
-  VECTORIZE: VectorizeIndex;
   OPENAI_API_KEY: string;
   OPENAI_MODEL?: string;
-  // milestone 6+:
-  // DB: D1Database;
-  // KV: KVNamespace;
-  // TAVILY_API_KEY?: string;
+  DEV_RETRIEVAL_URL?: string;
+  AI?: Ai;
+  VECTORIZE?: VectorizeIndex;
+  // milestone 6+: DB (D1), KV, TAVILY_API_KEY
 }

@@ -1,10 +1,20 @@
 import { Agent } from "agents";
-import { OpenAIProvider, answerWithSelfEval, demoStream, type GatedResult } from "@legalis/core";
+import {
+  OpenAIProvider,
+  answerWithSelfEval,
+  runAgent,
+  type AgentDeps,
+  type GatedResult,
+} from "@legalis/core";
 import type { StreamEvent } from "@legalis/contracts";
-import { VectorizeStore, WorkersAiEmbedding } from "./adapters";
+import {
+  HttpEmbedding,
+  HttpVectorStore,
+  VectorizeStore,
+  WorkersAiEmbedding,
+} from "./adapters";
 import type { Env } from "./env";
 
-/** Small state held on the Agent between the POST (store question) and GET (stream). */
 interface AgentState {
   question: string;
   createdAt: string;
@@ -13,7 +23,7 @@ interface AgentState {
 const SSE_HEADERS: Record<string, string> = {
   "content-type": "text/event-stream; charset=utf-8",
   "cache-control": "no-cache, no-transform",
-  "x-accel-buffering": "no", // disable proxy buffering so events flush immediately
+  "x-accel-buffering": "no",
 };
 
 function encodeEvent(event: StreamEvent): string {
@@ -21,22 +31,45 @@ function encodeEvent(event: StreamEvent): string {
 }
 
 /**
- * The agent runs inside a Durable Object (Cloudflare Agents SDK) so it can hold
- * multi-step state and stream over a long-running request. Milestone 1 replays a
- * scripted demo stream; the hand-rolled agent loop replaces `streamDemo` later.
+ * The agent runs inside a Durable Object (Cloudflare Agents SDK). It holds the
+ * question between the two-step SSE handshake and runs the hand-rolled agent loop
+ * (retrieve → synthesize → self-eval), streaming StreamEvents over SSE.
  */
 export class LegalisAgent extends Agent<Env, AgentState> {
+  /** Choose the retrieval backend: local dev bridge if configured, else CF bindings. */
+  private deps(): AgentDeps {
+    const env = this.env;
+    const llm = new OpenAIProvider(env.OPENAI_API_KEY, env.OPENAI_MODEL);
+    if (env.DEV_RETRIEVAL_URL) {
+      return {
+        embedder: new HttpEmbedding(env.DEV_RETRIEVAL_URL),
+        store: new HttpVectorStore(env.DEV_RETRIEVAL_URL),
+        llm,
+        topK: 8,
+      };
+    }
+    if (env.AI && env.VECTORIZE) {
+      return {
+        embedder: new WorkersAiEmbedding(env.AI),
+        store: new VectorizeStore(env.VECTORIZE),
+        llm,
+        topK: 8,
+      };
+    }
+    throw new Error("No retrieval backend: set DEV_RETRIEVAL_URL or the AI + VECTORIZE bindings.");
+  }
+
   override async onRequest(request: Request): Promise<Response> {
     const url = new URL(request.url);
 
-    // M3: non-streamed single-step grounded answer (retrieve → synthesize → cite).
+    // Non-streamed grounded + self-eval answer (M3/M4).
     if (request.method === "POST" && url.pathname.endsWith("/answer")) {
       const body = (await request.json().catch(() => ({}))) as { question?: string };
       const result = await this.answer((body.question ?? "").toString());
       return Response.json(result);
     }
 
-    // Step 1 of the streaming handshake: store the user's question on this instance.
+    // Handshake step 1: store the question for the streaming GET.
     if (request.method === "POST") {
       const body = (await request.json().catch(() => ({}))) as { question?: string };
       this.setState({
@@ -46,35 +79,41 @@ export class LegalisAgent extends Agent<Env, AgentState> {
       return Response.json({ ok: true });
     }
 
-    // Step 2: EventSource GET opens the SSE stream for the stored question.
+    // Handshake step 2: EventSource GET → stream the live agent run.
     const current = this.state as AgentState | undefined;
-    return this.streamDemo(current?.question ?? "");
+    return this.streamAnswer(current?.question ?? "");
   }
 
-  /** Grounded slice + self-eval gate using the shared core pipeline with CF adapters. */
+  /** Non-streamed answer with the full gate (incl. bounded revise/re-retrieve). */
   private answer(question: string): Promise<GatedResult> {
-    return answerWithSelfEval(question, {
-      embedder: new WorkersAiEmbedding(this.env.AI),
-      store: new VectorizeStore(this.env.VECTORIZE),
-      llm: new OpenAIProvider(this.env.OPENAI_API_KEY, this.env.OPENAI_MODEL),
-      topK: 8,
-      maxIterations: 2,
-    });
+    return answerWithSelfEval(question, { ...this.deps(), maxIterations: 2 });
   }
 
-  private streamDemo(question: string): Response {
-    const events = demoStream(question);
+  /** Stream the live agent run as SSE. */
+  private streamAnswer(question: string): Response {
+    const deps = this.deps();
     const encoder = new TextEncoder();
-    const body = new ReadableStream<Uint8Array>({
+    const stream = new ReadableStream<Uint8Array>({
       async start(controller) {
-        for (const event of events) {
-          controller.enqueue(encoder.encode(encodeEvent(event)));
-          // small delay so the stub visibly streams (removed once the real loop lands)
-          await new Promise((resolve) => setTimeout(resolve, 140));
+        try {
+          for await (const event of runAgent(question, deps)) {
+            controller.enqueue(encoder.encode(encodeEvent(event)));
+          }
+        } catch (e) {
+          controller.enqueue(
+            encoder.encode(
+              encodeEvent({
+                type: "control",
+                phase: "error",
+                error: e instanceof Error ? e.message : "stream error",
+              }),
+            ),
+          );
+        } finally {
+          controller.close();
         }
-        controller.close();
       },
     });
-    return new Response(body, { headers: SSE_HEADERS });
+    return new Response(stream, { headers: SSE_HEADERS });
   }
 }
