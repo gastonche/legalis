@@ -117,3 +117,62 @@ export async function synthesizeAnswer(
   const { valid, invalid } = validateCitations(parsed.data, chunks);
   return { answer: { ...parsed.data, citations: valid }, invalid };
 }
+
+// ---------------------------------------------------------------------------
+// Streaming synthesis (M5): stream the plain-language prose live, then a second
+// structured pass extracts citations/regime/confidence for the answer card.
+// ---------------------------------------------------------------------------
+
+export const SYNTH_PROSE_SYSTEM = `You are Legalis, a careful research assistant for CAMEROON law. You give legal INFORMATION, never advice.
+Write a concise, plain-language answer to the QUESTION, grounded ONLY in the numbered SOURCES. NEVER invent statutes, article numbers, cases, or quotes.
+- Cite inline with the source's bracketed number exactly as written — e.g. [1], [2], [3] — matching the SOURCE numbers. Every legal point needs at least one such marker. Do not write "[n]" or "[n:1]".
+- Prefer primary authority; note OHADA supersession and any Anglophone-vs-Francophone divergence when relevant.
+- If the sources don't support an answer, say so honestly.
+Write ONLY the answer prose (markdown, with [n] markers). Do NOT output JSON or headings like "Answer:". End with one sentence reminding the reader to consult a qualified Cameroonian lawyer.`;
+
+/** Stream the answer prose token-by-token. */
+export function streamProse(
+  question: string,
+  chunks: RetrievedChunk[],
+  llm: LLMProvider,
+): AsyncIterable<string> {
+  return llm.stream({
+    system: SYNTH_PROSE_SYSTEM,
+    prompt: buildSynthesisPrompt(question, chunks),
+    temperature: 0.2,
+    maxTokens: 1200,
+  });
+}
+
+export const STRUCTURE_SYSTEM = `You convert a DRAFT ANSWER (already written, with [n] citation markers) into structured metadata, using the SOURCES. Do not change the legal content. Extract ONLY citations that the draft actually relies on, using the EXACT sourceId of each source and a short VERBATIM quote copied from that source.
+
+Output a SINGLE JSON object matching EXACTLY:
+{
+  "citations": [ { "marker": string, "sourceId": string, "sourceTitle": string, "locator": string, "quote": string, "authority": "primary"|"secondary", "language": "en"|"fr" } ],
+  "regime": { "applies": "common-law"|"civil-law"|"ohada"|"mixed"|"unclear", "rationale": string, "ohadaSupersedes": boolean },
+  "confidence": "high"|"medium"|"low",
+  "scopeNote": string,
+  "language": "en"|"fr"
+}`;
+
+/** Structure a streamed prose answer into a validated AnswerPayload (keeps the prose as `answer`). */
+export async function structureAnswer(
+  question: string,
+  prose: string,
+  chunks: RetrievedChunk[],
+  llm: LLMProvider,
+): Promise<SynthesisResult> {
+  const raw = await llm.complete({
+    system: STRUCTURE_SYSTEM,
+    prompt: `QUESTION:\n${question}\n\nDRAFT ANSWER:\n${prose}\n\nSOURCES:\n\n${formatSources(chunks)}`,
+    json: true,
+    temperature: 0,
+    maxTokens: 900,
+  });
+  const meta = JSON.parse(stripFences(raw)) as Record<string, unknown>;
+  const candidate = { ...meta, answer: prose };
+  const parsed = AnswerPayload.safeParse(candidate);
+  if (!parsed.success) throw new Error(`structure step produced invalid AnswerPayload: ${parsed.error.message}`);
+  const { valid, invalid } = validateCitations(parsed.data, chunks);
+  return { answer: { ...parsed.data, citations: valid }, invalid };
+}

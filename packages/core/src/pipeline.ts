@@ -99,7 +99,7 @@ export interface GatedResult {
   iterations: number;
 }
 
-function downgradeVerdict(notes: string): SelfEvalVerdict {
+export function downgradeVerdict(notes: string): SelfEvalVerdict {
   return {
     groundedness: { score: 0, pass: false, notes },
     citationValidity: { pass: false, invalid: [] },
@@ -111,7 +111,7 @@ function downgradeVerdict(notes: string): SelfEvalVerdict {
   };
 }
 
-function buildBanner(verdict: SelfEvalVerdict, answer: AnswerPayload): VerificationBannerProps {
+export function buildBanner(verdict: SelfEvalVerdict, answer: AnswerPayload): VerificationBannerProps {
   const checks = [
     { name: "Grounded in sources", passed: verdict.groundedness.pass },
     { name: "Citations valid", passed: verdict.citationValidity.pass },
@@ -141,7 +141,7 @@ function buildBanner(verdict: SelfEvalVerdict, answer: AnswerPayload): Verificat
   };
 }
 
-function downgradeAnswer(answer: AnswerPayload): AnswerPayload {
+export function downgradeAnswer(answer: AnswerPayload): AnswerPayload {
   return {
     ...answer,
     confidence: "low",
