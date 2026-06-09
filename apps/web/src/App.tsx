@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useConversation } from "./lib/useConversation";
+import { chatIdFromPath, useRouter } from "./lib/router";
 import { Composer } from "./components/Composer";
 import { AssistantTurn, UserTurn } from "./components/Turn";
 import { PlusIcon, ScaleIcon } from "./components/icons";
@@ -12,9 +13,11 @@ const SAMPLES = [
 ];
 
 export function App() {
-  const { turns, ask, newChat, busy } = useConversation();
+  const { path, navigate } = useRouter();
+  const chatId = chatIdFromPath(path);
+  const { turns, ask, newChat, busy } = useConversation(chatId, navigate);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const landing = turns.length === 0;
+  const landing = chatId === null;
 
   useEffect(() => {
     if (!landing) bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });

@@ -1,5 +1,10 @@
-import { useCallback, useRef, useState } from "react";
-import type { AnswerPayload, ComponentDirective, StreamEvent } from "@legalis/contracts";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type {
+  AnswerPayload,
+  ComponentDirective,
+  StreamEvent,
+  VerificationBannerProps,
+} from "@legalis/contracts";
 
 export type TurnStatus = "connecting" | "streaming" | "done" | "error";
 
@@ -12,15 +17,6 @@ export interface Turn {
   components: ComponentDirective[];
   answer: string; // streamed prose
   error?: string;
-}
-
-export interface ChatMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
-function freshTurn(id: string, question: string): Turn {
-  return { id, question, status: "connecting", narration: [], trace: [], components: [], answer: "" };
 }
 
 function reduceTurn(turn: Turn, event: StreamEvent): Turn {
@@ -46,83 +42,146 @@ function reduceTurn(turn: Turn, event: StreamEvent): Turn {
   }
 }
 
-/** The final answer text of a completed turn (answer card if present, else streamed prose). */
-function answerText(turn: Turn): string {
-  const card = turn.components.find((c) => c.component === "answer");
-  return card ? (card.props as AnswerPayload).answer : turn.answer;
+interface StoredTurn {
+  question: string;
+  answer: AnswerPayload;
+  verification?: VerificationBannerProps;
+  sources?: ComponentDirective;
+  createdAt: string;
 }
 
-export function useConversation() {
-  const [turns, setTurns] = useState<Turn[]>([]);
-  const sourceRef = useRef<EventSource | null>(null);
-  const turnsRef = useRef<Turn[]>([]);
-  turnsRef.current = turns;
+const LAWYER: ComponentDirective = {
+  component: "talk-to-a-lawyer",
+  props: {
+    message:
+      "For your specific situation — especially anything time-sensitive — a qualified Cameroonian lawyer can confirm how this applies to you.",
+  },
+};
 
+/** Rebuild a completed Turn from a persisted record (for refresh rehydration). */
+function turnFromStored(s: StoredTurn): Turn {
+  const components: ComponentDirective[] = [];
+  if (s.sources) components.push(s.sources);
+  if (s.verification) components.push({ component: "verification-banner", props: s.verification });
+  components.push({ component: "answer", props: s.answer });
+  components.push(LAWYER);
+  return {
+    id: crypto.randomUUID(),
+    question: s.question,
+    status: "done",
+    narration: [],
+    trace: [],
+    components,
+    answer: s.answer.answer,
+  };
+}
+
+/**
+ * Chat-scoped conversation. Sessions live server-side (the brain), keyed by chatId:
+ * a fresh chat is minted on the first question (navigating to /c/:id), and a refresh
+ * rehydrates prior turns from history. Transport is fetch + ReadableStream (POST).
+ */
+export function useConversation(chatId: string | null, navigate: (to: string) => void) {
+  const [turns, setTurns] = useState<Turn[]>([]);
+  const localChats = useRef<Set<string>>(new Set());
+  const abortRef = useRef<AbortController | null>(null);
   const busy = turns.some((t) => t.status === "connecting" || t.status === "streaming");
 
-  const ask = useCallback(async (question: string) => {
-    const text = question.trim();
-    if (!text) return;
-    sourceRef.current?.close();
+  // Rehydrate when landing on an existing chat (skip chats minted this session,
+  // so an in-flight first turn isn't clobbered by an empty history fetch).
+  useEffect(() => {
+    if (!chatId) {
+      setTurns([]);
+      return;
+    }
+    if (localChats.current.has(chatId)) return;
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch(`/api/chat/${chatId}/history`);
+        const data = (await res.json()) as { turns: StoredTurn[] };
+        if (!cancelled) setTurns(data.turns.map(turnFromStored));
+      } catch {
+        if (!cancelled) setTurns([]);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [chatId]);
 
-    // history from the last few completed turns, for context-aware follow-ups
-    const history: ChatMessage[] = turnsRef.current
-      .filter((t) => t.status === "done")
-      .slice(-3)
-      .flatMap((t) => [
-        { role: "user" as const, content: t.question },
-        { role: "assistant" as const, content: answerText(t).slice(0, 800) },
-      ]);
-
-    const id = crypto.randomUUID();
-    setTurns((prev) => [...prev, freshTurn(id, text)]);
-
+  const runStream = useCallback(async (id: string, question: string, turnId: string) => {
+    abortRef.current?.abort();
+    const ac = new AbortController();
+    abortRef.current = ac;
     try {
-      const res = await fetch("/api/sessions", {
+      const res = await fetch(`/api/chat/${id}/stream`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ question: text, history }),
+        body: JSON.stringify({ question }),
+        signal: ac.signal,
       });
-      if (!res.ok) throw new Error(`session failed (${res.status})`);
-      const { sessionId } = (await res.json()) as { sessionId: string };
-
-      const source = new EventSource(`/api/stream/${sessionId}`);
-      sourceRef.current = source;
-      setTurns((prev) => prev.map((t) => (t.id === id ? { ...t, status: "streaming" } : t)));
-
-      source.onmessage = (e: MessageEvent<string>) => {
-        let event: StreamEvent;
-        try {
-          event = JSON.parse(e.data) as StreamEvent;
-        } catch {
-          return;
+      if (!res.ok || !res.body) throw new Error(`stream failed (${res.status})`);
+      setTurns((prev) => prev.map((t) => (t.id === turnId ? { ...t, status: "streaming" } : t)));
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = "";
+      for (;;) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+        const frames = buf.split("\n\n");
+        buf = frames.pop() ?? "";
+        for (const frame of frames) {
+          const line = frame.split("\n").find((l) => l.startsWith("data:"));
+          if (!line) continue;
+          let event: StreamEvent;
+          try {
+            event = JSON.parse(line.slice(5).trim()) as StreamEvent;
+          } catch {
+            continue;
+          }
+          setTurns((prev) => prev.map((t) => (t.id === turnId ? reduceTurn(t, event) : t)));
         }
-        setTurns((prev) => prev.map((t) => (t.id === id ? reduceTurn(t, event) : t)));
-        if (event.type === "control" && (event.phase === "done" || event.phase === "error")) {
-          source.close();
-        }
-      };
-      source.onerror = () => {
-        setTurns((prev) =>
-          prev.map((t) =>
-            t.id === id && t.status !== "done" ? { ...t, status: "error", error: "stream error" } : t,
-          ),
-        );
-        source.close();
-      };
-    } catch (err) {
+      }
+      setTurns((prev) =>
+        prev.map((t) => (t.id === turnId && t.status !== "error" ? { ...t, status: "done" } : t)),
+      );
+    } catch (e) {
+      if (e instanceof Error && e.name === "AbortError") return;
       setTurns((prev) =>
         prev.map((t) =>
-          t.id === id ? { ...t, status: "error", error: err instanceof Error ? err.message : "error" } : t,
+          t.id === turnId ? { ...t, status: "error", error: e instanceof Error ? e.message : "error" } : t,
         ),
       );
     }
   }, []);
 
+  const ask = useCallback(
+    (question: string) => {
+      const text = question.trim();
+      if (!text) return;
+      let id = chatId;
+      if (!id) {
+        id = crypto.randomUUID();
+        localChats.current.add(id);
+        navigate(`/c/${id}`);
+      }
+      const turnId = crypto.randomUUID();
+      setTurns((prev) => [
+        ...prev,
+        { id: turnId, question: text, status: "connecting", narration: [], trace: [], components: [], answer: "" },
+      ]);
+      void runStream(id, text, turnId);
+    },
+    [chatId, navigate, runStream],
+  );
+
   const newChat = useCallback(() => {
-    sourceRef.current?.close();
+    abortRef.current?.abort();
     setTurns([]);
-  }, []);
+    navigate("/");
+  }, [navigate]);
 
   return { turns, ask, newChat, busy };
 }
