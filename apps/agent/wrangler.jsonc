@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "legalis-agent",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // The agent runs in a Durable Object (Cloudflare Agents SDK) to hold multi-step
+  // state and stream over a long-running request.
+  "durable_objects": {
+    "bindings": [{ "name": "AGENT", "class_name": "LegalisAgent" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["LegalisAgent"] }]
+
+  // --- Milestone 2+ bindings (uncomment after creating the resources) ---
+  // "ai": { "binding": "AI" },
+  // "vectorize": [{ "binding": "VECTORIZE", "index_name": "legalis-corpus" }],
+  // "d1_databases": [
+  //   { "binding": "DB", "database_name": "legalis", "database_id": "<id>" }
+  // ],
+  // "kv_namespaces": [{ "binding": "KV", "id": "<id>" }]
+}
