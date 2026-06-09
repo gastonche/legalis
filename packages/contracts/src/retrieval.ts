@@ -12,7 +12,9 @@ export const ChunkMetadata = z.object({
   authority: Authority,
   sourceType: SourceType,
   legalDistrict: LegalDistrict.optional(),
-  articleSection: z.string().optional(), // e.g. "Art. 1226", "s. 14"
+  articleSection: z.string().optional(), // canonical label, e.g. "Article 12", "Articles 12-14", "preamble"
+  articleNumber: z.string().optional(), // bare number for filtering/citation, e.g. "12", "133-1", "12 bis"
+  headingPath: z.string().optional(), // breadcrumb of enclosing structure, e.g. "LIVRE 1 > TITRE 2 > Chapitre 1"
   url: z.string().optional(),
   citation: z.string().optional(), // human-readable locator for display
 });

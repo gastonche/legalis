@@ -25,3 +25,7 @@ corpus/_quarantine/**
 .DS_Store
 *.log
 .vite/
+
+# ingestion derived artifacts
+corpus/.extracted/
+corpus/.chunks/

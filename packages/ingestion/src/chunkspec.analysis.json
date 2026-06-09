@@ -1,0 +1,100 @@
+{
+  "overall_strategy": "Process each file line-by-line. First strip noise lines (see noise_strip_regexes) and detect/skip front matter: a leading table-of-contents block (SOMMAIRE / TABLE DES MATIERES / TABLE OF CONTENTS up to the first real structural marker) and gazette mastheads. Maintain a running \"heading context\" stack: whenever a line matches a part/book/title/chapter/section/subsection marker, update the corresponding slot in the stack (and clear all deeper slots). These heading lines are NOT chunks themselves; they only set context.\n\nThe chunk unit is the ARTICLE (or, for common-law-drafted English texts whose primary unit is the numbered SECTION — i.e. penal-en, and CM001EN whose articles are bare numbered clauses, treat the numbered clause/section as the article-equivalent). A chunk = the article marker line plus all following lines until the next marker of article-level OR any higher structural level (part/book/title/chapter/section), keeping numbered sub-paragraphs ((1), (2), 1), 2), a), bullet \"!\") together with their parent article. Preamble/Vu-clauses front matter that precedes the first article is emitted as its own chunk labeled articleSection=\"preamble\".\n\nSizing/packing: (1) If an assembled article body <= max chars, emit as a single chunk. (2) If it exceeds max, window it: split on paragraph boundaries (blank line or sub-paragraph marker) into windows of <= max chars with `overlap` chars of trailing context repeated at the start of the next window; every window keeps the same article number/heading metadata plus a windowIndex/windowTotal. (3) If an article body < min chars, greedily pack it with subsequent consecutive small articles (same enclosing heading context only) until reaching min..max; record the spanned article range (e.g. \"12-14\") in articleSection. Never merge across a higher-level boundary. Normalize internal whitespace (collapse multi-space OCR gaps, join hyphenated line-wraps like \"tra-\\nvail\" -> \"travail\") before measuring/emitting.",
+  "marker_regexes": {
+    "part": [
+      "^\\s*PART\\s+[IVXLC]+\\b",
+      "^\\s*PARTIE\\s+(?:PREMI[EÈ]RE|[IVXLC]+|[0-9]+)\\b"
+    ],
+    "book": [
+      "^\\s*BOOK\\s+[IVXLC]+\\b",
+      "^\\s*LIVRE\\s+(?:PR[EÉ]LIMINAIRE|PREMIER|PREMI[EÈ]RE|DEUXIEME|TROISIEME|[IVXLC]+|[0-9]+)\\b"
+    ],
+    "title": [
+      "^\\s*TITRE\\s+(?:PREMIER|[IVXLC]+|[0-9]+)\\b",
+      "^\\s*TITLE\\s+[IVXLC0-9]+\\b"
+    ],
+    "chapter": [
+      "^\\s*CHAPITRE\\s+(?:PREMIER|[IVXLC]+|[0-9]+)\\b",
+      "^\\s*CHAPTER\\s+[IVXLC]+\\b"
+    ],
+    "section": [
+      "^\\s*SECTION\\s+(?:PREMI[EÈ]RE|[IVXLC]+|[0-9]+(?:-[0-9]+)?)\\s*[:.\\-–—]?",
+      "^\\s*SOUS-SECTION\\s+(?:[IVXLC]+|[0-9]+)\\b"
+    ],
+    "article": [
+      "^\\s*ARTICLE\\s+(?:PREMIER|[0-9]+(?:-[0-9]+)?)\\s*(?:\\.|\\.-|\\.\\s*[—–-]|:|[—–-])",
+      "^\\s*Article\\s+(?:[0-9]+(?:-[0-9]+)?)(?:\\s+(?:bis|ter|quater|quinquies|sexies|septies|octies|nonies|decies))?\\s*(?:\\.-|\\.|[:—–-])?",
+      "^\\s*Art\\.?\\s*[0-9]+(?:-[0-9]+)?\\s*\\.?\\s*[—–-]",
+      "^\\s*[0-9]+\\s*\\.\\s*[—–]\\s*(?:\\([0-9]+\\))?"
+    ]
+  },
+  "article_number_capture": "^\\s*(?:ARTICLE|Article|Art\\.?)?\\s*((?:PREMIER|[0-9]+(?:-[0-9]+)?)(?:\\s+(?:bis|ter|quater|quinquies|sexies|septies|octies|nonies|decies))?)\\s*(?:\\.\\-|\\.|[:—–-]|\\.\\s*[—–-]|\\()",
+  "target_chunk_chars": {
+    "min": 350,
+    "max": 2400,
+    "overlap": 200
+  },
+  "noise_strip_regexes": [
+    "^\\s*[0-9]{1,3}\\s*$",
+    "^\\s*[-–—]\\s*[0-9]+\\s*[-–—]\\s*$",
+    "^\\s*Loi\\s+n[°o]",
+    "^\\s*L'Assembl[eé]e\\s+Nationale",
+    "^\\s*LA\\s+CONSTITUTION",
+    "PR[EÉ]SIDENCE\\s+(?:DE|OE|0£)\\s+[IVL].?A?\\s+REPU",
+    "COPIE\\s+CERTI[FEA]",
+    "SECR[EÉ]TARIA[TI]?\\s+G[EÉ]N",
+    "SECRETA[MR]+A?I",
+    "SERVICE\\s+OU\\s+(?:A|fl|fl[CO])",
+    "RESIDENCE\\s+O[EI]?[lL]A\\s+REPUBLI",
+    "^\\s*\\?.*REPUBLI",
+    "Journal\\s+Offic",
+    "Journal\\s+offic",
+    "Num[eé]ro\\s+Sp[eé]cial",
+    "^\\s*S\\s*O\\s*M\\s*M\\s*A\\s*I\\s*R\\s*E\\s*$",
+    "^\\s*SOMMAIRE\\s*$",
+    "^\\s*TABLE\\s+DES\\s+MATIERES\\s*$",
+    "^\\s*TABLE\\s+OF\\s+CONTENTS\\s*$",
+    "Prix\\s*:\\s*[0-9]+\\s*FCFA",
+    "ORGANISATION\\s+POUR\\s+L'HARMONISATION",
+    "EN\\s+AFRIQUE\\s+DU\\s+DROIT\\s+DES\\s+AFFAIRES",
+    "Edit[eé]\\s+par\\s+InterActing",
+    "T[eé]l\\s*:.*Email",
+    "www\\.Droit-Afrique\\.com",
+    "^\\s*Code\\s+du\\s+travail\\s+[0-9]+/[0-9]+\\s*$",
+    "Code\\s+G[eé]n[eé]ral\\s+des\\s+Imp[oô]ts\\s*[–-]\\s*Edition",
+    "Site\\s+web\\s*:\\s*www\\.impots\\.cm",
+    "REPUBLIC\\s+OF\\s+CAMEROON",
+    "R[EÉ]PUBLIQUE\\s+DU\\s+CAMEROUN",
+    "Peace[\\s-]*Work[\\s-]*Fatherland",
+    "MINISTRY\\s+OF\\s+FINANCE",
+    "Direction\\s+G[eé]n[eé]rale\\s+des\\s+Imp[oô]ts",
+    "Imprimerie\\s+Nationale\\s*[-–]\\s*Yaound[eé]",
+    "R[EÉ]G[I\\[]ME\\s+(?:FONCIER|DOMANIAL)",
+    "Collection\\s+of\\s+Laws\\s+for\\s+Electronic\\s+Access",
+    "^\\s*CM[0-9]+EN\\b.*page",
+    "\\bpage\\s+[0-9]+\\s*/\\s*[0-9]+\\s*$",
+    "^\\s*\\.{4,}\\s*[0-9]+\\s*$"
+  ],
+  "bilingual_handling": "Corpus is overwhelmingly single-language per file; set chunk.language from the file's detected dominant language (fr or en). Two bilingual situations: (a) Header/title front matter that prints both REPUBLIC OF CAMEROON / REPUBLIQUE DU CAMEROUN and English statute titles (regime-foncier-fr) — the body is mono-language, so strip the foreign-language masthead lines via noise regexes and tag the whole file fr; do NOT create EN chunks from quoted legal terms ('freehold lands' etc.) embedded in French articles. (b) If a file genuinely interleaves EN and FR translation blocks per article (sequential-blocks layout), detect the language of each assembled chunk by majority script/stopword heuristic and set chunk.language accordingly, emitting the FR and EN versions as separate chunks that share the same articleNumber and citation but differ in language and a langVariant flag. For regime-foncier specifically there are NO interleaved translation blocks, so treat it as fr-only.",
+  "metadata_rules": "Per chunk emit: articleNumber (from article_number_capture; \"PREMIER\" normalized to \"1\"; preserve compound \"133-1\" and Latin suffix e.g. \"12 bis\"; null for preamble/Vu chunks). articleSection = canonical label of the chunk: for a single article \"Article 12\" (or \"Section 12\" for penal-en / CM001EN bare-numbered), for a packed range \"Articles 12-14\", for a windowed long article \"Article 12 (part 2/3)\", for front matter \"preamble\". headingPath = ordered breadcrumb from the enclosing-context stack joined by \" > \", e.g. \"PARTIE 2 > LIVRE 1 > TITRE 1 > Chapitre 1 > Section 1\"; include only the levels actually present above the chunk (omit empty slots). citation = human-readable reference built from doc-level title + article, e.g. \"Constitution 1996 (Loi n°96/06), art. 1\"; \"Code pénal 2016, art. 25-1\"; \"AUSCGIE (OHADA), art. 133-1\"; \"Code du travail 1992 (Loi n°92-007), art. 12\"; \"CGI 2024, art. 2 bis\"; \"Ordonnance n°81/002 du 29 juin 1981, art. 5\"; \"Ordonnance n°74-1 du 6 juillet 1974, art. 3\"; \"Copyright Law No. 2000/011, s. 3\". Also store docId, docType, language, and (for regime-foncier) which of the two sequential ordinances the chunk belongs to. Preserve any in-article amendment markers (\"(nouveau)\", \"(Ordonnance 77-1...)\") inside the chunk text and copy them into an amendments metadata field.",
+  "per_type_notes": [
+    "constitution (const-fr): PREAMBULE is its own chunk; 'ARTICLE PREMIER :' -> articleNumber 1; sub-sections (1)(2)(3) stay with the article; '(nouveau)' tags amendments — keep and record.",
+    "code FR (penal-fr, labour-fr, cgi-fr): hierarchy LIVRE>TITRE>CHAPITRE>SECTION(>SOUS-SECTION)>Article; markers 'ARTICLE 1.-' and 'Art.1.-' and 'Article 2.-' all map to the article level; CGI adds Latin suffixes (bis/ter/...) and SOUS-SECTION level — capture suffix in articleNumber.",
+    "code EN (penal-en): common-law PART>BOOK>CHAPTER>SECTION; primary unit is SECTION ('SECTION 25-1:'); treat SECTION as the article-equivalent for chunking and put the number in articleNumber; tolerate OCR like 'Ill'->III and spacing 'Exec ution'.",
+    "uniform-act (auscgie-fr): full PARTIE>LIVRE>TITRE>CHAPITRE>Section>Article chain with mixed case (Chapitre/Section lowercase-initial); compound article numbers 2-1 etc; up to ~920 articles; strip long TOC and repeated JO footers.",
+    "ordinance (etat-civil-fr): 'Article N. —' em-dash; preamble Vu-clauses kept as a preamble chunk; signature block (Yaoundé... AHMADOU AHIDJO) stripped as boilerplate.",
+    "ordinance (regime-foncier-fr): ONE file = TWO ordinances (74-1 then 74-2) with article numbering that RESETS; detect the second 'Ordonnance n°...' header and start a new doc-scope so duplicate article numbers don't collide; markers may be OCR-mangled ('Orc}onnance','ART.'); the bare-capitalized-phrase section regex is unreliable — prefer TITRE/CHAPITRE/ARTICLE markers only.",
+    "statute EN (CM001EN): articles are bare 'N.—(1)' / 'N.—' with NO 'Article' word; use the digit+period+em-dash article regex; ensure it fires only at line start to avoid catching sub-clause numbers; PART/Chapter in title-case."
+  ],
+  "edge_cases": [
+    "regime-foncier-fr packs two ordinances in one file with article numbers reset — split on the second ordinance header into two doc scopes; never pack/window across that boundary; record the source ordinance in metadata so 'art. 2' is disambiguated.",
+    "Low/degraded text-layer OCR (penal-fr, penal-en, regime-foncier): article markers survive but headers/footers are garbled; rely on fuzzy noise regexes (PRESIDENCE..., COPIE CERTI..., SECRETARIA...) and join hyphenated wraps; if an article body is mostly garbage but the marker is valid, still emit the chunk (retrieval-better-than-nothing) and set a lowQuality flag.",
+    "Huge tax code (cgi-fr-2024, 614+ articles) with tables/annexes: tables (rows of numbers/pipes/tabs) can exceed max — when windowing a table-heavy article, prefer to split on row boundaries and never break mid-row; keep the article header line repeated at the top of each window; annexes after the last LIVRE keep their own headingPath.",
+    "Gazette/JO mastheads and signature/certification blocks (auscgie footers, etat-civil signature, presidential letterheads) are recurring boilerplate — strip via noise regexes; a chunk must never be ONLY masthead/signature text.",
+    "Front-matter TOC with dot-leaders ('Article 5 ....... 12') must not be mistaken for article starts — only treat a marker as an article boundary AFTER the TOC region (i.e. after the first non-TOC structural marker / once dot-leader+page-number pattern stops).",
+    "'ARTICLE PREMIER' / 'TITRE PREMIER' / 'PARTIE PREMIERE' — normalize PREMIER(E) to 1 in numbers.",
+    "Compound and amended numbers (25-1, 133-1, '12 bis (nouveau)') must round-trip into articleNumber without losing the suffix or amendment tag.",
+    "Bare-number English clauses (CM001EN) could collide with sub-paragraph numbering; the line-start em-dash anchor and post-TOC gating prevent false splits; verify the next line is article-like prose, not a continuation.",
+    "Very short trailing articles (e.g. 'Article 22.- La présente loi sera publiée...') get packed with neighbors but a final lone tiny article with no same-context neighbor is emitted alone rather than merged across a TITRE boundary."
+  ]
+}
