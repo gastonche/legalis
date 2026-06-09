@@ -1,6 +1,7 @@
 import { Agent } from "agents";
 import {
   OpenAIProvider,
+  TavilySearch,
   answerWithSelfEval,
   runAgent,
   type AgentDeps,
@@ -42,11 +43,13 @@ export class LegalisAgent extends Agent<Env, AgentState> {
   private deps(): AgentDeps {
     const env = this.env;
     const llm = new OpenAIProvider(env.OPENAI_API_KEY, env.OPENAI_MODEL);
+    const search = env.TAVILY_API_KEY ? new TavilySearch(env.TAVILY_API_KEY) : undefined;
     if (env.DEV_RETRIEVAL_URL) {
       return {
         embedder: new HttpEmbedding(env.DEV_RETRIEVAL_URL),
         store: new HttpVectorStore(env.DEV_RETRIEVAL_URL),
         llm,
+        search,
         topK: 8,
       };
     }
@@ -55,6 +58,7 @@ export class LegalisAgent extends Agent<Env, AgentState> {
         embedder: new WorkersAiEmbedding(env.AI),
         store: new VectorizeStore(env.VECTORIZE),
         llm,
+        search,
         topK: 8,
       };
     }

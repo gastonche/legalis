@@ -10,8 +10,10 @@ export interface Env {
   AGENT: AgentNamespace<LegalisAgent>;
   OPENAI_API_KEY: string;
   OPENAI_MODEL?: string;
+  /** Allowlist-biased web search (Tavily). When unset, the agent runs corpus-only. */
+  TAVILY_API_KEY?: string;
   DEV_RETRIEVAL_URL?: string;
   AI?: Ai;
   VECTORIZE?: VectorizeIndex;
-  // milestone 6+: DB (D1), KV, TAVILY_API_KEY
+  // milestone 7+: DB (D1), KV
 }

@@ -5,15 +5,19 @@ import type {
   SourceItem,
   StreamEvent,
 } from "@legalis/contracts";
-import type { EmbeddingProvider, LLMProvider, VectorStore } from "./ports";
+import type { EmbeddingProvider, LLMProvider, SearchProvider, VectorStore } from "./ports";
 import { streamProse, structureAnswer } from "./synthesize";
 import { judgeAnswer, verdictPasses } from "./judge";
 import { buildBanner, downgradeAnswer, downgradeVerdict, refusal } from "./pipeline";
+import { planRetrieval } from "./plan";
+import { retrieveFused } from "./retrieve";
 
 export interface AgentDeps {
   embedder: EmbeddingProvider;
   store: VectorStore;
   llm: LLMProvider;
+  /** Optional allowlist-biased web search (Tavily). When absent, corpus-only. */
+  search?: SearchProvider;
   topK?: number;
 }
 
@@ -87,28 +91,86 @@ export async function* runAgent(
   };
   yield { type: "trace", step: "understand", phase: "end", status: "ok" };
 
-  // 2. retrieve
+  // 2. plan — classify the question + decide where to look (corpus / web / both)
+  yield { type: "trace", step: "plan", phase: "start", status: "ok" };
+  yield {
+    type: "narration",
+    step: "plan",
+    text: "Working out the area of law and where to look — the corpus, and official web sources if needed…",
+  };
+  const plan = await planRetrieval(q, recent, deps.llm);
+  yield {
+    type: "trace",
+    step: "plan",
+    phase: "end",
+    status: "ok",
+    detail: `${plan.domain} · ${plan.regimeHint}${plan.needsWeb ? " · web" : ""}`,
+  };
+
+  // 2b. if the region is pivotal and unknown, ask instead of guessing
+  if (plan.pivotalRegionMissing) {
+    yield {
+      type: "narration",
+      step: "plan",
+      text: "This turns on your region, so I'll check before answering rather than guess.",
+    };
+    yield {
+      type: "component",
+      directive: {
+        component: "region-selector",
+        props: {
+          reason:
+            "The answer differs between the Anglophone (North-West / South-West, common law) and Francophone (civil law) regions. Which applies to your situation?",
+          regions: [
+            { id: "anglophone", label: "Anglophone (NW / SW)" },
+            { id: "francophone", label: "Francophone" },
+          ],
+        },
+      },
+    };
+    yield { type: "component", directive: TALK_TO_LAWYER };
+    yield { type: "control", phase: "done" };
+    return;
+  }
+
+  // 3. retrieve — corpus fused with allowlist-biased web search
+  const usingWeb = Boolean(deps.search) && plan.needsWeb;
   yield { type: "trace", step: "retrieve", phase: "start", status: "ok" };
   yield {
     type: "narration",
     step: "retrieve",
-    text: "Searching the Cameroon corpus for the governing provisions…",
+    text: usingWeb
+      ? "Searching the Cameroon corpus and official web sources for the governing provisions…"
+      : "Searching the Cameroon corpus for the governing provisions…",
   };
-  let chunks: RetrievedChunk[] = [];
-  try {
-    const retrievalQuery = context ? `${context}\nUser: ${q}` : q;
-    const [qv] = await deps.embedder.embed([retrievalQuery], "query");
-    if (qv) chunks = await deps.store.query(qv, { topK: deps.topK ?? 8 });
-  } catch {
-    chunks = [];
-  }
+  let fused = await retrieveFused(q, deps, plan);
+  let chunks: RetrievedChunk[] = fused.chunks;
   yield {
     type: "trace",
     step: "retrieve",
     phase: "end",
     status: chunks.length ? "ok" : "warn",
-    detail: `${chunks.length} chunks`,
+    detail: `${fused.corpusCount} corpus + ${fused.webCount} web`,
   };
+
+  // 3b. reflect — if the corpus came back thin and we haven't searched the web, widen
+  if (chunks.length < 3 && deps.search && !plan.needsWeb) {
+    yield { type: "trace", step: "reflect", phase: "start", status: "warn" };
+    yield {
+      type: "narration",
+      step: "reflect",
+      text: "Thin results from the corpus — widening the search to official web sources…",
+    };
+    fused = await retrieveFused(q, deps, { ...plan, needsWeb: true });
+    chunks = fused.chunks;
+    yield {
+      type: "trace",
+      step: "reflect",
+      phase: "end",
+      status: chunks.length ? "ok" : "warn",
+      detail: `+${fused.webCount} web → ${chunks.length} total`,
+    };
+  }
 
   if (chunks.length === 0) {
     const a = refusal(q, "No relevant sources were found in the corpus.");
