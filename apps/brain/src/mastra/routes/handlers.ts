@@ -32,7 +32,15 @@ export function streamChat(chatId: string, question: string): Response {
     try {
       const priorTurns = await loadTurns(chatId);
       const history = toMessages(priorTurns);
-      const ctx: RunContext = { sink, deps, question: q, history, chunks: [], clarified: false };
+      const ctx: RunContext = {
+        sink,
+        deps,
+        question: q,
+        history,
+        chunks: [],
+        clarified: false,
+        alreadyClarified: priorTurns.some((t) => Boolean(t.clarifier)),
+      };
       const messages: ModelMessage[] = [
         ...history.map((m): ModelMessage => ({ role: m.role, content: m.content })),
         { role: "user", content: q },
@@ -43,7 +51,15 @@ export function streamChat(chatId: string, question: string): Response {
         // safety net: the model must finalize; if it didn't (and didn't clarify), do it
         if (!ctx.finalAnswer && !ctx.clarified) await produceFinalAnswer(ctx);
       });
-      if (ctx.finalAnswer && !ctx.clarified) {
+      // Persist EVERY turn — clarifications included — so the agent remembers it
+      // already asked (no re-ask loops) and a refresh rehydrates the full thread.
+      if (ctx.clarified && ctx.clarifierDirective) {
+        await appendTurn(chatId, {
+          question: q,
+          clarifier: ctx.clarifierDirective,
+          createdAt: new Date().toISOString(),
+        });
+      } else if (ctx.finalAnswer) {
         await appendTurn(chatId, {
           question: q,
           answer: ctx.finalAnswer,

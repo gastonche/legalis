@@ -12,7 +12,10 @@ import type { AnswerPayload, ComponentDirective, VerificationBannerProps } from 
  */
 export interface StoredTurn {
   question: string;
-  answer: AnswerPayload;
+  /** Present for answered turns. */
+  answer?: AnswerPayload;
+  /** Present for clarification turns (region-selector / clarifying-question). */
+  clarifier?: ComponentDirective;
   verification?: VerificationBannerProps;
   sources?: ComponentDirective;
   createdAt: string;
@@ -37,10 +40,23 @@ export async function appendTurn(chatId: string, turn: StoredTurn): Promise<void
   await writeFile(fileFor(chatId), JSON.stringify(turns), "utf8");
 }
 
+function clarifierText(d: ComponentDirective): string {
+  if (d.component === "region-selector") return d.props.reason;
+  if (d.component === "clarifying-question") return d.props.question;
+  return "";
+}
+
 /** Prior turns as chat messages for agent context (assistant text trimmed). */
 export function toMessages(turns: StoredTurn[]): ChatMessage[] {
-  return turns.flatMap((t) => [
-    { role: "user" as const, content: t.question },
-    { role: "assistant" as const, content: t.answer.answer.slice(0, 800) },
-  ]);
+  return turns.flatMap((t) => {
+    const assistant = t.answer
+      ? t.answer.answer.slice(0, 800)
+      : t.clarifier
+        ? `(I asked the user to clarify before answering: "${clarifierText(t.clarifier)}" — their next message answers it; do not ask again.)`
+        : "";
+    return [
+      { role: "user" as const, content: t.question },
+      { role: "assistant" as const, content: assistant },
+    ];
+  });
 }

@@ -20,6 +20,10 @@ export interface RunContext {
   history: ChatMessage[];
   chunks: RetrievedChunk[]; // accumulated by search tools, consumed by finalize
   clarified: boolean; // set when askClarification fired → the run ends without an answer
+  /** True when a prior turn in this chat already asked a clarification — the tool refuses to re-ask. */
+  alreadyClarified: boolean;
+  /** The directive askClarification emitted, persisted for memory + rehydration. */
+  clarifierDirective?: ComponentDirective;
   // set by finalize, read by the route for persistence + rehydration
   finalAnswer?: AnswerPayload;
   verification?: VerificationBannerProps;

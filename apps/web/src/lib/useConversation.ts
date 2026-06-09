@@ -44,7 +44,8 @@ function reduceTurn(turn: Turn, event: StreamEvent): Turn {
 
 interface StoredTurn {
   question: string;
-  answer: AnswerPayload;
+  answer?: AnswerPayload;
+  clarifier?: ComponentDirective;
   verification?: VerificationBannerProps;
   sources?: ComponentDirective;
   createdAt: string;
@@ -61,10 +62,14 @@ const LAWYER: ComponentDirective = {
 /** Rebuild a completed Turn from a persisted record (for refresh rehydration). */
 function turnFromStored(s: StoredTurn): Turn {
   const components: ComponentDirective[] = [];
-  if (s.sources) components.push(s.sources);
-  if (s.verification) components.push({ component: "verification-banner", props: s.verification });
-  components.push({ component: "answer", props: s.answer });
-  components.push(LAWYER);
+  if (s.clarifier) {
+    // a clarification turn: re-render the interactive chips
+    components.push(s.clarifier, LAWYER);
+  } else if (s.answer) {
+    if (s.sources) components.push(s.sources);
+    if (s.verification) components.push({ component: "verification-banner", props: s.verification });
+    components.push({ component: "answer", props: s.answer }, LAWYER);
+  }
   return {
     id: crypto.randomUUID(),
     question: s.question,
@@ -72,7 +77,7 @@ function turnFromStored(s: StoredTurn): Turn {
     narration: [],
     trace: [],
     components,
-    answer: s.answer.answer,
+    answer: s.answer?.answer ?? "",
   };
 }
 
