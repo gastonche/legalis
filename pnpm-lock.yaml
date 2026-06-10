@@ -165,13 +165,19 @@ importers:
       '@legalis/core':
         specifier: workspace:*
         version: link:../core
+      '@legalis/ingestion':
+        specifier: workspace:*
+        version: link:../ingestion
+      promptopus:
+        specifier: ^0.1.1
+        version: 0.1.1
     devDependencies:
+      tsx:
+        specifier: ^4.20.6
+        version: 4.22.4
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
-      vitest:
-        specifier: ^4.1.8
-        version: 4.1.8(@opentelemetry/api@1.9.1)(@types/node@22.19.20)(vite@8.0.16(@types/node@22.19.20)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.22.4)(yaml@2.9.0))
 
   packages/ingestion:
     dependencies:
@@ -2248,6 +2254,10 @@ packages:
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
+  commander@12.1.0:
+    resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
+    engines: {node: '>=18'}
+
   commander@14.0.3:
     resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
     engines: {node: '>=20'}
@@ -3558,6 +3568,11 @@ packages:
 
   promise-limit@2.7.0:
     resolution: {integrity: sha512-7nJ6v5lnJsXwGprnGXga4wx6d1POjvi5Qmf1ivTRxTjH4Z/9Czja/UCMLVmB9N93GeWOU93XaFaEt6jbuoagNw==}
+
+  promptopus@0.1.1:
+    resolution: {integrity: sha512-iyIsP1Abz3+gVifnRSy7/RqQ9HTcps/Qq3uBd99IlG7CANVxR9jUqfqI1K4xW3ZRSCoTEiZtLTprMpH3kKNzBw==}
+    engines: {node: '>=20'}
+    hasBin: true
 
   protobufjs@7.6.2:
     resolution: {integrity: sha512-N9EiLovGEQOJSPF26Ij7qUGvahfEnq0eeYZ02aigIedkmz1qZSwjnP9SBITHJuF/6MYbIW4HDN8zdYjsjqJKXQ==}
@@ -6046,6 +6061,8 @@ snapshots:
 
   colorette@2.0.20: {}
 
+  commander@12.1.0: {}
+
   commander@14.0.3: {}
 
   commondir@1.0.1: {}
@@ -7544,6 +7561,12 @@ snapshots:
   process@0.11.10: {}
 
   promise-limit@2.7.0: {}
+
+  promptopus@0.1.1:
+    dependencies:
+      commander: 12.1.0
+      yaml: 2.9.0
+      zod: 3.25.76
 
   protobufjs@7.6.2:
     dependencies:
