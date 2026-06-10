@@ -185,7 +185,7 @@ export function useConversation(chatId: string | null, navigate: (to: string) =>
   const newChat = useCallback(() => {
     abortRef.current?.abort();
     setTurns([]);
-    navigate("/");
+    navigate("/chat");
   }, [navigate]);
 
   return { turns, ask, newChat, busy };

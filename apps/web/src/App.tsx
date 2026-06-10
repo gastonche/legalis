@@ -4,6 +4,12 @@ import { chatIdFromPath, useRouter } from "./lib/router";
 import { Composer } from "./components/Composer";
 import { AssistantTurn, UserTurn } from "./components/Turn";
 import { PlusIcon, ScaleIcon } from "./components/icons";
+import { Shell } from "./pages/Shell";
+import { Home } from "./pages/Home";
+import { HowItWorks } from "./pages/HowItWorks";
+import { Sources } from "./pages/Sources";
+import { About } from "./pages/About";
+import { Legal } from "./pages/Legal";
 
 const SAMPLES = [
   "How do I register a small business in Cameroon?",
@@ -12,10 +18,32 @@ const SAMPLES = [
   "What law governs a commercial company in Douala?",
 ];
 
-export function App() {
-  const { path, navigate } = useRouter();
-  const chatId = chatIdFromPath(path);
-  const { turns, ask, newChat, busy } = useConversation(chatId, navigate);
+const TITLES: Record<string, string> = {
+  "/": "Legalis — grounded research on Cameroon law",
+  "/chat": "Ask Legalis",
+  "/how-it-works": "How Legalis works",
+  "/sources": "Sources — the Legalis corpus",
+  "/about": "About Legalis",
+  "/terms": "Terms of use — Legalis",
+  "/privacy": "Privacy — Legalis",
+};
+
+/** The app surface: /chat (composer landing) and /c/:id (conversation thread). */
+function ChatApp({
+  chatId,
+  navigate,
+  turns,
+  ask,
+  newChat,
+  busy,
+}: {
+  chatId: string | null;
+  navigate: (to: string) => void;
+  turns: ReturnType<typeof useConversation>["turns"];
+  ask: (q: string) => void;
+  newChat: () => void;
+  busy: boolean;
+}) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const landing = chatId === null;
 
@@ -26,12 +54,20 @@ export function App() {
   return (
     <div className="flex min-h-dvh flex-col">
       <header className="sticky top-0 z-20 flex items-center justify-between border-b border-line/70 bg-paper/80 px-4 py-3 backdrop-blur sm:px-6">
-        <button type="button" onClick={newChat} className="flex items-center gap-2" aria-label="Legalis — new chat">
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/");
+          }}
+          className="flex items-center gap-2"
+          aria-label="Legalis home"
+        >
           <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-on-primary">
             <ScaleIcon className="size-4" />
           </span>
           <span className="font-serif text-lg font-semibold text-ink">Legalis</span>
-        </button>
+        </a>
         {!landing ? (
           <button
             type="button"
@@ -46,15 +82,12 @@ export function App() {
       {landing ? (
         <main className="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-7 px-4 py-12">
           <div className="text-center">
-            <p className="mb-3 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.28em] text-primary">
-              Grounded legal research
-            </p>
-            <h1 className="font-serif text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-[3rem]">
-              Cameroon law, <span className="italic text-primary-ink">in plain language</span>
+            <h1 className="font-serif text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+              What would you like to know?
             </h1>
-            <p className="mx-auto mt-4 max-w-md text-ink-soft">
-              Ask a question and get a clear answer — grounded in cited primary sources, with the
-              governing legal regime flagged.
+            <p className="mx-auto mt-3 max-w-md text-ink-soft">
+              Plain-language answers, grounded in cited primary sources, with the governing regime
+              flagged.
             </p>
           </div>
           <div className="w-full">
@@ -100,5 +133,44 @@ export function App() {
         </>
       )}
     </div>
+  );
+}
+
+export function App() {
+  const { path, navigate } = useRouter();
+  const chatId = chatIdFromPath(path);
+  const { turns, ask, newChat, busy } = useConversation(chatId, navigate);
+
+  useEffect(() => {
+    document.title = chatId ? "Legalis — conversation" : (TITLES[path] ?? TITLES["/"]);
+  }, [path, chatId]);
+
+  // App surface
+  if (chatId !== null || path === "/chat") {
+    return (
+      <ChatApp chatId={chatId} navigate={navigate} turns={turns} ask={ask} newChat={newChat} busy={busy} />
+    );
+  }
+
+  // Marketing site
+  const page =
+    path === "/how-it-works" ? (
+      <HowItWorks />
+    ) : path === "/sources" ? (
+      <Sources />
+    ) : path === "/about" ? (
+      <About />
+    ) : path === "/terms" ? (
+      <Legal kind="terms" />
+    ) : path === "/privacy" ? (
+      <Legal kind="privacy" />
+    ) : (
+      <Home ask={ask} busy={busy} navigate={navigate} />
+    );
+
+  return (
+    <Shell path={path} navigate={navigate}>
+      {page}
+    </Shell>
   );
 }
