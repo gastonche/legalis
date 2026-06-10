@@ -16,7 +16,8 @@
     "test": "turbo run test",
     "ingest": "turbo run ingest --filter=@legalis/ingestion",
     "eval": "turbo run eval --filter=@legalis/evals",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "eval:deep": "pnpm --filter @legalis/evals eval:deep"
   },
   "devDependencies": {
     "@types/node": "^22.18.0",

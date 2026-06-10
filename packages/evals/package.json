@@ -7,7 +7,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "test": "tsx src/run.ts",
-    "eval": "tsx src/run.ts"
+    "eval": "tsx src/run.ts",
+    "eval:deep": "tsx src/run-deep.ts"
   },
   "dependencies": {
     "@legalis/contracts": "workspace:*",

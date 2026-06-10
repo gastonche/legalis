@@ -1,0 +1,66 @@
+name: deep-planner
+description: >
+  AI site 1 — the planner classification (core planRetrieval, real model). Grades
+  the structured plan: legal domain, regime hint, web-need, and the pivotal-region
+  flag that drives ask-don't-guess.
+providers:
+  - kind: mock
+    name: planner-gpt-4o-mini
+    model: gpt-4o-mini
+cases:
+  - id: labour-dismissal
+    description: settled labour law — no web, no clarification
+    prompt: Can my employer dismiss me without notice?
+    graders:
+      - type: plan-field
+        field: domain
+        anyOf: [labour]
+      - type: plan-field
+        field: needsWeb
+        anyOf: ["false"]
+      - type: plan-field
+        field: pivotalRegionMissing
+        anyOf: ["false"]
+      - type: latency-budget
+        maxMs: 20000
+
+  - id: succession-no-region
+    description: intestate succession with no region named — pivotal flag must fire
+    prompt: My uncle died without a will, leaving land and a house. How is his estate divided among the family?
+    graders:
+      - type: plan-field
+        field: pivotalRegionMissing
+        anyOf: ["true"]
+      - type: plan-field
+        field: domain
+        anyOf: [family, land]
+
+  - id: succession-bamenda
+    description: town named (Bamenda → Anglophone) — must NOT flag the region as missing
+    prompt: My uncle died in Bamenda without a will, leaving land and a house. How is his estate divided?
+    graders:
+      - type: plan-field
+        field: pivotalRegionMissing
+        anyOf: ["false"]
+
+  - id: rccm-current-fees
+    description: current/procedural info — web search needed
+    prompt: What are the current official fees and processing times to register a company at the RCCM?
+    graders:
+      - type: plan-field
+        field: needsWeb
+        anyOf: ["true"]
+      - type: plan-field
+        field: regimeHint
+        anyOf: [ohada]
+
+  - id: company-law-fr
+    description: FR business question — OHADA regime hint
+    prompt: Quelle loi régit une société commerciale au Cameroun?
+    graders:
+      - type: plan-field
+        field: regimeHint
+        anyOf: [ohada]
+      - type: plan-field
+        field: pivotalRegionMissing
+        anyOf: ["false"]

@@ -1,0 +1,52 @@
+name: deep-orchestrator
+description: >
+  AI site 4 — the LIVE Mastra orchestrator (the brain over SSE): does the agent
+  make the right tool decisions end-to-end? Requires the brain running on
+  BRAIN_URL (default http://127.0.0.1:4111); skipped when unreachable.
+providers:
+  - kind: mock
+    name: orchestrator-live
+    model: brain-orchestrator
+judge:
+  provider: openai
+  model: gpt-4o-mini
+cases:
+  - id: succession-no-region
+    description: pivotal-region succession — the agent must ASK, not answer
+    prompt: My uncle died without a will, leaving land and a house. How is his estate divided among the family?
+    graders:
+      - type: asked-clarification
+        value: true
+
+  - id: succession-bamenda
+    description: town named — the agent must answer (infer Anglophone), not re-ask
+    prompt: My uncle died in Bamenda without a will, leaving land and a house. How is his estate divided?
+    graders:
+      - type: asked-clarification
+        value: false
+      - type: scope-boundary
+
+  - id: current-procedure-web
+    description: current/procedural question — the agent should widen to web sources
+    prompt: What are the current official steps and fees to register a company at the RCCM in Cameroon?
+    graders:
+      - type: asked-clarification
+        value: false
+      - type: used-web
+        value: true
+      - type: scope-boundary
+
+  - id: labour-dismissal
+    description: settled law end-to-end — grounded cited answer through the live agent
+    prompt: Can my employer dismiss me without notice?
+    graders:
+      - type: asked-clarification
+        value: false
+      - type: scope-boundary
+      - type: judge-quality
+        threshold: 0.7
+        rubric: >
+          Clear plain-language legal information; flags the governing regime; does not
+          give personalised advice; recommends a qualified Cameroonian lawyer.
+      - type: latency-budget
+        maxMs: 180000

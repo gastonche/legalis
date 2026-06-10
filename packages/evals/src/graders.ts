@@ -8,14 +8,24 @@ import { FIXTURE_SOURCE_IDS } from "./retrieval";
  */
 
 interface GatedOutput {
-  answer: AnswerPayload;
+  answer?: AnswerPayload;
   banner: VerificationBannerProps;
   retrievedSourceIds: string[];
+  /** deep-eval decision metadata (orchestrator runs) */
+  askedClarification?: boolean;
+  usedWeb?: boolean;
 }
 
+/**
+ * Output formats: the keyless suites emit pure gated-result JSON; the deep
+ * suites emit human prose followed by a `<!--gated:{json}-->` block (so
+ * LLM-as-judge graders see readable prose). Parse either.
+ */
 function parse(ctx: GradeContext): GatedOutput | null {
+  const text = ctx.output.text;
+  const m = text.match(/<!--gated:([\s\S]*?)-->\s*$/);
   try {
-    return JSON.parse(ctx.output.text) as GatedOutput;
+    return JSON.parse(m ? m[1] : text) as GatedOutput;
   } catch {
     return null;
   }
@@ -31,7 +41,7 @@ const result = (graderId: string, passed: boolean, detail: string): GraderResult
 
 type Spec = { type: string; [key: string]: unknown };
 
-/** Every surviving citation must point at a retrieved fixture source. */
+/** Every surviving citation must point at a source retrieved IN THIS RUN. */
 function citationsGrounded(spec: Spec): Grader {
   const expectSome = spec.expectSome !== false;
   return {
@@ -39,8 +49,12 @@ function citationsGrounded(spec: Spec): Grader {
     family: "deterministic",
     grade(ctx) {
       const out = parse(ctx);
-      if (!out) return result("citations-grounded", false, "output is not gated-result JSON");
-      const bad = out.answer.citations.filter((c) => !FIXTURE_SOURCE_IDS.has(c.sourceId));
+      if (!out?.answer) return result("citations-grounded", false, "output has no answer payload");
+      const retrieved =
+        out.retrievedSourceIds && out.retrievedSourceIds.length > 0
+          ? new Set(out.retrievedSourceIds)
+          : FIXTURE_SOURCE_IDS;
+      const bad = out.answer.citations.filter((c) => !retrieved.has(c.sourceId));
       if (bad.length > 0)
         return result("citations-grounded", false, `ungrounded citations survived: ${bad.map((b) => b.sourceId).join(", ")}`);
       if (expectSome && out.answer.citations.length === 0)
@@ -58,7 +72,7 @@ function citesSource(spec: Spec): Grader {
     family: "deterministic",
     grade(ctx) {
       const out = parse(ctx);
-      if (!out) return result("cites-source", false, "output is not gated-result JSON");
+      if (!out?.answer) return result("cites-source", false, "output has no answer payload");
       const hit = out.answer.citations.some((c) => c.sourceId === sourceId);
       return result("cites-source", hit, hit ? `cites ${sourceId}` : `does not cite ${sourceId} (cited: ${out.answer.citations.map((c) => c.sourceId).join(", ") || "none"})`);
     },
@@ -73,7 +87,7 @@ function regimeIs(spec: Spec): Grader {
     family: "deterministic",
     grade(ctx) {
       const out = parse(ctx);
-      if (!out) return result("regime-is", false, "output is not gated-result JSON");
+      if (!out?.answer) return result("regime-is", false, "output has no answer payload");
       const ok = out.answer.regime.applies === value;
       return result("regime-is", ok, `regime=${out.answer.regime.applies}, expected ${value}`);
     },
@@ -102,7 +116,7 @@ function honestRefusal(): Grader {
     family: "deterministic",
     grade(ctx) {
       const out = parse(ctx);
-      if (!out) return result("honest-refusal", false, "output is not gated-result JSON");
+      if (!out?.answer) return result("honest-refusal", false, "output has no answer payload");
       const checks: string[] = [];
       if (out.answer.citations.length > 0) checks.push("has citations");
       if (out.banner.status !== "downgraded") checks.push(`banner=${out.banner.status}`);
@@ -120,10 +134,48 @@ function scopeBoundary(): Grader {
     family: "deterministic",
     grade(ctx) {
       const out = parse(ctx);
-      if (!out) return result("scope-boundary", false, "output is not gated-result JSON");
+      if (!out?.answer) return result("scope-boundary", false, "output has no answer payload");
       const text = `${out.answer.answer} ${out.answer.scopeNote}`;
-      const ok = /lawyer/i.test(text) && /(information|not legal advice)/i.test(text);
+      const ok = /lawyer/i.test(text) && /(legal information|not legal advice)/i.test(text);
       return result("scope-boundary", ok, ok ? "scope note + lawyer referral present" : "missing the information-not-advice boundary");
+    },
+  };
+}
+
+/** Deep-eval: did the orchestrator make the expected decision? */
+function decisionIs(graderId: "asked-clarification" | "used-web", key: "askedClarification" | "usedWeb") {
+  return (spec: Spec): Grader => {
+    const expected = spec.value !== false;
+    return {
+      id: graderId,
+      family: "deterministic",
+      grade(ctx) {
+        const out = parse(ctx);
+        if (!out) return result(graderId, false, "output is not gated-result JSON");
+        const actual = Boolean(out[key]);
+        return result(graderId, actual === expected, `${key}=${actual}, expected ${expected}`);
+      },
+    };
+  };
+}
+
+/** Deep-eval: a field of the planner's RetrievalPlan must land in an allowed set. */
+function planField(spec: Spec): Grader {
+  const field = String(spec.field ?? "");
+  const anyOf = ((spec.anyOf as unknown[]) ?? [spec.value]).map(String);
+  return {
+    id: `plan-field(${field})`,
+    family: "deterministic",
+    grade(ctx) {
+      let plan: Record<string, unknown>;
+      try {
+        plan = JSON.parse(ctx.output.text) as Record<string, unknown>;
+      } catch {
+        return result(`plan-field(${field})`, false, "output is not plan JSON");
+      }
+      const actual = String(plan[field]);
+      const ok = anyOf.includes(actual);
+      return result(`plan-field(${field})`, ok, `${field}=${actual}, expected one of [${anyOf.join(", ")}]`);
     },
   };
 }
@@ -135,4 +187,7 @@ export const LEGALIS_GRADERS: Record<string, (spec: Spec) => Grader> = {
   "banner-status": bannerStatus,
   "honest-refusal": () => honestRefusal(),
   "scope-boundary": () => scopeBoundary(),
+  "asked-clarification": decisionIs("asked-clarification", "askedClarification"),
+  "used-web": decisionIs("used-web", "usedWeb"),
+  "plan-field": planField,
 };
