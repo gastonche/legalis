@@ -59,6 +59,7 @@ export const NOISE = compile([
   "^\\s*[-–—]\\s*[0-9]+\\s*[-–—]\\s*$", // "- 4 -" page footer
   "Code\\s+G[eé]n[eé]ral\\s+des\\s+Imp[oô]ts\\s*[–-]\\s*[EÉ]dition", // CGI running footer
   "\\.{4,}", // any table-of-contents dot-leader line ("LIVRE I ......... 1")
+  "(?:\\. ){4,}", // space-separated dot leaders ("Article 1 . . . . . . 12")
   "^\\s*Loi\\s+n[°o]",
   "^\\s*L'Assembl[eé]e\\s+Nationale",
   "^\\s*LA\\s+CONSTITUTION\\s*$",

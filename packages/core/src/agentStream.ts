@@ -228,7 +228,7 @@ export async function* runAgent(
     ? await judgeAnswer(q, answer, chunks, deps.llm)
     : downgradeVerdict("ungrounded draft");
   const passed = grounded && verdictPasses(verdict);
-  const finalAnswer = passed ? answer : grounded ? downgradeAnswer(answer) : answer;
+  const finalAnswer = passed ? answer : downgradeAnswer(answer);
   const banner = buildBanner({ ...verdict, action: passed ? "show" : "downgrade" }, finalAnswer);
   yield {
     type: "trace",

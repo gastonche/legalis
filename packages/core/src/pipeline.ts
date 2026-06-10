@@ -142,12 +142,15 @@ export function buildBanner(verdict: SelfEvalVerdict, answer: AnswerPayload): Ve
 }
 
 export function downgradeAnswer(answer: AnswerPayload): AnswerPayload {
+  // Don't double-hedge an answer that is already an honest refusal / caution.
+  const alreadyHedged = /^⚠|won'?t guess|can'?t (fully )?ground|cannot (fully )?ground/i.test(answer.answer);
   return {
     ...answer,
     confidence: "low",
-    answer:
-      "⚠ I couldn't fully verify this against the available sources, so treat it as tentative and confirm with a qualified Cameroonian lawyer.\n\n" +
-      answer.answer,
+    answer: alreadyHedged
+      ? answer.answer
+      : "⚠ I couldn't fully verify this against the available sources, so treat it as tentative and confirm with a qualified Cameroonian lawyer.\n\n" +
+        answer.answer,
   };
 }
 
@@ -228,11 +231,9 @@ export async function answerWithSelfEval(question: string, deps: GateDeps): Prom
     }
   }
 
-  const finalAnswer =
-    verdict.action === "show"
-      ? synth.answer
-      : synth.grounded
-        ? downgradeAnswer(synth.answer)
-        : synth.answer; // an honest refusal stays as-is
+  // Anything that didn't pass the gate gets the visible caution — including
+  // ungrounded drafts whose citations were stripped (a confident fabrication is
+  // NOT an honest refusal; downgradeAnswer skips already-hedged refusals).
+  const finalAnswer = verdict.action === "show" ? synth.answer : downgradeAnswer(synth.answer);
   return { answer: finalAnswer, verdict, banner: buildBanner(verdict, finalAnswer), chunks, iterations: iter };
 }

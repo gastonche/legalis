@@ -73,7 +73,7 @@ export async function produceFinalAnswer(run: RunContext): Promise<{ done: boole
     ? await judgeAnswer(run.question, answer, chunks, run.deps.llm)
     : downgradeVerdict("ungrounded draft");
   const passed = grounded && verdictPasses(verdict);
-  const finalAnswer = passed ? answer : grounded ? downgradeAnswer(answer) : answer;
+  const finalAnswer = passed ? answer : downgradeAnswer(answer);
   const banner = buildBanner({ ...verdict, action: passed ? "show" : "downgrade" }, finalAnswer);
   run.sink.trace("self-eval", "end", passed ? "ok" : "warn", `groundedness=${verdict.groundedness.score}`);
 
