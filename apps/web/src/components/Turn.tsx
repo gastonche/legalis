@@ -3,6 +3,27 @@ import type { Turn } from "../lib/useConversation";
 import { Answer } from "./Answer";
 import { Thinking } from "./Thinking";
 import { BriefcaseIcon, HelpIcon, PinIcon, ScaleIcon } from "./icons";
+import { renderParagraph, tidyStreamingTail } from "./primitives";
+
+/**
+ * The live token stream, rendered as real markdown while it arrives (bold,
+ * citation superscripts, list line-breaks) instead of raw syntax. Completed
+ * paragraphs are stable; the caret rides the last, still-growing one.
+ */
+function StreamingProse({ text }: { text: string }) {
+  const paras = tidyStreamingTail(text).split(/\n{2,}/);
+  const tail = paras.pop() ?? "";
+  return (
+    <div className="max-w-[68ch] font-serif text-[1.0625rem] leading-relaxed text-ink-soft">
+      {paras.map((p, i) => (
+        <p key={i} className="mb-3">
+          {renderParagraph(p)}
+        </p>
+      ))}
+      <p className="caret-pulse">{renderParagraph(tail)}</p>
+    </div>
+  );
+}
 
 export function UserTurn({ text }: { text: string }) {
   return (
@@ -122,9 +143,7 @@ export function AssistantTurn({ turn, onAsk }: { turn: Turn; onAsk: (q: string) 
         {answer ? (
           <Answer answer={answer} verification={verif} />
         ) : streaming && turn.answer ? (
-          <p className="caret-pulse max-w-[68ch] font-serif text-[1.0625rem] leading-relaxed text-ink-soft">
-            {turn.answer}
-          </p>
+          <StreamingProse text={turn.answer} />
         ) : null}
 
         {lawyer?.component === "talk-to-a-lawyer" && answer ? (

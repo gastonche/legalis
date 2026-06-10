@@ -73,10 +73,31 @@ export function renderInline(text: string): ReactNode[] {
     });
 }
 
+/** A paragraph's inner content: single newlines (list items) become line breaks. */
+export function renderParagraph(para: string): ReactNode[] {
+  return para.split("\n").flatMap((line, i) => {
+    const rendered = renderInline(line);
+    return i === 0 ? rendered : [<br key={`br-${i}`} />, ...rendered];
+  });
+}
+
 export function renderProse(text: string): ReactNode {
   return text.split(/\n{2,}/).map((para, i) => (
     <p key={i} className="mb-3 last:mb-0">
-      {renderInline(para)}
+      {renderParagraph(para)}
     </p>
   ));
+}
+
+/**
+ * Streaming-safe markdown cleanup for the live token stream: close an
+ * in-progress **bold** span (so it renders bold while typing instead of showing
+ * raw asterisks) and hide a half-typed citation marker like "[1".
+ */
+export function tidyStreamingTail(text: string): string {
+  let t = text.replace(/\[(?:n:)?\d*$/, "");
+  if (t.endsWith("*") && !t.endsWith("**")) t = t.slice(0, -1);
+  const boldMarks = (t.match(/\*\*/g) ?? []).length;
+  if (boldMarks % 2 === 1) t += "**";
+  return t;
 }
