@@ -1,0 +1,46 @@
+name: grounded-answers
+description: >
+  Grounding behaviors over fixture retrieval: answers must cite the right corpus
+  document, classify the regime, pass the verification gate, and carry the
+  information-not-advice boundary.
+providers:
+  - kind: mock
+    name: legalis-scripted
+    model: pipeline+scripted-llm
+cases:
+  - id: labour-dismissal
+    description: EN labour question grounds in the Labour Code and passes the gate
+    prompt: Can my employer dismiss me without notice in Cameroon?
+    graders:
+      - type: citations-grounded
+      - type: cites-source
+        sourceId: labour-en
+      - type: regime-is
+        value: mixed
+      - type: banner-status
+        anyOf: [verified]
+      - type: scope-boundary
+
+  - id: ohada-company-fr
+    description: FR business question grounds in the OHADA AUDCG and flags OHADA
+    prompt: Quelle loi régit une société commerciale au Cameroun?
+    graders:
+      - type: citations-grounded
+      - type: cites-source
+        sourceId: audcg-fr
+      - type: regime-is
+        value: ohada
+      - type: banner-status
+        anyOf: [verified]
+      - type: scope-boundary
+
+  - id: constitution-languages
+    description: constitutional question grounds in the Constitution
+    prompt: What does the Constitution say about the official languages of the state?
+    graders:
+      - type: citations-grounded
+      - type: cites-source
+        sourceId: const-en-assnat
+      - type: banner-status
+        anyOf: [verified]
+      - type: scope-boundary

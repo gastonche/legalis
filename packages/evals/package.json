@@ -6,15 +6,17 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vitest run",
-    "eval": "node --experimental-strip-types src/run.ts"
+    "test": "tsx src/run.ts",
+    "eval": "tsx src/run.ts"
   },
   "dependencies": {
     "@legalis/contracts": "workspace:*",
-    "@legalis/core": "workspace:*"
+    "@legalis/core": "workspace:*",
+    "promptopus": "^0.1.1",
+    "@legalis/ingestion": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "tsx": "^4.20.6"
   }
 }

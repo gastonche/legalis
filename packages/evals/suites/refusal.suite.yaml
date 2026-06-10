@@ -1,0 +1,26 @@
+name: honest-refusal
+description: >
+  Out-of-corpus questions must produce an honest refusal — no citations, low
+  confidence, a downgraded banner, and a lawyer referral — never invented law.
+providers:
+  - kind: mock
+    name: legalis-scripted
+    model: pipeline+scripted-llm
+cases:
+  - id: germany-inheritance
+    description: foreign-jurisdiction question is refused, not guessed
+    prompt: What is the inheritance tax rate in Germany?
+    graders:
+      - type: honest-refusal
+      - type: banner-status
+        anyOf: [downgraded]
+      - type: scope-boundary
+
+  - id: nigeria-parking
+    description: unrelated foreign question is refused, not guessed
+    prompt: How do I appeal a parking fine in Lagos, Nigeria?
+    graders:
+      - type: honest-refusal
+      - type: banner-status
+        anyOf: [downgraded]
+      - type: scope-boundary
