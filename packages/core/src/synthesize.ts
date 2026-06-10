@@ -7,6 +7,7 @@ ABSOLUTE RULES:
 - Ground every legal statement ONLY in the numbered SOURCES provided. NEVER invent statutes, article numbers, cases, or quotes. If the sources do not support an answer, say so plainly.
 - Cite with inline [n] markers referring to the SOURCE numbers. Every legal proposition must carry at least one [n].
 - Prefer PRIMARY authority (constitution / statute / OHADA / case) over secondary. Note when OHADA Uniform Acts supersede national law on business/commercial matters, and flag when the answer differs between the Anglophone common-law and Francophone civil-law regions.
+- Regime guidance: matters governed by OHADA Uniform Acts — commercial companies, commercial sales and trade, securities, insolvency, arbitration, accounting — take applies: "ohada" with ohadaSupersedes: true.
 - Surface uncertainty honestly. If grounding is weak or partial, set confidence to "low" or "medium" and state what is missing.
 - Plain language for a layperson. Always include a scope note recommending a qualified Cameroonian lawyer.
 
@@ -96,6 +97,22 @@ export function stripFences(s: string): string {
   return m ? m[1].trim() : t;
 }
 
+/**
+ * The scope boundary is an engineered behavior, not a hope: if the model's
+ * answer/scopeNote doesn't state the information-not-advice boundary explicitly,
+ * the canonical note is appended deterministically.
+ */
+export const SCOPE_BOUNDARY =
+  "This is legal information, not legal advice. For your specific situation, consult a qualified Cameroonian lawyer.";
+
+export function enforceScopeBoundary(answer: AnswerPayload): AnswerPayload {
+  const text = `${answer.answer} ${answer.scopeNote}`;
+  const ok = /lawyer/i.test(text) && /(legal information|not legal advice)/i.test(text);
+  if (ok) return answer;
+  const scopeNote = answer.scopeNote ? `${answer.scopeNote.trim()} ${SCOPE_BOUNDARY}` : SCOPE_BOUNDARY;
+  return { ...answer, scopeNote };
+}
+
 export interface SynthesisResult {
   answer: AnswerPayload;
   invalid: InvalidCitation[];
@@ -117,7 +134,7 @@ export async function synthesizeAnswer(
   const parsed = AnswerPayload.safeParse(JSON.parse(stripFences(raw)));
   if (!parsed.success) throw new Error(`synthesis returned an invalid AnswerPayload: ${parsed.error.message}`);
   const { valid, invalid } = validateCitations(parsed.data, chunks);
-  return { answer: { ...parsed.data, citations: valid }, invalid };
+  return { answer: enforceScopeBoundary({ ...parsed.data, citations: valid }), invalid };
 }
 
 // ---------------------------------------------------------------------------
@@ -150,6 +167,8 @@ export function streamProse(
 
 export const STRUCTURE_SYSTEM = `You convert a DRAFT ANSWER (already written, with [n] citation markers) into structured metadata, using the SOURCES. Do not change the legal content. Extract ONLY citations that the draft actually relies on, using the EXACT sourceId of each source and a short VERBATIM quote copied from that source.
 
+Regime guidance: matters governed by OHADA Uniform Acts — commercial companies, commercial sales and trade, securities, insolvency, arbitration, accounting — take applies: "ohada" with ohadaSupersedes: true.
+
 Output a SINGLE JSON object matching EXACTLY:
 {
   "citations": [ { "marker": string, "sourceId": string, "sourceTitle": string, "locator": string, "quote": string, "authority": "primary"|"secondary", "language": "en"|"fr" } ],
@@ -178,5 +197,5 @@ export async function structureAnswer(
   const parsed = AnswerPayload.safeParse(candidate);
   if (!parsed.success) throw new Error(`structure step produced invalid AnswerPayload: ${parsed.error.message}`);
   const { valid, invalid } = validateCitations(parsed.data, chunks);
-  return { answer: { ...parsed.data, citations: valid }, invalid };
+  return { answer: enforceScopeBoundary({ ...parsed.data, citations: valid }), invalid };
 }
