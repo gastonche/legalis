@@ -134,6 +134,26 @@ The suites run on every push (`.github/workflows/ci.yml`) and fail the build on 
 the report uploads as a CI artifact. The harness has already caught real bugs: an ungrounded-draft
 path that skipped the visible downgrade, and TOC dot-leader noise in the chunker.
 
+### Deep model evals (real models, every AI call site)
+
+`pnpm eval:deep` goes a level deeper: **real models** over the **real corpus index**, covering all
+four places Legalis uses AI —
+
+| suite | AI call site | what it grades |
+| --- | --- | --- |
+| `deep-planner` | the planner classification | domain/regime, web-need, the pivotal-region flag (ask-don't-guess) |
+| `deep-gate` | synthesis + the self-eval judge gate | grounded citations, regime, the gate's honesty, **LLM-as-judge faithfulness** against statute text + quality rubrics, latency budgets — compared **side-by-side across models** (gpt-4o-mini vs gpt-4o) |
+| `deep-orchestrator` | the live Mastra agent (over SSE) | tool decisions end-to-end: asks the region clarifier when pivotal, doesn't when a town is named, widens to web for current/procedural questions |
+
+It's env-gated (`OPENAI_API_KEY`; the orchestrator suite needs the brain running and auto-skips
+otherwise) and runnable in CI via `workflow_dispatch` with the key as a repo secret. Inspect any
+run interactively in the Promptopus dashboard: `npx promptopus view packages/evals/results/deep-gate.json`.
+
+The deep layer immediately earned its keep: it caught models writing a *paraphrased* scope note
+instead of the explicit information-not-advice boundary (now enforced deterministically in core —
+`enforceScopeBoundary`), and gpt-4o-mini misclassifying FR company-law questions as `mixed`
+instead of `ohada` (fixed with regime guidance in the synthesis prompts).
+
 ## Honest limitations
 
 - **Not legal advice** — by design and by behavior. Decisions belong with a qualified

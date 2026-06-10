@@ -16,6 +16,8 @@
 pnpm install
 pnpm typecheck && pnpm lint   # must pass
 pnpm eval                     # behavior suites (offline, keyless)
+pnpm eval:deep                # real-model suites over every AI call site (needs OPENAI_API_KEY;
+                              # orchestrator suite needs the brain running — auto-skips otherwise)
 ```
 
 Dev stack (three terminals): brain (`:4111`) → worker proxy (`:8787`) → web (`:5173`); see the

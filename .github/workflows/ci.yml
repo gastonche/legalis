@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch: # also enables the deep (real-model) eval job below
 
 jobs:
   checks:
@@ -43,3 +44,31 @@ jobs:
           path: |
             packages/evals/results/report.md
             packages/evals/results/*.json
+
+  deep-evals:
+    name: Deep model evals (real models, manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Real-model suites over every AI call site (planner, synthesis+gate with
+      # LLM-as-judge, orchestrator decisions). In CI: fixture retrieval (no local
+      # index) and the orchestrator suite auto-skips (no brain). Needs the
+      # OPENAI_API_KEY repo secret; exits cleanly if unset.
+      - run: pnpm --filter @legalis/evals eval:deep
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: Upload deep eval report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deep-eval-report
+          path: |
+            packages/evals/results/deep-report.md
+            packages/evals/results/deep-*.json
