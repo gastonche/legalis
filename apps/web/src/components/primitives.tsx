@@ -45,50 +45,6 @@ export const REGIME: Record<Regime, { label: string; tone: Tone }> = {
   unclear: { label: "Regime unclear", tone: "neutral" },
 };
 
-/** Lightweight inline markdown: **bold** + [n] / [n:x] citation markers → superscripts. */
-export function renderInline(text: string): ReactNode[] {
-  return text
-    .split(/(\*\*[^*]+\*\*|\[(?:n:)?\d+\])/g)
-    .filter(Boolean)
-    .map((part, i) => {
-      if (/^\*\*[^*]+\*\*$/.test(part)) {
-        return (
-          <strong key={i} className="font-semibold text-ink">
-            {part.slice(2, -2)}
-          </strong>
-        );
-      }
-      const cite = part.match(/^\[(?:n:)?(\d+)\]$/);
-      if (cite) {
-        return (
-          <sup
-            key={i}
-            className="ml-0.5 rounded bg-primary-soft px-1 text-[0.62em] font-bold text-primary-ink"
-          >
-            {cite[1]}
-          </sup>
-        );
-      }
-      return <span key={i}>{part}</span>;
-    });
-}
-
-/** A paragraph's inner content: single newlines (list items) become line breaks. */
-export function renderParagraph(para: string): ReactNode[] {
-  return para.split("\n").flatMap((line, i) => {
-    const rendered = renderInline(line);
-    return i === 0 ? rendered : [<br key={`br-${i}`} />, ...rendered];
-  });
-}
-
-export function renderProse(text: string): ReactNode {
-  return text.split(/\n{2,}/).map((para, i) => (
-    <p key={i} className="mb-3 last:mb-0">
-      {renderParagraph(para)}
-    </p>
-  ));
-}
-
 /**
  * Streaming-safe markdown cleanup for the live token stream: close an
  * in-progress **bold** span (so it renders bold while typing instead of showing

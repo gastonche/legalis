@@ -1,5 +1,6 @@
 import type { AnswerPayload, VerificationBannerProps } from "@legalis/contracts";
-import { Pill, REGIME, renderProse } from "./primitives";
+import { Pill, REGIME } from "./primitives";
+import { Markdown } from "./Markdown";
 import { ExternalIcon, ShieldCheckIcon } from "./icons";
 
 const TRUST: Record<VerificationBannerProps["status"], { label: string; tone: "success" | "warning" | "danger" }> = {
@@ -38,7 +39,7 @@ export function Answer({
       </div>
 
       <div className="max-w-[68ch] font-serif text-[1.0625rem] leading-relaxed text-ink">
-        {renderProse(answer.answer)}
+        <Markdown text={answer.answer} />
       </div>
 
       {answer.regime.rationale ? (

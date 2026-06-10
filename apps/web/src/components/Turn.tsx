@@ -3,24 +3,19 @@ import type { Turn } from "../lib/useConversation";
 import { Answer } from "./Answer";
 import { Thinking } from "./Thinking";
 import { BriefcaseIcon, HelpIcon, PinIcon, ScaleIcon } from "./icons";
-import { renderParagraph, tidyStreamingTail } from "./primitives";
+import { tidyStreamingTail } from "./primitives";
+import { Markdown } from "./Markdown";
 
 /**
- * The live token stream, rendered as real markdown while it arrives (bold,
- * citation superscripts, list line-breaks) instead of raw syntax. Completed
- * paragraphs are stable; the caret rides the last, still-growing one.
+ * The live token stream, rendered as real markdown while it arrives (react-
+ * markdown — bold, lists, headings, citation superscripts) instead of raw
+ * syntax. tidyStreamingTail closes an in-progress **bold** span and hides a
+ * half-typed [1 marker; the caret rides the last rendered block.
  */
 function StreamingProse({ text }: { text: string }) {
-  const paras = tidyStreamingTail(text).split(/\n{2,}/);
-  const tail = paras.pop() ?? "";
   return (
-    <div className="max-w-[68ch] font-serif text-[1.0625rem] leading-relaxed text-ink-soft">
-      {paras.map((p, i) => (
-        <p key={i} className="mb-3">
-          {renderParagraph(p)}
-        </p>
-      ))}
-      <p className="caret-pulse">{renderParagraph(tail)}</p>
+    <div className="stream-md max-w-[68ch] font-serif text-[1.0625rem] leading-relaxed text-ink-soft">
+      <Markdown text={tidyStreamingTail(text)} />
     </div>
   );
 }
