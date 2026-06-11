@@ -1,164 +1,194 @@
 # Legalis
 
-[![CI](https://github.com/OWNER/legalis/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/legalis/actions/workflows/ci.yml)
-<!-- Replace OWNER once the GitHub remote exists. -->
+[![CI](https://github.com/gastonche/legalis/actions/workflows/ci.yml/badge.svg)](https://github.com/gastonche/legalis/actions/workflows/ci.yml)
+[![Live](https://img.shields.io/badge/live-legalis--7nt.pages.dev-c9a96a)](https://legalis-7nt.pages.dev)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2b2820)](LICENSE)
 
-**Grounded, guided research on Cameroon law.** Ask a question in plain language; Legalis answers
+**Grounded, guided research on Cameroon law.** Ask a question in plain language; an agent answers
 from cited primary sources, flags which legal regime governs (Anglophone common law · Francophone
-civil law · OHADA), self-checks every answer before showing it, and consistently draws the
-*legal information, not legal advice* boundary.
+civil law · OHADA), and a second model grades every answer *before* it's shown. The
+*legal information, not legal advice* boundary is enforced in code, not in a footer.
 
-Three engineered behaviors define the product:
+**Live demo:** [legalis-7nt.pages.dev](https://legalis-7nt.pages.dev) · **60s product film:** [`promo/legalis-film`](promo/legalis-film) (Remotion)
 
-1. **Grounding-only answers** — every legal claim must trace to a retrieved source (38 verified
-   primary texts + allowlisted official web sources). A citation-integrity layer strips any
-   citation whose source wasn't retrieved or whose quote isn't verbatim. When sources don't
-   support an answer, Legalis refuses honestly instead of guessing.
-2. **A self-evaluation gate** — a second model grades every draft (groundedness, citation
-   validity, jurisdiction, uncertainty honesty) *before* display. Failing answers are visibly
-   downgraded, never dressed up.
-3. **The bijural question, taken seriously** — answers state the governing regime, note OHADA
-   supersession on business matters, and when the Anglophone/Francophone divide is pivotal and
-   unknown, the agent *asks* (a model-driven clarifying question) rather than guessing.
+<p>
+  <img src="docs/media/answer-citation.png" width="262" alt="A cited answer: Labour Code §36 with a verbatim quote and the primary-authority seal" />
+  <img src="docs/media/verification-gate.png" width="262" alt="The verification gate: grounded, citations valid, regime correct, uncertainty surfaced — Verified" />
+  <img src="docs/media/honest-refusal.png" width="262" alt="An honest refusal: 'I can't ground this in my sources — so I won't guess.'" />
+</p>
+
+## Why this project is interesting
+
+Three behaviors are *engineered*, not prompted-and-hoped:
+
+1. **Grounding-only answers.** Every legal claim must trace to a retrieved source — 38 verified
+   primary texts (9,944 article-level chunks, EN + FR) plus allowlisted official web sources. A
+   citation-integrity layer strips any citation whose source wasn't retrieved or whose quote isn't
+   verbatim. No sources → an honest refusal, never a guess.
+2. **A self-evaluation gate.** A judge model grades each draft on groundedness, citation validity,
+   jurisdiction, and uncertainty honesty *before display*. Failures are visibly downgraded
+   ("⚠ I couldn't fully verify this…"), with a bounded revise/re-retrieve loop.
+3. **The bijural reality, taken seriously.** Cameroon runs two legal traditions plus OHADA
+   supersession on business matters. The agent states the governing regime, and when the
+   Anglophone/Francophone divide is pivotal and unknown, it *asks* — a model-driven clarifying
+   question with a tool-level guard against re-asking or asking when a town is named.
+
+Everything above is enforced by **two layers of evals that have already caught six real defects**
+(see [the findings](#what-the-evals-caught)).
 
 ## Architecture
 
-Three services in a Turborepo:
+Three services. The model **drives the loop via tool calls** — it decides when to consult the
+planner, search the corpus, widen to the web, ask the user, or finalize. The final cited answer is
+produced *deterministically* inside the `finalize-answer` tool (`streamProse → structureAnswer →
+judge`), so grounding integrity stays outside the model's control.
 
 ```mermaid
 flowchart LR
-    subgraph Browser
-        SPA["apps/web — React SPA<br/>marketing site + chat<br/>/c/:id sessions"]
+    subgraph Edge["Cloudflare Pages — legalis-7nt.pages.dev"]
+        SPA["SPA (React 19 · Counsel design system)<br/>marketing site + chat · /c/:id sessions"]
+        EW["_worker.js — edge proxy<br/>SPA fallback · bearer-token injection<br/>endpoint allowlist · payload caps"]
     end
-    subgraph Edge["Cloudflare"]
-        W["apps/agent — Worker<br/>thin SSE proxy"]
-    end
-    subgraph Brain["apps/brain — Mastra service (Node)"]
-        O["Orchestrator Agent<br/>(model drives the loop)"]
+    subgraph Brain["apps/brain — Mastra agent service (Node)"]
+        O["Orchestrator Agent<br/>(decides its own steps)"]
         P["Planner sub-agent"]
         T1["search-corpus"]
-        T2["search-web (Tavily)"]
-        T3["ask-clarification"]
-        T4["finalize-answer<br/>(synthesis + judge gate)"]
-        S[("Session store<br/>chatId → turns")]
+        T2["search-web (Tavily, allowlisted)"]
+        T3["ask-clarification<br/>(+ geography guard)"]
+        T4["finalize-answer<br/>(deterministic: synthesize → validate → judge)"]
+        S[("Sessions<br/>chatId → turns")]
+        L["pino structured logs<br/>turn lifecycle · step timings"]
     end
-    V[("Corpus index<br/>9,944 chunks / 38 texts")]
-    SPA -- "POST /api/chat/:id/stream (SSE)" --> W --> O
+    V[("Corpus index<br/>38 texts · 9,944 chunks · EN+FR")]
+    SPA --> EW
+    EW -- "SSE (StreamEvents)" --> O
     O --- P
     O --> T1 --> V
     O --> T2
     O --> T3
     O --> T4
     O --- S
+    O -.-> L
 ```
-
-The **orchestrator decides its own steps** via tool calls — when to consult the planner, search
-the corpus, widen to official web sources, ask the user a clarifying question, or finalize. The
-final answer itself is produced deterministically (`streamProse → structureAnswer → judge`) inside
-the `finalize-answer` tool, so grounding integrity and the grade-before-show gate stay outside the
-model's control.
 
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant B as Brain (orchestrator)
+    participant B as Orchestrator
     participant C as Corpus / Web
     participant J as Judge (2nd model)
-    U->>B: question (chat /c/:id, prior turns loaded)
-    B->>B: plan (sub-agent, optional)
+    U->>B: question (chat /c/:id — prior turns loaded server-side)
+    B->>B: plan (sub-agent, model's choice)
     alt region pivotal & unknown
-        B-->>U: region-selector — ask, don't guess
+        B-->>U: region-selector — ask, don't guess (turn persisted: no re-ask loops)
     else
-        B->>C: search-corpus (+ search-web if needed)
-        C-->>B: chunks (article-level, EN/FR)
-        B->>B: synthesize prose (streamed live)
-        B->>B: validate citations (verbatim quotes only)
-        B->>J: grade draft (grounded? cited? right regime? honest?)
+        B->>C: search-corpus (+ search-web for current/procedural info)
+        C-->>B: article-level chunks (EN/FR, cross-lingual retrieval)
+        B->>B: stream prose live · validate citations (verbatim quotes only)
+        B->>J: grade: grounded? cited? right regime? honest?
         J-->>B: verdict
-        B-->>U: verified answer · or visibly downgraded
+        B-->>U: Verified answer — or visibly downgraded, never dressed up
     end
 ```
 
-Every step streams to the SPA as typed `StreamEvent`s (trace / narration / component /
-answer-token) rendering a generative UI: a collapsible **Thinking** disclosure (process,
-sources, verification checks, raw trace) subordinate to the hero cited answer.
+Every step streams to the SPA as typed `StreamEvent`s (zod contracts) rendering a generative UI: a
+collapsible **Thinking** disclosure (narration, sources, verification checks, raw trace)
+subordinate to the hero cited answer, with markdown rendered live during token streaming.
 
 ### Repo layout
 
-| path | what it is |
+| Path | What it is |
 | --- | --- |
-| `apps/brain` | The Mastra agent service: orchestrator + planner sub-agent + tools, sessions, SSE routes. Hosted by a thin Hono server under `tsx` in dev. |
-| `apps/agent` | Cloudflare Worker — stateless SSE/JSON proxy to the brain (`BRAIN_URL`). |
-| `apps/web` | React 19 + Vite + Tailwind v4 SPA: marketing site (`/`, `/how-it-works`, `/sources`, `/about`, terms/privacy) + the chat app (`/chat`, `/c/:id`). |
-| `packages/contracts` | Zod contracts: `StreamEvent`, `ComponentDirective` registry, `AnswerPayload`, `SelfEvalVerdict`. The wire format everything agrees on. |
-| `packages/core` | The grounded pipeline: retrieval fusion, synthesis, citation validation, judge, gate. Pure library, consumed in-process by the brain and the evals. |
-| `packages/ingestion` | Corpus pipeline: PDF extract (+OCR), structure-aware legal chunking (article-as-unit, heading context), embeddings, vector stores, CLIs. |
-| `packages/evals` | Promptopus behavior suites (offline, keyless) — see below. |
+| `apps/brain` | The Mastra agent service: orchestrator + planner sub-agent + four tools, file-backed sessions, SSE routes, pino logging. Hosted by Hono under `tsx`. |
+| `apps/web` | React 19 + Vite + Tailwind v4 SPA — marketing site (`/`, `/how-it-works`, `/sources`, `/about`, terms/privacy) + the chat (`/chat`, `/c/:id`), plus the Pages edge worker (`public/_worker.js`). |
+| `apps/agent` | Cloudflare Worker proxy variant (local dev parity with the edge worker). |
+| `packages/contracts` | Zod wire contracts: `StreamEvent`, the `ComponentDirective` registry, `AnswerPayload`, `SelfEvalVerdict`. |
+| `packages/core` | The grounded pipeline as a pure library: retrieval fusion, synthesis, citation validation, the judge, the gate, scope-boundary enforcement. |
+| `packages/ingestion` | Corpus pipeline: PDF extract (+OCR), structure-aware legal chunking (article-as-unit, heading context, noise stripping), embeddings, vector stores. |
+| `packages/evals` | Two layers of Promptopus suites — see below. |
+| `promo/legalis-film` | The 60s Remotion hero film (no VO; psychology-driven scene design; free sound). |
 | `corpus/` | The verified primary-law corpus (manifest committed; PDFs/index gitignored). |
 
-## Running it
+## Evals: behavior contracts + deep model evals
 
-Prereqs: Node ≥ 22.13, pnpm 10. Secrets live in `apps/brain/.env` (gitignored):
-`OPENAI_API_KEY`, optional `TAVILY_API_KEY` (web search degrades off without it).
+Built on [Promptopus](https://promptopus.pages.dev). Two layers:
+
+**Layer 1 — keyless behavior contracts (`pnpm eval`, runs in CI on every push).** Deterministic
+scripted LLMs (including an *adversarial fabricator* that invents statutes and case law) over
+committed real-corpus fixtures, through the **real pipeline**. Three suites / 26 checks: grounded
+answers (EN + FR), honest refusal, citation integrity. Zero keys, CI-stable, fails the build on
+regression.
+
+**Layer 2 — deep model evals (`pnpm eval:deep`).** Real models over the real corpus index,
+covering **every AI call site**: the planner classification, synthesis + the judge gate
+(**gpt-4o-mini vs gpt-4o side by side**, with LLM-as-judge faithfulness graded against actual
+statute text), and the **live orchestrator over SSE** (decision grading: did it ask? did it search
+the web?). 49 checks; results open in the Promptopus dashboard
+(`npx promptopus view packages/evals/results/deep-gate.json`).
+
+### What the evals caught
+
+The harness paid for itself before launch — six real defects, each fixed and re-verified:
+
+| # | Finding | Caught by | Fix |
+| --- | --- | --- | --- |
+| 1 | **Gate trust hole** — when fabricated citations were stripped, the *banner* said Unverified but the confident fabricated *text* survived untouched | adversarial fabricator suite | hedge-aware `downgradeAnswer` applied on every non-show outcome, across all three pipelines |
+| 2 | **Scope boundary was prompt-hope** — real models paraphrased away the explicit "information, not advice" statement | deep gate suite | `enforceScopeBoundary()` appends the canonical boundary deterministically in core |
+| 3 | **gpt-4o-mini misclassified FR company-law** as `mixed` instead of `ohada` | deep gate suite (FR case) | regime guidance added to synthesis prompts — verified fixed on re-run |
+| 4 | **TOC junk in the corpus index** — space-separated dot-leaders (`Article 1 . . . .`) slipped past the chunker's noise filter | fixture extraction | `NOISE` regex extended (applies on next ingest) |
+| 5 | **FR retrieval is thin** for broad definitional questions — the gate honestly downgrades | deep gate suite | corpus roadmap item (add AUSCGIE scope articles); judge threshold baselined at 0.5 with a written rationale to raise it |
+| 6 | **The bigger model didn't win** — gpt-4o matched gpt-4o-mini's pass rate, and the one gate-downgraded answer was gpt-4o's | deep gate comparison | informs the default-model choice: retrieval + the gate dominate; 4o-mini stays the default |
+
+Current state: **26/26 keyless · 49/49 deep**, with the FR threshold documented as a baseline, not
+an aspiration.
+
+## Observability
+
+- **Brain:** structured pino logs — `turn.start` → per-step timings (`retrieve`, `reflect`,
+  `synthesize`, `self-eval`) → `turn.end` with outcome, banner status, citation count, regime, and
+  duration; request-scoped ids; JSON in production, pretty in dev (`LOG_LEVEL=debug` for step
+  timings).
+- **Edge:** Cloudflare Workers observability enabled; the Pages worker allowlists endpoints and
+  caps payloads.
+- **Evals as monitoring:** CI uploads the eval report as an artifact on every push; the deep suite
+  runs on `workflow_dispatch` with the API key as a repo secret.
+
+## Deployment
+
+Live at **[legalis-7nt.pages.dev](https://legalis-7nt.pages.dev)**: the SPA + edge proxy ship as
+one Cloudflare Pages deployment (`_worker.js` advanced mode — static assets, SPA fallback for
+`/c/*`, and an authenticated proxy to the brain). The brain requires Node (onnxruntime embeddings +
+an 89 MB local index), is hardened for exposure (bearer token only the edge knows, per-chat turn
+caps, question-length caps), and runs via a Cloudflare Tunnel in beta with a container host
+(Fly/Railway) as the stable path. The all-Cloudflare migration (Workers AI + Vectorize + D1) is
+prepared — the REST adapters exist in `packages/ingestion` — pending a re-ingest at 1024d.
+
+## Running it locally
+
+Prereqs: Node ≥ 22.13, pnpm 10. Secrets in `apps/brain/.env` (`OPENAI_API_KEY`, optional
+`TAVILY_API_KEY` — web search degrades off without it).
 
 ```bash
 pnpm install
+pnpm ingest                          # one-time: build the local corpus index
 
-# one-time: build the local corpus index (downloads the embedding model on first run)
-pnpm ingest
-
-# then, in three terminals (order matters):
-pnpm --filter @legalis/brain dev    # 1. Mastra brain    → :4111
-pnpm --filter @legalis/agent dev    # 2. Worker proxy    → :8787
-pnpm --filter @legalis/web dev      # 3. SPA             → :5173
+pnpm --filter @legalis/brain dev     # 1. agent service  → :4111
+pnpm --filter @legalis/agent dev     # 2. dev proxy      → :8787
+pnpm --filter @legalis/web dev       # 3. SPA            → :5173
 ```
 
-Open http://localhost:5173. Dev runs fully locally: in-process Transformers.js embeddings over a
-file-backed index, file-backed sessions. Deploy swaps these for Workers AI + Vectorize and a
-remote store via Mastra's `CloudflareDeployer` (the Worker proxy is already Cloudflare-native).
-
-## Evals: behavior, not vibes
-
-`pnpm eval` runs [Promptopus](https://promptopus.pages.dev) suites against the **real pipeline**
-(retrieve → synthesize → citation-validate → gate) with deterministic scripted LLMs and committed
-corpus fixtures — zero keys, CI-stable:
-
-- **grounded-answers** — cites the right document (Labour Code / OHADA AUDCG / Constitution),
-  classifies the regime, passes the gate, carries the advice boundary. EN + FR.
-- **honest-refusal** — out-of-corpus questions (German tax, Nigerian fines) produce refusals:
-  no citations, low confidence, downgraded banner.
-- **citation-integrity** — adversarial: a model that *fabricates* statutes and cases. The
-  integrity layer must strip every invented citation and the gate must visibly downgrade.
-
-The suites run on every push (`.github/workflows/ci.yml`) and fail the build on any regression;
-the report uploads as a CI artifact. The harness has already caught real bugs: an ungrounded-draft
-path that skipped the visible downgrade, and TOC dot-leader noise in the chunker.
-
-### Deep model evals (real models, every AI call site)
-
-`pnpm eval:deep` goes a level deeper: **real models** over the **real corpus index**, covering all
-four places Legalis uses AI —
-
-| suite | AI call site | what it grades |
-| --- | --- | --- |
-| `deep-planner` | the planner classification | domain/regime, web-need, the pivotal-region flag (ask-don't-guess) |
-| `deep-gate` | synthesis + the self-eval judge gate | grounded citations, regime, the gate's honesty, **LLM-as-judge faithfulness** against statute text + quality rubrics, latency budgets — compared **side-by-side across models** (gpt-4o-mini vs gpt-4o) |
-| `deep-orchestrator` | the live Mastra agent (over SSE) | tool decisions end-to-end: asks the region clarifier when pivotal, doesn't when a town is named, widens to web for current/procedural questions |
-
-It's env-gated (`OPENAI_API_KEY`; the orchestrator suite needs the brain running and auto-skips
-otherwise) and runnable in CI via `workflow_dispatch` with the key as a repo secret. Inspect any
-run interactively in the Promptopus dashboard: `npx promptopus view packages/evals/results/deep-gate.json`.
-
-The deep layer immediately earned its keep: it caught models writing a *paraphrased* scope note
-instead of the explicit information-not-advice boundary (now enforced deterministically in core —
-`enforceScopeBoundary`), and gpt-4o-mini misclassifying FR company-law questions as `mixed`
-instead of `ohada` (fixed with regime guidance in the synthesis prompts).
+```bash
+pnpm typecheck && pnpm lint          # strict TS, no `any` in core logic
+pnpm eval                            # behavior contracts (keyless)
+pnpm eval:deep                       # real-model evals (needs OPENAI_API_KEY)
+```
 
 ## Honest limitations
 
-- **Not legal advice** — by design and by behavior. Decisions belong with a qualified
+- **Not legal advice** — by design and by enforced behavior; decisions belong with a qualified
   Cameroonian lawyer.
 - Web-grounded answers are conservatively downgraded (the verbatim-quote validator is strict on
-  messy web text) — tracked as the main quality lever.
-- The corpus is 38 texts and growing; coverage gaps produce honest refusals, not answers.
-- Conversations are stored server-side per chat id during the beta; don't paste sensitive details.
+  messy web text) — the known top quality lever.
+- The corpus is 38 texts and growing; gaps produce honest refusals, with FR definitional retrieval
+  the documented weak spot (finding #5).
+- Beta conversations are stored server-side per chat id; don't paste sensitive details.

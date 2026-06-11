@@ -1,6 +1,8 @@
 import type { ModelMessage } from "ai";
+import type { StreamEvent } from "@legalis/contracts";
 import { orchestrator } from "../agents/orchestrator";
 import { deps } from "../deps";
+import { logger } from "../logger";
 import { produceFinalAnswer } from "../produce";
 import { type RunContext, runStore } from "../runContext";
 import { RunSink } from "../stream/sink";
@@ -13,6 +15,25 @@ const SSE_HEADERS: Record<string, string> = {
   "access-control-allow-origin": "*",
 };
 
+/** Tap the sink to emit structured step/tool timings without touching the tools. */
+function tapSink(sink: RunSink, log: typeof logger): void {
+  const started = new Map<string, number>();
+  const origPush = sink.push.bind(sink);
+  sink.push = (event: StreamEvent) => {
+    if (event.type === "trace") {
+      if (event.phase === "start") started.set(event.step, Date.now());
+      else {
+        const t0 = started.get(event.step);
+        log.debug(
+          { step: event.step, ms: t0 ? Date.now() - t0 : undefined, status: event.status, detail: event.detail },
+          "step",
+        );
+      }
+    }
+    origPush(event);
+  };
+}
+
 /**
  * Run the model-driven agent for one turn and return an SSE Response of
  * StreamEvents. The orchestrator decides the steps; tools push events into the
@@ -23,6 +44,10 @@ const SSE_HEADERS: Record<string, string> = {
 export function streamChat(chatId: string, question: string): Response {
   const q = question.trim();
   const sink = new RunSink();
+  const requestId = crypto.randomUUID().slice(0, 8);
+  const log = logger.child({ requestId, chatId });
+  const t0 = Date.now();
+  tapSink(sink, log);
 
   void (async () => {
     sink.control("open");
@@ -31,6 +56,7 @@ export function streamChat(chatId: string, question: string): Response {
     sink.trace("understand", "end");
     try {
       const priorTurns = await loadTurns(chatId);
+      log.info({ questionChars: q.length, priorTurns: priorTurns.length }, "turn.start");
       const history = toMessages(priorTurns);
       const ctx: RunContext = {
         sink,
@@ -68,8 +94,20 @@ export function streamChat(chatId: string, question: string): Response {
           createdAt: new Date().toISOString(),
         });
       }
+      log.info(
+        {
+          ms: Date.now() - t0,
+          outcome: ctx.clarified ? "clarified" : ctx.finalAnswer ? "answered" : "empty",
+          banner: ctx.verification?.status,
+          citations: ctx.finalAnswer?.citations.length ?? 0,
+          regime: ctx.finalAnswer?.regime.applies,
+          sourcesRetrieved: ctx.chunks.length,
+        },
+        "turn.end",
+      );
       sink.control("done");
     } catch (e) {
+      log.error({ ms: Date.now() - t0, err: e instanceof Error ? e.message : String(e) }, "turn.error");
       sink.control("error", e instanceof Error ? e.message : "agent error");
     } finally {
       sink.close();

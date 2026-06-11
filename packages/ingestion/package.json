@@ -15,8 +15,7 @@
     "chunk": "tsx src/cli/chunk.ts",
     "ingest": "tsx src/cli/ingest.ts",
     "smoke": "tsx src/cli/smoke.ts",
-    "ask": "tsx src/cli/ask.ts",
-    "serve": "tsx src/cli/serve.ts"
+    "ask": "tsx src/cli/ask.ts"
   },
   "dependencies": {
     "@legalis/contracts": "workspace:*",

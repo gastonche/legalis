@@ -4,6 +4,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { chatHistory, streamChat } from "./mastra/routes/handlers";
 import { loadTurns } from "./mastra/sessions";
+import { logger } from "./mastra/logger";
 
 /**
  * Host for the Mastra brain: a thin Hono server (run under tsx, which resolves
@@ -13,6 +14,13 @@ import { loadTurns } from "./mastra/sessions";
  */
 const app = new Hono();
 app.use("/api/*", cors());
+
+// access log (SSE responses log at headers-sent; turn outcomes log separately)
+app.use("/api/*", async (c, next) => {
+  const t0 = Date.now();
+  await next();
+  logger.info({ method: c.req.method, path: c.req.path, status: c.res.status, ms: Date.now() - t0 }, "http");
+});
 
 const TOKEN = process.env.BRAIN_TOKEN;
 /** Cost ceiling: one conversation can't run the model forever. */
@@ -43,5 +51,5 @@ app.get("/api/chat/:chatId/history", async (c) => c.json(await chatHistory(c.req
 
 const port = Number(process.env.BRAIN_PORT ?? 4111);
 serve({ fetch: app.fetch, port }, (info) =>
-  console.log(`legalis brain → http://127.0.0.1:${info.port}${TOKEN ? " (bearer-auth on)" : ""}`),
+  logger.info({ port: info.port, auth: Boolean(TOKEN), maxTurnsPerChat: MAX_TURNS_PER_CHAT }, "brain.up"),
 );
