@@ -5,4 +5,6 @@
  */
 export interface Env {
   BRAIN_URL: string;
+  /** Shared bearer token the brain requires when publicly exposed. */
+  BRAIN_TOKEN?: string;
 }

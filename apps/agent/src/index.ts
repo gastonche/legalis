@@ -18,7 +18,10 @@ app.post("/api/chat/:chatId/stream", async (c) => {
   const chatId = c.req.param("chatId");
   const upstream = await fetch(`${c.env.BRAIN_URL}/api/chat/${encodeURIComponent(chatId)}/stream`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: {
+      "content-type": "application/json",
+      ...(c.env.BRAIN_TOKEN ? { authorization: `Bearer ${c.env.BRAIN_TOKEN}` } : {}),
+    },
     body: await c.req.text(),
   });
   return new Response(upstream.body, {
@@ -34,7 +37,9 @@ app.post("/api/chat/:chatId/stream", async (c) => {
 // Persisted conversation history for rehydration (JSON passthrough).
 app.get("/api/chat/:chatId/history", async (c) => {
   const chatId = c.req.param("chatId");
-  const upstream = await fetch(`${c.env.BRAIN_URL}/api/chat/${encodeURIComponent(chatId)}/history`);
+  const upstream = await fetch(`${c.env.BRAIN_URL}/api/chat/${encodeURIComponent(chatId)}/history`, {
+    headers: c.env.BRAIN_TOKEN ? { authorization: `Bearer ${c.env.BRAIN_TOKEN}` } : {},
+  });
   return new Response(upstream.body, {
     status: upstream.status,
     headers: { "content-type": "application/json" },
